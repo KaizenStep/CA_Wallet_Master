@@ -1,0 +1,25 @@
+body {
+    padding: 20px;
+    margin: 0;
+}
+#previewbox{
+  background-color: #f1f1f1;
+  border-radius: 15px;
+}
+.required{
+  border: 2px solid #FF0000 !important;
+}
+.step {
+    display: none;
+}
+
+#step1 {
+    display: block;
+}
+
+.display {
+    display: block;
+}
+.hidde {
+    display: none;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Custom-Activity-Wallet-Create",
+  "homepage": "https://github.com/KaizenStep/Custom-Activity-Wallet-Create",
+  "authors": [
+    "Kaizenstep"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

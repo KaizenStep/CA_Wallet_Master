@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var config = {
+                baseUrl: 'js'
+            };
+
+            var dependencies = [
+                'customActivity'
+            ];
+
+            require(config, dependencies);
+        })();
+    </script>
+    <style>
+      .show{display:block;}
+      .hidde{display:none;}
+    </style>
+    <title></title>
+    </head>
+    <body>
+      <div id="step1" class="step">
+        <div class="row">
+            <div class="col-6">
+                <div class="alert alert-danger hidde" role="alert" id="alert-entry">
+                    Configure an Entry event to continue!
+                </div>
+
+                <div class="form-group">
+                    <label for="Methodinput">Create/Update Pass or Push*:</label>
+                    <select class="form-control form-control-sm" id="Methodinput">
+                        <option value="">Select an option</option>
+                        <option value="Create">Create Pass</option>
+                        <option value="Update">Update Pass</option>
+                      <option value="Push">Push message</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div id="step2" class="step">
+       <div class="createpass">  
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="ContactIDinput">ContactID</label>
+              <select class="form-control form-control-sm" id="ContactIDinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="createupdatepass">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="FirstNameinput">FirstName</label>
+              <select class="form-control form-control-sm" id="FirstNameinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="LastNameinput">LastName</label>
+              <select class="form-control form-control-sm" id="LastNameinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="createupdatepass">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="Levelinput">Level</label>
+              <select class="form-control form-control-sm" id="Levelinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="Balanceinput">Balance</label>
+              <select class="form-control form-control-sm" id="Balanceinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="createupdatepushpass">
+		    <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="WalletIDinput">WalletID</label>
+              <input type="text" class="form-control form-control-sm" id="WalletIDinput"> 
+            </div>
+          </div>
+         </div>
+        </div>
+        <div class="updatepushpass">
+        <div class="row">
+           <div class="col-6">
+            <div class="form-group">
+              <label for="SerialNumberinput">Serial Number</label>
+              <select class="form-control form-control-sm" id="SerialNumberinput">
+                <option value="">Select an option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="pushpass">
+        <div class="row">
+           <div class="col-6">
+            <div class="form-group">
+              <label for="MessagePushinput">Mensaje Push</label>
+              
+              <textarea name="MessagePushinput" class="form-control form-control-sm" id="MessagePushinput" cols="30" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+        </div>
+        <input type="hidden" class="form-control form-control-sm" id="eventdefinitionkeyinput" >
+            
+      </div>
+      <div id="step3" class="step">
+        <div class="row">
+          <div class="col-6">
+            <h3 id="Method"></h3>
+            <p id="ContactID"></p>
+            <p id="FirstName"></p>
+			      <p id="LastName"></p> 
+            <p id="Level"></p>
+            <p id="Balance"></p>
+            <p id="SerialNumber"></p>
+            <p id="WalletID"></p>
+            <p id="MessagePush"></p>
+          </div>
+          
+        </div>
+      </div>
+</body>
+</html>

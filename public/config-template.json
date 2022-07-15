@@ -1,0 +1,88 @@
+{
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "images/icon.png",
+    "iconSmall": "images/iconSmall.png",
+    "category": "customer"
+  },
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Pass",
+      "description": "Activity to create a pass, update a pass or send a push notification "
+    }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [{
+        "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+      }],
+      "outArguments": [{
+                "outputAPI": ""
+            }],
+      "url": "https://$DOMAIN/journeybuilder/execute",
+      "verb": "POST",
+      "body": "",
+      "header": "",
+      "format": "json",
+      "useJwt": true,
+      "timeout": 10000
+    }
+  },
+  "configurationArguments": {
+    "applicationExtensionKey": "9d2fef4c-05f6-40c2-9bfd-076b4d372a01",
+    "save": {
+      "url": "https://$DOMAIN/journeybuilder/save",
+      "verb": "POST",
+      "useJwt": true
+    },
+    "publish": {
+      "url": "https://$DOMAIN/journeybuilder/publish",
+      "verb": "POST",
+      "useJwt": true
+    },
+    "stop": {
+      "url": "https://$DOMAIN/journeybuilder/stop",
+      "verb": "POST",
+      "useJwt": true
+    },
+    "validate": {
+      "url": "https://$DOMAIN/journeybuilder/validate",
+      "verb": "POST",
+      "useJwt": true
+    }
+  },
+  "wizardSteps": [{
+    "label": "Select type",
+    "key": "step1"
+  }, {
+    "label": "Configure wallet",
+    "key": "step2"
+  }, {
+    "label": "Validate wallet",
+    "key": "step3"
+  }],
+  "userInterfaces": {
+    "configModal": {
+      "height": 400,
+      "width": 1000,
+      "fullscreen": true
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [],
+        "outArguments": [  
+                    {
+                        "outputAPI": {
+                            "dataType": "string",
+                            "direction": "out",
+                            "access": "visible"
+                        }
+                    }
+                ]
+      }
+    }
+  }
+}
