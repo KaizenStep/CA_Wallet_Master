@@ -53,6 +53,7 @@ define([
       $('#WalletIDinput').removeClass("required");
       $('#FirstNameinput').removeClass("required");
       $('#LastNameinput').removeClass("required");
+      $('#Phoneinput').removeClass("required");
       $('#Levelinput').removeClass("required");
       $('#ContactIDinput').removeClass("required");
       $('#Balanceinput').removeClass("required");
@@ -159,6 +160,11 @@ define([
           text: name
         }));
 
+        $('#Phoneinput').append($('<option>', {
+          value: Value,
+          text: name
+        }));
+
         $('#ContactIDinput').append($('<option>', {
           value: Value,
           text: name
@@ -209,12 +215,14 @@ define([
     var Leveltext;
     var FirstNametext;
     var LastNametext;
+    var Phonetext;
     var ContactIDtext;
     var SerialNumbertext;
     var Balancetext;
     var Levelval;
     var FirstNameval;
     var LastNameval;
+    var Phoneval;
     var ContactIDval;
     var Balanceval;
     var SerialNumberval;
@@ -250,6 +258,10 @@ define([
         if (key === 'LastName') {
           LastNametext = val[0];
           LastNameval = val[1];
+        }
+        if (key === 'Phone') {
+          Phonetext = val[0];
+          Phoneval = val[1];
         }
         if (key === 'ContactID') {
           ContactIDtext = val[0];
@@ -295,6 +307,7 @@ define([
           $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
           $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
           $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
+          $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
           $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
           $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
 
@@ -309,6 +322,9 @@ define([
           }
           if (LastNameval != 'Undefined' && LastNameval.length > 0) {
             $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+          }
+          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
           }
           if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
             $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -329,6 +345,7 @@ define([
           $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
           $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
           $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
+          $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
           $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
           $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
           $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
@@ -344,6 +361,9 @@ define([
           }
           if (LastNameval != 'Undefined' && LastNameval.length > 0) {
             $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+          }
+          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
           }
           if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
             $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -396,25 +416,7 @@ define([
 
     console.log(mc_fuel_token);
     console.log(mc_fuel_url);
-
-    /*var settings = {
-  "url": "https://mcnn140bsxdswmnwfpxhylnn0t1q.auth.marketingcloudapis.com/v2/token",
-  "method": "POST",
-  "timeout": 0,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": JSON.stringify({"grant_type":"client_credentials","client_id":"rw1azest5ular0kdrh75px5o","client_secret":"Enx6EaAqvikkbn20zx76i11d"}),
-};
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});*/
-
-
-
-
-
+ 
   }
 
   function onGetEndpoints(endpoints) {
@@ -428,6 +430,7 @@ $.ajax(settings).done(function (response) {
       $('#WalletIDinput').removeClass("required");
       $('#FirstNameinput').removeClass("required");
       $('#LastNameinput').removeClass("required");
+      $('#Phoneinput').removeClass("required");
       $('#Levelinput').removeClass("required");
       $('#ContactIDinput').removeClass("required");
       $('#Balanceinput').removeClass("required");
@@ -446,6 +449,9 @@ $.ajax(settings).done(function (response) {
 
       var LastNameval = $('#LastNameinput').find('option:selected').attr('value').trim();
       var LastNametext = $('#LastNameinput').find('option:selected').text();
+
+      var Phoneval = $('#Phoneinput').find('option:selected').attr('value').trim();
+      var Phonetext = $('#Phoneinput').find('option:selected').text();
 
       var ContactIDval = $('#ContactIDinput').find('option:selected').attr('value').trim();
       var ContactIDtext = $('#ContactIDinput').find('option:selected').text();
@@ -467,6 +473,9 @@ $.ajax(settings).done(function (response) {
           }
           if ((LastNameval === 'Undefined' || LastNameval.length === 0)) {
             $('#LastNameinput').addClass("required");
+          }
+          if ((Phoneval === 'Undefined' || Phoneval.length === 0)) {
+            $('#Phoneinput').addClass("required");
           }
           if ((Levelval === 'Undefined' || Levelval.length === 0)) {
             $('#Levelinput').addClass("required");
@@ -493,6 +502,9 @@ $.ajax(settings).done(function (response) {
           }
           if (LastNameval != 'Undefined' && LastNameval.length > 0) {
             $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+          }
+          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+            $('#Phone').html('<b>Phone:</b> {{' + LastNametext + '}}');
           }
           if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
             $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -526,6 +538,9 @@ $.ajax(settings).done(function (response) {
           }
           if (LastNameval != 'Undefined' && LastNameval.length > 0) {
             $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+          }
+          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
           }
           if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
             $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -591,12 +606,14 @@ $.ajax(settings).done(function (response) {
     var Leveltext;
     var FirstNametext;
     var LastNametext;
+    var Phonetext;
     var ContactIDtext;
     var SerialNumbertext;
     var Balancetext;
     var Levelval;
     var FirstNameval;
     var LastNameval;
+    var Phoneval;
     var ContactIDval;
     var Balanceval;
     var SerialNumberval;
@@ -632,6 +649,10 @@ $.ajax(settings).done(function (response) {
         if (key === 'LastName') {
           LastNametext = val[0];
           LastNameval = val[1];
+        }
+        if (key === 'Phone') {
+          Phonetext = val[0];
+          Phoneval = val[1];
         }
         if (key === 'ContactID') {
           ContactIDtext = val[0];
@@ -705,6 +726,7 @@ $.ajax(settings).done(function (response) {
         $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
         $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
         $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
+        $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
         $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
         $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
 
@@ -719,6 +741,9 @@ $.ajax(settings).done(function (response) {
         }
         if (LastNameval != 'Undefined' && LastNameval.length > 0) {
           $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+        }
+        if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+          $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
         }
         if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
           $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -739,6 +764,7 @@ $.ajax(settings).done(function (response) {
         $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
         $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
         $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
+        $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
         $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
         $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
         $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
@@ -754,6 +780,9 @@ $.ajax(settings).done(function (response) {
         }
         if (LastNameval != 'Undefined' && LastNameval.length > 0) {
           $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+        }
+        if (Phoneval != 'Undefined' && Phoneval.length > 0) {
+          $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
         }
         if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
           $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
@@ -849,6 +878,7 @@ $.ajax(settings).done(function (response) {
     var Level = new Array(getLevel(), getLevelvalue());
     var FirstName = new Array(getFirstName(), getFirstNamevalue());
     var LastName = new Array(getLastName(), getLastNamevalue());
+    var Phone = new Array(getPhone(), getPhonevalue());
     var ContactID = new Array(getContactID(), getContactIDvalue());
     var Balance = new Array(getBalance(), getBalancevalue());
     var SerialNumber = new Array(getSerialNumber(), getSerialNumbervalue());
@@ -864,6 +894,7 @@ $.ajax(settings).done(function (response) {
       "Level": Level,
       "FirstName": FirstName,
       "LastName": LastName,
+      "Phone": Phone,
       "ContactID": ContactID,
       "Balance": Balance,
       "SerialNumber": SerialNumber
@@ -888,6 +919,10 @@ $.ajax(settings).done(function (response) {
     return $('#LastNameinput').find('option:selected').attr('value').trim();
   }
 
+  function getPhonevalue() {
+    return $('#Phoneinput').find('option:selected').attr('value').trim();
+  }
+
   function getContactIDvalue() {
     return $('#ContactIDinput').find('option:selected').attr('value').trim();
   }
@@ -910,6 +945,10 @@ $.ajax(settings).done(function (response) {
 
   function getLastName() {
     return $('#LastNameinput').find('option:selected').text();
+  }
+
+  function getPhone() {
+    return $('#Phoneinput').find('option:selected').text();
   }
 
   function getContactID() {

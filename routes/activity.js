@@ -104,6 +104,7 @@ exports.execute = function (req, res) {
       if (Method == 'Create') {
         var FirstName = decodedArgs.FirstName[1];
         var LastName = decodedArgs.LastName[1];
+        var Phone = decodedArgs.Phone[1];
         var Name = FirstName + ' ' + LastName;
         var ContactId = decodedArgs.ContactID[1];
         var WalletId = decodedArgs.WalletID;
@@ -116,6 +117,7 @@ exports.execute = function (req, res) {
         obj["contactId"] = ContactId;
         obj["walletId"] = WalletId;
         obj["name"] = Name;
+        obj["phone"] = Phone;
         obj["balance"] = Balance;
         obj["level"] = Level;
         obj["message"] = Message;
@@ -123,6 +125,7 @@ exports.execute = function (req, res) {
       } else if (Method == 'Update') {
         var FirstName = decodedArgs.FirstName[1];
         var LastName = decodedArgs.LastName[1];
+        var Phone = decodedArgs.Phone[1];
         var Name = FirstName + ' ' + LastName;
         var ContactId = decodedArgs.ContactID[1];
         var WalletId = decodedArgs.WalletID;
@@ -138,6 +141,9 @@ exports.execute = function (req, res) {
         }
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') { }else{
           obj["name"] = Name;
+        }
+        if (Phone === 'Undefined' || Phone.lenght === 0 || Phone === '' || Phone === ' ') { }else{
+          obj["Phone"] = Phone;
         }
         if (Balance === 'Undefined' || Balance.lenght === 0 || Balance === '' || Balance === ' ') { }else{
           obj["balance"] = Balance;
@@ -169,6 +175,7 @@ exports.execute = function (req, res) {
       console.log(Method + '|URLpasscreation: ' + URLpasscreation);
       console.log(Method + '|SerialNumber: ' + SerialNumber);
       console.log(Method + '|Name: ' + Name);
+      console.log(Method + '|Phone: ' + Phone);
       console.log(Method + '|ContactId: ' + ContactId);
       console.log(Method + '|WalletId: ' + WalletId);
       console.log(Method + '|Balance: ' + Balance);
