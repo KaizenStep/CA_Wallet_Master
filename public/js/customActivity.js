@@ -8,7 +8,7 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var debug = 'true'
-    var steps = [ // initialize to the same value as what's set in config.json for consistency
+    var steps = [
         {
             "label": "Select type",
             "key": "step1"
@@ -143,7 +143,7 @@ define([
 
             }
         } else {
-            //console.log("No entry event configured");
+            
             connection.trigger('ready');
             ReadyEntry = 'False'
 
@@ -195,8 +195,8 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
 
-
             Method = inArgument["Method"];
+			console.log(Method);
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
@@ -218,19 +218,17 @@ define([
         });
 
         showStep(null, 1);
-        //console.log('Entry event ready: ' + ReadyEntry);
 
-        // If there is no Method selected, disable the next button
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
-            console.log('step1');
+            
             connection.trigger('updateButton', {
                 button: 'next',
                 enabled: false
             });
 
-            // If there is a Method, skip to the summary step   
         } else {
-            //connection.trigger('nextStep');
+			
+            connection.trigger('nextStep');
 
             $('#Method').html(Method + ' Pass');
             $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
