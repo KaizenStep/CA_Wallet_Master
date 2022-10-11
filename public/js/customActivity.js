@@ -21,8 +21,6 @@ define([
     ];
 
     var currentStep = steps[0].key;
-    var authTokens = '';
-    var eventDefinitionKey = '';
     var ReadyEntry = '';
     connection.on('requestedSchema', onGetSchema);
     connection.trigger('requestSchema');
@@ -49,7 +47,6 @@ define([
                 enabled: Boolean(Method)
             });
 
-
             $('#WalletIDinput').removeClass("required");
             $('#FirstNameinput').removeClass("required");
             $('#LastNameinput').removeClass("required");
@@ -68,7 +65,7 @@ define([
                 $('.pushpass').removeClass("show");
                 $('.updatepass').addClass("hidde");
                 $('.pushpass').addClass("hidde");
-				$('.createpass').removeClass("hidde");
+                $('.createpass').removeClass("hidde");
                 $('.createpass').addClass("show");
 
             } else if (Method == 'Update') {
@@ -78,9 +75,9 @@ define([
                 $('.createpass').removeClass("show");
                 $('.pushpass').removeClass("show");
                 $('.createpass').addClass("hidde");
-                $('.pushpass').addClass("hidde"); 
+                $('.pushpass').addClass("hidde");
                 $('.updatepass').removeClass("hidde");
-                $('.updatepass').addClass("show"); 
+                $('.updatepass').addClass("show");
 
             } else if (Method == 'Push') {
 
@@ -90,8 +87,8 @@ define([
                 $('.updatepass').removeClass("show");
                 $('.createpass').addClass("hidde");
                 $('.updatepass').addClass("hidde");
-                $('.pushpass').removeClass("hidde"); 
-                $('.pushpass').addClass("show"); 
+                $('.pushpass').removeClass("hidde");
+                $('.pushpass').addClass("show");
 
             }
 
@@ -100,7 +97,7 @@ define([
     }
 
     function onGetDefinitionModel(eventDefinitionModel) {
-        console.log(eventDefinitionModel);
+        //console.log(eventDefinitionModel);
         if (eventDefinitionModel) {
             var eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
             $('#eventdefinitionkeyinput').attr('Value', eventDefinitionKey);
@@ -109,7 +106,7 @@ define([
 
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
-        console.log('schema: ' + JSON.stringify(Schema));
+        //console.log('schema: ' + JSON.stringify(Schema));
         $('#alert-entry').removeClass("display");
         $('#alert-entry').addClass("hidde");
         var i;
@@ -137,7 +134,7 @@ define([
 
             }
         } else {
-            console.log("No entry event configured");
+            //console.log("No entry event configured");
             connection.trigger('ready');
             ReadyEntry = 'False'
 
@@ -207,18 +204,17 @@ define([
         });
 
         showStep(null, 1);
-        console.log('Entry event ready: ' + ReadyEntry);
+        //console.log('Entry event ready: ' + ReadyEntry);
 
         // If there is no Method selected, disable the next button
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
-            console.log('step1');
+            //console.log('step1');
             connection.trigger('updateButton', {
                 button: 'next',
                 enabled: false
             });
 
-            // If there is a Method, skip to the summary step 
-            // rehacer!!!!!!
+            // If there is a Method, skip to the summary step   
         } else {
             connection.trigger('nextStep');
 
@@ -228,7 +224,10 @@ define([
             if (Method == 'Create') {
 
                 if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
+                    connection.trigger('updateButton', {
+                        button: 'next',
+                        enabled: false
+                    });
                 } else {
 
                     $('#WalletIDinput').attr('Value', WalletID);
@@ -332,26 +331,16 @@ define([
         }
 
     }
-
-    var mc_fuel_token;
-    var mc_fuel_url;
-
-    function onGetTokens(tokens) {
-        //console.log(tokens);
+ 
+    function onGetTokens(tokens) { 
         authTokens = tokens;
-        mc_fuel_token = tokens.fuel2token;
-
-        //console.log(mc_fuel_token);
-        //console.log(mc_fuel_url);
-
+        mc_fuel_token = tokens.fuel2token; 
     }
 
-    function onGetEndpoints(endpoints) {
-        //console.log(endpoints);
+    function onGetEndpoints(endpoints) { 
         mc_fuel_url = endpoints.fuelapiRestHost;
-    }
-
-
+    } 
+	
     function onClickedNext() {
         if (currentStep.key === 'step2') {
             $('#WalletIDinput').removeClass("required");
@@ -394,7 +383,10 @@ define([
             if (Method == 'Create') {
 
                 if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-
+connection.trigger('updateButton', {
+                button: 'next',
+                enabled: false
+            });
                     $('.createpass input, .createpass select, .createpass textarea').each(
                         function () {
                             if ($(this).tagName == 'Select') {
@@ -546,46 +538,25 @@ define([
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
         $.each(inArguments, function (index, inArgument) {
-            $.each(inArgument, function (key, val) {
 
-                if (key === 'Method') {
-                    Method = val;
-                }
-                if (key === 'WalletID') {
-                    WalletID = val;
-                }
-                if (key === 'MessagePush') {
-                    MessagePush = val;
-                }
-                if (key === 'Level') {
-                    Leveltext = val[0];
-                    Levelval = val[1];
-                }
-                if (key === 'FirstName') {
-                    FirstNametext = val[0];
-                    FirstNameval = val[1];
-                }
-                if (key === 'LastName') {
-                    LastNametext = val[0];
-                    LastNameval = val[1];
-                }
-                if (key === 'Phone') {
-                    Phonetext = val[0];
-                    Phoneval = val[1];
-                }
-                if (key === 'ContactID') {
-                    ContactIDtext = val[0];
-                    ContactIDval = val[1];
-                }
-                if (key === 'Balance') {
-                    Balancetext = val[0];
-                    Balanceval = val[1];
-                }
-                if (key === 'SerialNumber') {
-                    SerialNumbertext = val[0];
-                    SerialNumberval = val[1];
-                }
-            });
+            Method = inArgument["Method"];
+            WalletID = inArgument["Method"];
+            MessagePush = inArgument["Method"];
+            Leveltext = inArgument["Level"][0];
+            Levelval = inArgument["Level"][1];
+            FirstNametext = inArgument["FirstName"][0];
+            FirstNameval = inArgument["FirstName"][1];
+            LastNametext = inArgument["LastName"][0];
+            LastNameval = inArgument["LastName"][1];
+            Phonetext = inArgument["Phone"][0];
+            Phoneval = inArgument["Phone"][1];
+            ContactIDtext = inArgument["ContactID"][0];
+            ContactIDval = inArgument["ContactID"][1];
+            Balancetext = inArgument["Balance"][0];
+            Balanceval = inArgument["Balance"][1];
+            SerialNumbertext = inArgument["SerialNumber"][0];
+            SerialNumberval = inArgument["SerialNumber"][1];
+
         });
 
         $('#Method').html(Method + ' Pass');
@@ -593,32 +564,35 @@ define([
 
         if (Method == 'Create') {
 
-            $('.createpass').removeClass("hidde");
-            $('.update').removeClass("show");
-            $('.pushpass').removeClass("show");
+            $('#Method').html(Method + ' Pass');
 
-            $('.createpass').addClass("show");
+            $('.updatepass').removeClass("show");
+            $('.pushpass').removeClass("show");
             $('.updatepass').addClass("hidde");
             $('.pushpass').addClass("hidde");
+            $('.createpass').removeClass("hidde");
+            $('.createpass').addClass("show");
 
         } else if (Method == 'Update') {
 
-            $('.createpass').removeClass("show");
-            $('.updatepass').removeClass("hidde");
-            $('.pushpass').removeClass("show");
+            $('#Method').html(Method + ' Pass');
 
+            $('.createpass').removeClass("show");
+            $('.pushpass').removeClass("show");
             $('.createpass').addClass("hidde");
-            $('.updatepass').addClass("show");
             $('.pushpass').addClass("hidde");
+            $('.updatepass').removeClass("hidde");
+            $('.updatepass').addClass("show");
 
         } else if (Method == 'Push') {
 
-            $('.createpass').removeClass("show");
-            $('.updatepass').removeClass("hidde");
-            $('.pushpass').removeClass("hidde");
+            $('#Method').html(Method + ' Message');
 
+            $('.createpass').removeClass("show");
+            $('.updatepass').removeClass("show");
             $('.createpass').addClass("hidde");
-            $('.updatepass').addClass("show");
+            $('.updatepass').addClass("hidde");
+            $('.pushpass').removeClass("hidde");
             $('.pushpass').addClass("show");
 
         }
