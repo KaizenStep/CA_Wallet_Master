@@ -47,15 +47,7 @@ define([
                 enabled: Boolean(Method)
             });
 
-            $('#WalletIDinput').removeClass("required");
-            $('#FirstNameinput').removeClass("required");
-            $('#LastNameinput').removeClass("required");
-            $('#Phoneinput').removeClass("required");
-            $('#Levelinput').removeClass("required");
-            $('#ContactIDinput').removeClass("required");
-            $('#Balanceinput').removeClass("required");
-            $('#SerialNumberinput').removeClass("required");
-            $('#MessagePushinput').removeClass("required");
+            $('.input-data').removeClass("required"); 
 
             if (Method == 'Create') {
 
@@ -216,7 +208,7 @@ define([
 
             // If there is a Method, skip to the summary step   
         } else {
-            connection.trigger('nextStep');
+            //connection.trigger('nextStep');
 
             $('#Method').html(Method + ' Pass');
             $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
@@ -259,6 +251,10 @@ define([
                     if (Balanceval != 'Undefined' && Balanceval.length > 0) {
                         $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
                     }
+					connection.trigger('updateButton', {
+                button: 'next',
+                enabled: true
+            });
                     connection.trigger('nextStep');
                 }
 
@@ -331,16 +327,16 @@ define([
         }
 
     }
- 
-    function onGetTokens(tokens) { 
+
+    function onGetTokens(tokens) {
         authTokens = tokens;
-        mc_fuel_token = tokens.fuel2token; 
+        mc_fuel_token = tokens.fuel2token;
     }
 
-    function onGetEndpoints(endpoints) { 
+    function onGetEndpoints(endpoints) {
         mc_fuel_url = endpoints.fuelapiRestHost;
-    } 
-	
+    }
+
     function onClickedNext() {
         if (currentStep.key === 'step2') {
             $('#WalletIDinput').removeClass("required");
@@ -383,10 +379,12 @@ define([
             if (Method == 'Create') {
 
                 if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-connection.trigger('updateButton', {
-                button: 'next',
-                enabled: false
-            });
+					
+                    connection.trigger('updateButton', {
+                        button: 'next',
+                        enabled: false
+                    });
+					
                     $('.createpass input, .createpass select, .createpass textarea').each(
                         function () {
                             if ($(this).tagName == 'Select') {
