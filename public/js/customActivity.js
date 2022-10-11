@@ -231,7 +231,7 @@ define([
             connection.trigger('nextStep');
 
             $('#Method').html(Method + ' Pass');
-            $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
+            $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
             if (Method == 'Create') {
 
@@ -240,12 +240,12 @@ define([
                 } else {
 
                     $('#WalletIDinput').attr('Value', WalletID);
-                    $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
-                    $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
-                    $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
-                    $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
-                    $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
-                    $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
+                    $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
+                    $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
+                    $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
+                    $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
+                    $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
+                    $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
 
                     if (WalletID != 'Undefined' && WalletID.length > 0) {
                         $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
@@ -279,13 +279,13 @@ define([
                 } else {
 
                     $('#WalletIDinput').attr('Value', WalletID);
-                    $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
-                    $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
-                    $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
-                    $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
-                    $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
-                    $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
-                    $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
+                    $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
+                    $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
+                    $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
+                    $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
+                    $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
+                    $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
+                    $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
 
                     if (WalletID != 'Undefined' && WalletID.length > 0) {
                         $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
@@ -322,7 +322,7 @@ define([
 
                     $('#WalletIDinput').attr('Value', WalletID);
                     $('#MessagePushinput').attr('Value', MessagePush);
-                    $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
+                    $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
 
                     if (WalletID != 'Undefined' && WalletID.length > 0) {
                         $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
@@ -558,8 +558,7 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
 
-            Method = inArgument["Method"];
-			console.log('argu: '+ inArgument["Method"]);
+            Method = inArgument["Method"]; 
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
@@ -580,9 +579,7 @@ define([
         });
  
         $('#Method').html(Method + ' Pass');
-        $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
-
-			console.log('metodo step7: '+Method);
+        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true); 
 		
         if (Method == 'Create') {
 
@@ -626,12 +623,12 @@ define([
             } else {
 
                 $('#WalletIDinput').attr('Value', WalletID);
-                $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
-                $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
-                $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
-                $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
-                $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
-                $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
+                $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
+                $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
+                $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
+                $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
+                $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
+                $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
 
                 if (WalletID != 'Undefined' && WalletID.length > 0) {
                     $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
@@ -664,13 +661,13 @@ define([
             } else {
 
                 $('#WalletIDinput').attr('Value', WalletID);
-                $('#Levelinput').find('option[value="' + Levelval + '"]').attr('selected', 'selected');
-                $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').attr('selected', 'selected');
-                $('#LastNameinput').find('option[value="' + LastNameval + '"]').attr('selected', 'selected');
-                $('#Phoneinput').find('option[value="' + Phoneval + '"]').attr('selected', 'selected');
-                $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').attr('selected', 'selected');
-                $('#Balanceinput').find('option[value="' + Balanceval + '"]').attr('selected', 'selected');
-                $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
+                $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
+                $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
+                $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
+                $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
+                $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
+                $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
+                $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
 
                 if (WalletID != 'Undefined' && WalletID.length > 0) {
                     $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
@@ -707,7 +704,7 @@ define([
 
                 $('#WalletIDinput').attr('Value', WalletID);
                 $('#MessagePushinput').attr('Value', MessagePush);
-                $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').attr('selected', 'selected');
+                $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
 
                 if (WalletID != 'Undefined' && WalletID.length > 0) {
                     $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
