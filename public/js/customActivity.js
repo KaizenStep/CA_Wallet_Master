@@ -35,6 +35,7 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
+	//step1
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
         if (debug == 'true') {
@@ -92,6 +93,7 @@ define([
 
     }
 
+	//step2
     function onGetDefinitionModel(eventDefinitionModel) {
 
         if (debug == 'true') {
@@ -105,6 +107,7 @@ define([
         }
     }
 
+	//step3
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
 		
@@ -154,7 +157,7 @@ define([
         }
     }
 
-
+	//step4
     function initialize(data) {
 		
 		if (debug == 'true') {
@@ -350,6 +353,7 @@ define([
         mc_fuel_url = endpoints.fuelapiRestHost;
     }
 
+	//step5
     function onClickedNext() {
 		
 		if (debug == 'true') {
@@ -505,6 +509,7 @@ define([
         }
     }
 
+	//step6
     function onClickedBack() {
 		
 		if (debug == 'true') {
@@ -514,11 +519,12 @@ define([
         connection.trigger('prevStep');
     }
 
+	//step7
     function onGotoStep(step, data) {
 		
 		if (debug == 'true') {
             console.log('step7');
-            console.log('step: ' + step);
+            console.log('step: ' + step[0] + ' - ' + step[1]);
         }
 		
         showStep(step);
@@ -719,11 +725,12 @@ define([
 
     }
 
+	//step8
     function showStep(step, stepIndex) {
 
 		if (debug == 'true') {
             console.log('step8');
-            console.log('step: ' + step);
+            console.log('step: ' + step[0] + ' - ' + step[1]);
             console.log('stepIndex: ' + stepIndex);
         }
 		
@@ -770,6 +777,7 @@ define([
         }
     }
 
+	//step9
     function save() {
 		
 		if (debug == 'true') {
