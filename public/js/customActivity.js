@@ -199,50 +199,27 @@ define([
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
     $.each(inArguments, function (index, inArgument) {
-      $.each(inArgument, function (key, val) {
-          
-          console.log("firstname"+inArgument["FirstName"][0]);
-          console.log("method"+inArgument["Method"]);
-          
+       
 
-        if (key === 'Method') {
-          Method = val;
-        }
-        if (key === 'WalletID') {
-          WalletID = val;
-        }
-        if (key === 'MessagePush') {
-          MessagePush = val;
-        }
-        if (key === 'Level') {
-          Leveltext = val[0];
-          Levelval = val[1];
-        }
-        if (key === 'FirstName') {
-          FirstNametext = val[0];
-          FirstNameval = val[1];
-        }
-        if (key === 'LastName') {
-          LastNametext = val[0];
-          LastNameval = val[1];
-        }
-        if (key === 'Phone') {
-          Phonetext = val[0];
-          Phoneval = val[1];
-        }
-        if (key === 'ContactID') {
-          ContactIDtext = val[0];
-          ContactIDval = val[1];
-        }
-        if (key === 'Balance') {
-          Balancetext = val[0];
-          Balanceval = val[1];
-        }
-        if (key === 'SerialNumber') {
-          SerialNumbertext = val[0];
-          SerialNumberval = val[1];
-        }
-      });
+          Method = inArgument["Method"];
+          WalletID = inArgument["Method"];
+          MessagePush = inArgument["Method"];
+          Leveltext = inArgument["Level"][0];
+          Levelval = inArgument["Level"][1];
+          FirstNametext = inArgument["FirstName"][0];
+          FirstNameval = inArgument["FirstName"][1];
+          LastNametext = inArgument["LastName"][0];
+          LastNameval = inArgument["LastName"][1];
+          Phonetext = inArgument["Phone"][0];
+          Phoneval = inArgument["Phone"][1];
+          ContactIDtext = inArgument["ContactID"][0];
+          ContactIDval = inArgument["ContactID"][1];
+          Balancetext = inArgument["Balance"][0];
+          Balanceval = inArgument["Balance"][1];
+          SerialNumbertext = inArgument["SerialNumber"][0];
+          SerialNumberval = inArgument["SerialNumber"][1];
+        
+      
     });
 
     showStep(null, 1);
