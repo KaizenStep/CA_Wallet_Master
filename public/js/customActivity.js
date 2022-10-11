@@ -201,7 +201,9 @@ define([
     $.each(inArguments, function (index, inArgument) {
       $.each(inArgument, function (key, val) {
           
-          console.log(inArgument["FirstName"][0]);
+          console.log("firstname"+inArgument["FirstName"][0]);
+          console.log("method"+inArgument["Method"]);
+          
 
         if (key === 'Method') {
           Method = val;
