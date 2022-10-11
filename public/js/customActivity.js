@@ -577,12 +577,12 @@ define([
             SerialNumberval = inArgument["SerialNumber"][1];
 
         });
-
-			console.log('check2');
+ 
         $('#Method').html(Method + ' Pass');
         $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
 
-			console.log('check3');
+			console.log('metodo step7: '+Method);
+		
         if (Method == 'Create') {
 
             $('#Method').html(Method + ' Pass');
@@ -735,9 +735,7 @@ define([
         }
 		
         if (stepIndex && !step) {
-            step = steps[stepIndex - 1];
-			
-			console.log('check4');
+            step = steps[stepIndex - 1]; 
         }
         currentStep = step;
         $('.step').hide();
