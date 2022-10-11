@@ -143,8 +143,12 @@ define([
           name = a[2];
         }
 
+        $('#step2 select').append($('<option>', {
+          value: Value,
+          text: name
+        }));
 
-        $('#Levelinput').append($('<option>', {
+        /*$('#Levelinput').append($('<option>', {
           value: Value,
           text: name
         }));
@@ -183,7 +187,7 @@ define([
         $('#SerialNumberinput').append($('<option>', {
           value: Value,
           text: name
-        }));
+        }));*/
 
         connection.trigger('ready');
 
