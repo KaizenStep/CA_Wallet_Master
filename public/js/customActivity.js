@@ -64,11 +64,11 @@ define([
 
                 $('#Method').html(Method + ' Pass');
 
-                $('.createpass').removeClass("hidde");
                 $('.updatepass').removeClass("show");
                 $('.pushpass').removeClass("show");
                 $('.updatepass').addClass("hidde");
                 $('.pushpass').addClass("hidde");
+				$('.createpass').removeClass("hidde");
                 $('.createpass').addClass("show");
 
             } else if (Method == 'Update') {
@@ -76,10 +76,10 @@ define([
                 $('#Method').html(Method + ' Pass');
 
                 $('.createpass').removeClass("show");
-                $('.updatepass').removeClass("hidde");
                 $('.pushpass').removeClass("show");
                 $('.createpass').addClass("hidde");
                 $('.pushpass').addClass("hidde"); 
+                $('.updatepass').removeClass("hidde");
                 $('.updatepass').addClass("show"); 
 
             } else if (Method == 'Push') {
@@ -88,9 +88,9 @@ define([
 
                 $('.createpass').removeClass("show");
                 $('.updatepass').removeClass("show");
-                $('.pushpass').removeClass("hidde");
                 $('.createpass').addClass("hidde");
-                $('.updatepass').addClass("hidde"); 
+                $('.updatepass').addClass("hidde");
+                $('.pushpass').removeClass("hidde"); 
                 $('.pushpass').addClass("show"); 
 
             }
