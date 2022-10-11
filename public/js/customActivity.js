@@ -47,7 +47,7 @@ define([
                 enabled: Boolean(Method)
             });
 
-            $('.input-data').removeClass("required"); 
+            $('.input-data').removeClass("required");
 
             if (Method == 'Create') {
 
@@ -251,10 +251,10 @@ define([
                     if (Balanceval != 'Undefined' && Balanceval.length > 0) {
                         $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
                     }
-					connection.trigger('updateButton', {
-                button: 'next',
-                enabled: true
-            });
+                    connection.trigger('updateButton', {
+                        button: 'next',
+                        enabled: true
+                    });
                     connection.trigger('nextStep');
                 }
 
@@ -339,15 +339,13 @@ define([
 
     function onClickedNext() {
         if (currentStep.key === 'step2') {
-            $('#WalletIDinput').removeClass("required");
-            $('#FirstNameinput').removeClass("required");
-            $('#LastNameinput').removeClass("required");
-            $('#Phoneinput').removeClass("required");
-            $('#Levelinput').removeClass("required");
-            $('#ContactIDinput').removeClass("required");
-            $('#Balanceinput').removeClass("required");
-            $('#SerialNumberinput').removeClass("required");
-            $('#MessagePushinput').removeClass("required");
+
+            connection.trigger('updateButton', {
+                button: 'next',
+                enabled: false
+            });
+
+            $('.input-data').removeClass("required"); 
 
             var WalletID = $('#WalletIDinput').val();
 
@@ -379,12 +377,7 @@ define([
             if (Method == 'Create') {
 
                 if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-					
-                    connection.trigger('updateButton', {
-                        button: 'next',
-                        enabled: false
-                    });
-					
+
                     $('.createpass input, .createpass select, .createpass textarea').each(
                         function () {
                             if ($(this).tagName == 'Select') {
