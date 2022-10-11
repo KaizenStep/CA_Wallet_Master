@@ -559,6 +559,7 @@ define([
         $.each(inArguments, function (index, inArgument) {
 
             Method = inArgument["Method"];
+			console.log('argu: '+ inArgument["Method"]);
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
