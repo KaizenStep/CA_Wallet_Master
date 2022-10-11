@@ -7,6 +7,7 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
+    var debug = 'true'
     var steps = [ // initialize to the same value as what's set in config.json for consistency
         {
             "label": "Select type",
@@ -36,6 +37,9 @@ define([
 
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
+        if (debug == 'true') {
+            console.log('step1');
+        }
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
@@ -89,7 +93,12 @@ define([
     }
 
     function onGetDefinitionModel(eventDefinitionModel) {
-        //console.log(eventDefinitionModel);
+
+        if (debug == 'true') {
+            console.log('step2');
+            console.log('eventDefinitionModel: ' + eventDefinitionModel);
+        }
+
         if (eventDefinitionModel) {
             var eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
             $('#eventdefinitionkeyinput').attr('Value', eventDefinitionKey);
@@ -98,7 +107,12 @@ define([
 
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
-        //console.log('schema: ' + JSON.stringify(Schema));
+		
+		if (debug == 'true') {
+            console.log('step3');
+            console.log('schema: ' + JSON.stringify(Schema));
+        }
+		
         $('#alert-entry').removeClass("display");
         $('#alert-entry').addClass("hidde");
         var i;
@@ -142,6 +156,11 @@ define([
 
 
     function initialize(data) {
+		
+		if (debug == 'true') {
+            console.log('step4');
+        }
+		
         if (data) {
             payload = data;
         }
@@ -200,7 +219,7 @@ define([
 
         // If there is no Method selected, disable the next button
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
-            //console.log('step1');
+            console.log('step1');
             connection.trigger('updateButton', {
                 button: 'next',
                 enabled: false
@@ -216,10 +235,7 @@ define([
             if (Method == 'Create') {
 
                 if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-                    connection.trigger('updateButton', {
-                        button: 'next',
-                        enabled: false
-                    });
+
                 } else {
 
                     $('#WalletIDinput').attr('Value', WalletID);
@@ -251,10 +267,7 @@ define([
                     if (Balanceval != 'Undefined' && Balanceval.length > 0) {
                         $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
                     }
-                    connection.trigger('updateButton', {
-                        button: 'next',
-                        enabled: true
-                    });
+
                     connection.trigger('nextStep');
                 }
 
@@ -338,14 +351,14 @@ define([
     }
 
     function onClickedNext() {
+		
+		if (debug == 'true') {
+            console.log('step5');
+        }
+		
         if (currentStep.key === 'step2') {
 
-            connection.trigger('updateButton', {
-                button: 'next',
-                enabled: false
-            });
-
-            $('.input-data').removeClass("required"); 
+            $('.input-data').removeClass("required");
 
             var WalletID = $('#WalletIDinput').val();
 
@@ -493,10 +506,21 @@ define([
     }
 
     function onClickedBack() {
+		
+		if (debug == 'true') {
+            console.log('step6');
+        }
+		
         connection.trigger('prevStep');
     }
 
     function onGotoStep(step, data) {
+		
+		if (debug == 'true') {
+            console.log('step7');
+            console.log('step: ' + step);
+        }
+		
         showStep(step);
 
         if (data) {
@@ -697,6 +721,12 @@ define([
 
     function showStep(step, stepIndex) {
 
+		if (debug == 'true') {
+            console.log('step8');
+            console.log('step: ' + step);
+            console.log('stepIndex: ' + stepIndex);
+        }
+		
         if (stepIndex && !step) {
             step = steps[stepIndex - 1];
         }
@@ -741,6 +771,11 @@ define([
     }
 
     function save() {
+		
+		if (debug == 'true') {
+            console.log('step9'); 
+        }
+		
         var eventDefinitionKey = $('#eventdefinitionkeyinput').val();
         var nameCA = $('#Methodinput').find('option:selected').html();
         var Method = getMethod();
