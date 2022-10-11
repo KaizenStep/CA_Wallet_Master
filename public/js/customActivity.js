@@ -195,8 +195,7 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
 
-            Method = inArgument["Method"];
-			console.log('metodo: '+Method);
+            Method = inArgument["Method"]; 
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
@@ -218,6 +217,8 @@ define([
         });
 
         showStep(null, 1);
+		
+		console.log('check1')
 
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
             
