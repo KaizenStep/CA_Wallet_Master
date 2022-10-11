@@ -37,14 +37,34 @@ define([
 
 	//step1
     function onRender() {
-        // JB will respond the first time 'ready' is called with 'initActivity'
-        if (debug == 'true') {
+
+		if (debug == 'true') {
             console.log('step1');
         }
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
-        // Disable the next button if a value isn't selected
+		
+		if (data) {
+            payload = data;
+        }
+        var Method;
+		var hasInArguments = Boolean(
+            payload['arguments']
+            && payload['arguments'].execute
+            && payload['arguments'].execute.inArguments
+            && payload['arguments'].execute.inArguments.length > 0
+        );
+
+        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+        $.each(inArguments, function (index, inArgument) {
+
+            Method = inArgument["Method"];
+		});
+		
+		console.log('method render: '+Method);
+		
         $('#Methodinput').change(function () {
             var Method = getMethod();
             connection.trigger('updateButton', {
@@ -113,7 +133,7 @@ define([
 		
 		if (debug == 'true') {
             console.log('step3');
-            console.log('schema: ' + JSON.stringify(Schema));
+            //console.log('schema: ' + JSON.stringify(Schema));
         }
 		
         $('#alert-entry').removeClass("display");
@@ -218,8 +238,6 @@ define([
 
         showStep(null, 1);
 		
-		console.log('check1')
-
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
             
             connection.trigger('updateButton', {
