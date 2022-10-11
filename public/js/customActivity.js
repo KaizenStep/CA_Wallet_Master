@@ -67,10 +67,7 @@ define([
                 $('.createpass').removeClass("hidde");
                 $('.updatepass').removeClass("show");
                 $('.pushpass').removeClass("show");
-
                 $('.createpass').addClass("show");
-                $('.updatepass').addClass("hidde");
-                $('.pushpass').addClass("hidde");
 
             } else if (Method == 'Update') {
 
@@ -78,23 +75,17 @@ define([
 
                 $('.createpass').removeClass("show");
                 $('.updatepass').removeClass("hidde");
-                $('.pushpass').removeClass("show");
-
-                $('.createpass').addClass("hidde");
-                $('.updatepass').addClass("show");
-                $('.pushpass').addClass("hidde");
+                $('.pushpass').removeClass("show"); 
+                $('.updatepass').addClass("show"); 
 
             } else if (Method == 'Push') {
 
                 $('#Method').html(Method + ' Message');
 
                 $('.createpass').removeClass("show");
-                $('.updatepass').removeClass("hidde");
-                $('.pushpass').removeClass("hidde");
-
-                $('.createpass').addClass("hidde");
-                $('.updatepass').addClass("show");
-                $('.pushpass').addClass("show");
+                $('.updatepass').removeClass("show");
+                $('.pushpass').removeClass("hidde"); 
+                $('.pushpass').addClass("show"); 
 
             }
 
