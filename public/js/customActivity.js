@@ -51,6 +51,16 @@ define([
                 button: 'next',
                 enabled: Boolean(Method)
             });
+			
+			$('#WalletIDinput').attr('Value', '');
+                    $('#Levelinput').find('option[value=""]').prop('selected', true);
+                    $('#FirstNameinput').find('option[value=""]').prop('selected', true);
+                    $('#LastNameinput').find('option[value=""]').prop('selected', true);
+                    $('#Phoneinput').find('option[value=""]').prop('selected', true);
+                    $('#ContactIDinput').find('option[value=""]').prop('selected', true);
+                    $('#Balanceinput').find('option[value=""]').prop('selected', true);
+                    $('#SerialNumberinput').find('option[value=""]').prop('selected', true);
+                    $('#MessagePushinput').attr('Value', '');
 
             $('.input-data').removeClass("required");
 
@@ -225,8 +235,7 @@ define([
             });
 
         } else {
-			
-			console.log('check1');
+			 
 			
             connection.trigger('nextStep');
 
