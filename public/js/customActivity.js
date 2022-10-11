@@ -67,6 +67,8 @@ define([
                 $('.createpass').removeClass("hidde");
                 $('.updatepass').removeClass("show");
                 $('.pushpass').removeClass("show");
+                $('.updatepass').addClass("hidde");
+                $('.pushpass').addClass("hidde");
                 $('.createpass').addClass("show");
 
             } else if (Method == 'Update') {
@@ -75,7 +77,9 @@ define([
 
                 $('.createpass').removeClass("show");
                 $('.updatepass').removeClass("hidde");
-                $('.pushpass').removeClass("show"); 
+                $('.pushpass').removeClass("show");
+                $('.createpass').addClass("hidde");
+                $('.pushpass').addClass("hidde"); 
                 $('.updatepass').addClass("show"); 
 
             } else if (Method == 'Push') {
@@ -84,7 +88,9 @@ define([
 
                 $('.createpass').removeClass("show");
                 $('.updatepass').removeClass("show");
-                $('.pushpass').removeClass("hidde"); 
+                $('.pushpass').removeClass("hidde");
+                $('.createpass').addClass("hidde");
+                $('.updatepass').addClass("hidde"); 
                 $('.pushpass').addClass("show"); 
 
             }
