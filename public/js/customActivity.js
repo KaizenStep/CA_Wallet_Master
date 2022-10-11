@@ -146,48 +146,7 @@ define([
         $('#step2 select').append($('<option>', {
           value: Value,
           text: name
-        }));
-
-        /*$('#Levelinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-
-        $('#FirstNameinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#LastNameinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#Phoneinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#ContactIDinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#Balanceinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#WalletIDinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));
-
-        $('#SerialNumberinput').append($('<option>', {
-          value: Value,
-          text: name
-        }));*/
+        })); 
 
         connection.trigger('ready');
 
@@ -241,6 +200,8 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
       $.each(inArgument, function (key, val) {
+          
+          console.log(inArgument);
 
         if (key === 'Method') {
           Method = val;
