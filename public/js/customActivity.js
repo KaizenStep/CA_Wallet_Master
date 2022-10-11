@@ -522,7 +522,7 @@ define([
 		
 		if (debug == 'true') {
             console.log('step7');
-            console.log('step: ' + step[0] + ' - ' + step[1]);
+            console.log('step: ' + step);
         }
 		
         showStep(step);
@@ -731,7 +731,7 @@ define([
 
 		if (debug == 'true') {
             console.log('step8');
-            console.log('step: ' + step[0] + ' - ' + step[1]);
+            console.log('step: ' + step);
             console.log('stepIndex: ' + stepIndex);
         }
 		
