@@ -45,26 +45,6 @@ define([
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
 		
-		if (data) {
-            payload = data;
-        }
-        var Method;
-		var hasInArguments = Boolean(
-            payload['arguments']
-            && payload['arguments'].execute
-            && payload['arguments'].execute.inArguments
-            && payload['arguments'].execute.inArguments.length > 0
-        );
-
-        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
-        $.each(inArguments, function (index, inArgument) {
-
-            Method = inArgument["Method"];
-		});
-		
-		console.log('method render: '+Method);
-		
         $('#Methodinput').change(function () {
             var Method = getMethod();
             connection.trigger('updateButton', {
@@ -233,7 +213,6 @@ define([
             SerialNumbertext = inArgument["SerialNumber"][0];
             SerialNumberval = inArgument["SerialNumber"][1];
 
-
         });
 
         showStep(null, 1);
@@ -246,6 +225,8 @@ define([
             });
 
         } else {
+			
+			console.log('check1');
 			
             connection.trigger('nextStep');
 
@@ -597,9 +578,11 @@ define([
 
         });
 
+			console.log('check2');
         $('#Method').html(Method + ' Pass');
         $('#Methodinput').find('option[value="' + Method + '"]').attr('selected', 'selected');
 
+			console.log('check3');
         if (Method == 'Create') {
 
             $('#Method').html(Method + ' Pass');
@@ -753,6 +736,8 @@ define([
 		
         if (stepIndex && !step) {
             step = steps[stepIndex - 1];
+			
+			console.log('check4');
         }
         currentStep = step;
         $('.step').hide();
