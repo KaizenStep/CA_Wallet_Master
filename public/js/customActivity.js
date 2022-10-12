@@ -8,18 +8,16 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var debug = 'true'
-    var steps = [
-        {
-            "label": "Select type",
-            "key": "step1"
-        }, {
-            "label": "Configure wallet",
-            "key": "step2"
-        }, {
-            "label": "Validate wallet",
-            "key": "step3"
-        }
-    ];
+    var steps = [{
+        "label": "Select type",
+        "key": "step1"
+    }, {
+        "label": "Configure wallet",
+        "key": "step2"
+    }, {
+        "label": "Validate wallet",
+        "key": "step3"
+    }];
 
     var currentStep = steps[0].key;
     var ReadyEntry = '';
@@ -35,32 +33,25 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
-	//step1
+    //step1
     function onRender() {
 
-		if (debug == 'true') {
+        if (debug == 'true') {
             console.log('step1');
         }
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
-		
+
         $('#Methodinput').change(function () {
             var Method = getMethod();
             connection.trigger('updateButton', {
                 button: 'next',
                 enabled: Boolean(Method)
             });
-			
-			$('#WalletIDinput').attr('Value', '');
-                    $('#Levelinput').find('option[value=""]').prop('selected', true);
-                    $('#FirstNameinput').find('option[value=""]').prop('selected', true);
-                    $('#LastNameinput').find('option[value=""]').prop('selected', true);
-                    $('#Phoneinput').find('option[value=""]').prop('selected', true);
-                    $('#ContactIDinput').find('option[value=""]').prop('selected', true);
-                    $('#Balanceinput').find('option[value=""]').prop('selected', true);
-                    $('#SerialNumberinput').find('option[value=""]').prop('selected', true);
-                    $('#MessagePushinput').attr('Value', '');
+
+            $('#step2 input').attr('Value', '');
+            $('#step2 select').find('option[value=""]').prop('selected', true);
 
             $('.input-data').removeClass("required");
 
@@ -103,7 +94,7 @@ define([
 
     }
 
-	//step2
+    //step2
     function onGetDefinitionModel(eventDefinitionModel) {
 
         if (debug == 'true') {
@@ -117,15 +108,15 @@ define([
         }
     }
 
-	//step3
+    //step3
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
-		
-		if (debug == 'true') {
+
+        if (debug == 'true') {
             console.log('step3');
             //console.log('schema: ' + JSON.stringify(Schema));
         }
-		
+
         $('#alert-entry').removeClass("display");
         $('#alert-entry').addClass("hidde");
         var i;
@@ -153,7 +144,7 @@ define([
 
             }
         } else {
-            
+
             connection.trigger('ready');
             ReadyEntry = 'False'
 
@@ -167,13 +158,13 @@ define([
         }
     }
 
-	//step4
+    //step4
     function initialize(data) {
-		
-		if (debug == 'true') {
+
+        if (debug == 'true') {
             console.log('step4');
         }
-		
+
         if (data) {
             payload = data;
         }
@@ -205,7 +196,7 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
 
-            Method = inArgument["Method"]; 
+            Method = inArgument["Method"];
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
@@ -226,17 +217,22 @@ define([
         });
 
         showStep(null, 1);
-		
+
+        if (Method == getMethod()) {} else {
+            $('#step2 input').attr('Value', '');
+            $('#step2 select').find('option[value=""]').prop('selected', true);
+        };
+
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
-            
+
             connection.trigger('updateButton', {
                 button: 'next',
                 enabled: false
             });
 
         } else {
-			 
-			
+
+
             connection.trigger('nextStep');
 
             $('#Method').html(Method + ' Pass');
@@ -360,13 +356,13 @@ define([
         mc_fuel_url = endpoints.fuelapiRestHost;
     }
 
-	//step5
+    //step5
     function onClickedNext() {
-		
-		if (debug == 'true') {
+
+        if (debug == 'true') {
             console.log('step5');
         }
-		
+
         if (currentStep.key === 'step2') {
 
             $('.input-data').removeClass("required");
@@ -516,24 +512,24 @@ define([
         }
     }
 
-	//step6
+    //step6
     function onClickedBack() {
-		
-		if (debug == 'true') {
+
+        if (debug == 'true') {
             console.log('step6');
         }
-		
+
         connection.trigger('prevStep');
     }
 
-	//step7
+    //step7
     function onGotoStep(step, data) {
-		
-		if (debug == 'true') {
+
+        if (debug == 'true') {
             console.log('step7');
             console.log('step: ' + step);
         }
-		
+
         showStep(step);
 
         if (data) {
@@ -567,7 +563,7 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
 
-            Method = inArgument["Method"]; 
+            Method = inArgument["Method"];
             WalletID = inArgument["Method"];
             MessagePush = inArgument["Method"];
             Leveltext = inArgument["Level"][0];
@@ -586,10 +582,15 @@ define([
             SerialNumberval = inArgument["SerialNumber"][1];
 
         });
- 
-        $('#Method').html(Method + ' Pass');
-        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true); 
 		
+		if (Method == getMethod()) {} else {
+            $('#step2 input').attr('Value', '');
+            $('#step2 select').find('option[value=""]').prop('selected', true);
+        };
+
+        $('#Method').html(Method + ' Pass');
+        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+
         if (Method == 'Create') {
 
             $('#Method').html(Method + ' Pass');
@@ -732,17 +733,17 @@ define([
 
     }
 
-	//step8
+    //step8
     function showStep(step, stepIndex) {
 
-		if (debug == 'true') {
+        if (debug == 'true') {
             console.log('step8');
             console.log('step: ' + step);
             console.log('stepIndex: ' + stepIndex);
         }
-		
+
         if (stepIndex && !step) {
-            step = steps[stepIndex - 1]; 
+            step = steps[stepIndex - 1];
         }
         currentStep = step;
         $('.step').hide();
@@ -784,13 +785,13 @@ define([
         }
     }
 
-	//step9
+    //step9
     function save() {
-		
-		if (debug == 'true') {
-            console.log('step9'); 
+
+        if (debug == 'true') {
+            console.log('step9');
         }
-		
+
         var eventDefinitionKey = $('#eventdefinitionkeyinput').val();
         var nameCA = $('#Methodinput').find('option:selected').html();
         var Method = getMethod();
