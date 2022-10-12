@@ -19,6 +19,24 @@ define([
         "key": "step3"
     }];
 
+    var Method;
+    var WalletID;
+    var MessagePush;
+    var Leveltext;
+    var FirstNametext;
+    var LastNametext;
+    var Phonetext;
+    var ContactIDtext;
+    var SerialNumbertext;
+    var Balancetext;
+    var Levelval;
+    var FirstNameval;
+    var LastNameval;
+    var Phoneval;
+    var ContactIDval;
+    var Balanceval;
+    var SerialNumberval;
+
     var currentStep = steps[0].key;
     var ReadyEntry = '';
     connection.on('requestedSchema', onGetSchema);
@@ -168,23 +186,7 @@ define([
         if (data) {
             payload = data;
         }
-        var Method;
-        var WalletID;
-        var MessagePush;
-        var Leveltext;
-        var FirstNametext;
-        var LastNametext;
-        var Phonetext;
-        var ContactIDtext;
-        var SerialNumbertext;
-        var Balancetext;
-        var Levelval;
-        var FirstNameval;
-        var LastNameval;
-        var Phoneval;
-        var ContactIDval;
-        var Balanceval;
-        var SerialNumberval;
+
         var hasInArguments = Boolean(
             payload['arguments']
             && payload['arguments'].execute
@@ -216,12 +218,7 @@ define([
 
         });
 
-        showStep(null, 1);
-
-        if (Method == getMethod()) {} else {
-            $('#step2 input').attr('Value', '');
-            $('#step2 select').find('option[value=""]').prop('selected', true);
-        };
+        showStep(null, 1); 
 
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
 
@@ -535,23 +532,7 @@ define([
         if (data) {
             payload = data;
         }
-        var Method;
-        var WalletID;
-        var MessagePush;
-        var Leveltext;
-        var FirstNametext;
-        var LastNametext;
-        var Phonetext;
-        var ContactIDtext;
-        var SerialNumbertext;
-        var Balancetext;
-        var Levelval;
-        var FirstNameval;
-        var LastNameval;
-        var Phoneval;
-        var ContactIDval;
-        var Balanceval;
-        var SerialNumberval;
+		
         var hasInArguments = Boolean(
             payload['arguments']
             && payload['arguments'].execute
@@ -583,11 +564,6 @@ define([
 
         });
 		
-		if (Method == getMethod()) {} else {
-            $('#step2 input').attr('Value', '');
-            $('#step2 select').find('option[value=""]').prop('selected', true);
-        };
-
         $('#Method').html(Method + ' Pass');
         $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
