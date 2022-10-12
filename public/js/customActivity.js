@@ -390,6 +390,8 @@ define([
             var SerialNumbertext = $('#SerialNumberinput').find('option:selected').text();
 
             var Method = getMethod();
+			
+			payload.name = Method + 'pass';
 
             if (Method == 'Create') {
 
@@ -563,6 +565,10 @@ define([
             SerialNumberval = inArgument["SerialNumber"][1];
 
         });
+		
+		
+			
+	    payload.name = Method + 'pass';
 		
         $('#Method').html(Method + ' Pass');
         $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
