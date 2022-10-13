@@ -159,12 +159,29 @@ define([
       && payload['arguments'].execute.inArguments
       && payload['arguments'].execute.inArguments.length > 0
     );
+    
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
     $.each(inArguments, function (index, inArgument) {
 
-      DefineinArgs(inArgument);
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelval = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNameval = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNameval = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phoneval = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDval = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balanceval = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumberval = inArgument["SerialNumber"][1];
 
     });
 
@@ -256,7 +273,23 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
         
-      DefineinArgs(inArgument);
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelval = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNameval = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNameval = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phoneval = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDval = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balanceval = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumberval = inArgument["SerialNumber"][1];
 
     });
 
@@ -574,27 +607,6 @@ define([
 
     }
   }
-    
-    function DefineinArgs(inArgument){
-        
-      var Method = inArgument["Method"];
-      var WalletID = inArgument["WalletID"];
-      var MessagePush = inArgument["MessagePush"];
-      var Leveltext = inArgument["Level"][0];
-      var Levelval = inArgument["Level"][1];
-      var FirstNametext = inArgument["FirstName"][0];
-      var FirstNameval = inArgument["FirstName"][1];
-      var LastNametext = inArgument["LastName"][0];
-      var LastNameval = inArgument["LastName"][1];
-      var Phonetext = inArgument["Phone"][0];
-      var Phoneval = inArgument["Phone"][1];
-      var ContactIDtext = inArgument["ContactID"][0];
-      var ContactIDval = inArgument["ContactID"][1];
-      var Balancetext = inArgument["Balance"][0];
-      var Balanceval = inArgument["Balance"][1];
-      var SerialNumbertext = inArgument["SerialNumber"][0];
-      var SerialNumberval = inArgument["SerialNumber"][1];
-    }
 
   function ValidateFields(Method, StepActual) {
     if (Method == 'Create') {
