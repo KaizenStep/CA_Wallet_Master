@@ -230,6 +230,8 @@ define([
       var Method = getMethod();
 
       ValidateFields(Method, StepActual);
+    
+      connection.trigger('nextStep');
 
     } else if (currentStep.key === 'step3') {
       save();
@@ -298,7 +300,8 @@ define([
     DisplayFields();
 
     ValidateFields(Method, StepActual);
-
+    
+    connection.trigger('nextStep');
 
   }
 
@@ -612,7 +615,6 @@ define([
           FlagFields(Method);
         } else {
           WriteSummary(Method);
-          connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
         if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
@@ -627,8 +629,7 @@ define([
         if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
         } else {
-          WriteSummary(Method);
-          connection.trigger('nextStep');
+          WriteSummary(Method); 
         }
       } else if (StepActual == '4' || StepActual == '7') {
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
@@ -643,8 +644,7 @@ define([
         if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
         } else {
-          WriteSummary(Method);
-          connection.trigger('nextStep');
+          WriteSummary(Method); 
         }
       } else if (StepActual == '4' || StepActual == '7') {
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
