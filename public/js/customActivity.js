@@ -364,53 +364,13 @@ define([
 
       $('.input-data').removeClass("required");
 
-      /*var WalletID = $('#WalletIDinput').val();
-
-      var MessagePush = $('#MessagePushinput').val();
-
-      var Levelval = $('#Levelinput').find('option:selected').attr('value').trim();
-      var Leveltext = $('#Levelinput').find('option:selected').text();
-
-      var FirstNameval = $('#FirstNameinput').find('option:selected').attr('value').trim();
-      var FirstNametext = $('#FirstNameinput').find('option:selected').text();
-
-      var LastNameval = $('#LastNameinput').find('option:selected').attr('value').trim();
-      var LastNametext = $('#LastNameinput').find('option:selected').text();
-
-      var Phoneval = $('#Phoneinput').find('option:selected').attr('value').trim();
-      var Phonetext = $('#Phoneinput').find('option:selected').text();
-
-      var ContactIDval = $('#ContactIDinput').find('option:selected').attr('value').trim();
-      var ContactIDtext = $('#ContactIDinput').find('option:selected').text();
-
-      var Balanceval = $('#Balanceinput').find('option:selected').attr('value').trim();
-      var Balancetext = $('#Balanceinput').find('option:selected').text();
-
-      var SerialNumberval = $('#SerialNumberinput').find('option:selected').attr('value').trim();
-      var SerialNumbertext = $('#SerialNumberinput').find('option:selected').text();*/
-
       var Method = getMethod();
-
-      $('#step3 .summary').html('');
-      $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
       if (Method == 'Create') {
 
         if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
 
-          $('.createpass input, .createpass select, .createpass textarea').each(
-            function () {
-              if ($(this).tagName == 'Select') {
-                if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
-                  $(this).addClass("required");
-                }
-              } else {
-                if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
-                  $(this).addClass("required");
-                }
-              }
-            }
-          );
+          FlagCreateFields();
 
         } else {
 
@@ -423,38 +383,11 @@ define([
 
         if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
 
-          if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0)) {
-            $('#SerialNumberinput').addClass("required");
-          }
-          if ((WalletID === 'Undefined' || WalletID.length === 0)) {
-            $('#WalletIDinput').addClass("required");
-          }
+          FlagUpdateFields();
 
         } else {
-          if (WalletID != 'Undefined' && WalletID.length > 0) {
-            $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-          }
-          if (Levelval != 'Undefined' && Levelval.length > 0) {
-            $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
-          }
-          if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-            $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
-          }
-          if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-            $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
-          }
-          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
-          }
-          if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-            $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
-          }
-          if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-            $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
-          }
-          if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-            $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-          }
+
+          WriteSummaryUpdate();
           connection.trigger('nextStep');
         }
 
@@ -462,26 +395,11 @@ define([
 
         if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
 
-          if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0)) {
-            $('#SerialNumberinput').addClass("required");
-          }
-          if ((MessagePush === 'Undefined' || MessagePush.length === 0)) {
-            $('#MessagePushinput').addClass("required");
-          }
-          if ((WalletID === 'Undefined' || WalletID.length === 0)) {
-            $('#WalletIDinput').addClass("required");
-          }
+          FlagPushFields();
 
         } else {
-          if (WalletID != 'Undefined' && WalletID.length > 0) {
-            $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-          }
-          if (MessagePush != 'Undefined' && MessagePush.length > 0) {
-            $('#MessagePush').html('<b>Message Push:</b> ' + MessagePush);
-          }
-          if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-            $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-          }
+
+          WriteSummaryPush();
           connection.trigger('nextStep');
         }
 
@@ -859,27 +777,126 @@ define([
   }
 
   function WriteSummaryCreate() {
+
+    $('#step3 .summary').html('');
+    $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
+
     if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
       $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
     }
     if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Level:</b> ' + getLevel() + '</p>');
+      $('#step3 .summary').append('<p><b>Level:</b> {{' + getLevel() + '}}</p>');
     }
     if (getFirstNamevalue() != 'Undefined' && getFirstNamevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Firstname:</b> ' + getFirstName() + '</p>');
+      $('#step3 .summary').append('<p><b>Firstname:</b> {{' + getFirstName() + '}}</p>');
     }
     if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>lastName:</b> ' + getLastName() + '</p>');
+      $('#step3 .summary').append('<p><b>lastName:</b> {{' + getLastName() + '}}</p>');
     }
     if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Phone:</b> ' + getPhone() + '</p>');
+      $('#step3 .summary').append('<p><b>Phone:</b> {{' + getPhone() + '}}</p>');
     }
     if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
-      $('#step3 .summary').append('<p><b>ContactId:</b> ' + getContactID() + '</p>');
+      $('#step3 .summary').append('<p><b>ContactId:</b> {{' + getContactID() + '}}</p>');
     }
     if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Balance:</b> ' + getBalance() + '</p>');
+      $('#step3 .summary').append('<p><b>Balance:</b> {{' + getBalance() + '}}</p>');
     }
+  }
+
+  function WriteSummaryUpdate() {
+
+    $('#step3 .summary').html('');
+    $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
+
+    if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
+      $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
+    }
+    if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Level:</b> {{' + getLevel() + '}}</p>');
+    }
+    if (getFirstNamevalue() != 'Undefined' && getFirstNamevalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Firstname:</b> {{' + getFirstName() + '}}</p>');
+    }
+    if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
+      $('#step3 .summary').append('<p><b>lastName:</b> {{' + getLastName() + '}}</p>');
+    }
+    if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Phone:</b> {{' + getPhone() + '}}</p>');
+    }
+    if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
+      $('#step3 .summary').append('<p><b>ContactId:</b> {{' + getContactID() + '}}</p>');
+    }
+    if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Balance:</b> {{' + getBalance() + '}}</p>');
+    }
+    if (getSerialNumbervalue() != 'Undefined' && getSerialNumbervalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Serial Number:</b> {{' + getBalance() + '}}</p>');
+    }
+  }
+
+  function WriteSummaryPush() {
+
+    $('#step3 .summary').html('');
+    $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
+
+    if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
+      $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
+    }
+    if (getMessagePush() != 'Undefined' && getMessagePush().length > 0) {
+      $('#step3 .summary').append('<p><b>Message Push:</b> ' + getMessagePush() + '</p>');
+    }
+    if (getSerialNumbervalue() != 'Undefined' && getSerialNumbervalue().length > 0) {
+      $('#step3 .summary').append('<p><b>Serial Number:</b> {{' + getBalance() + '}}</p>');
+    }
+  }
+
+  function FlagCreateFields() {
+    $('.createpass input, .createpass select, .createpass textarea').each(
+      function () {
+        if ($(this).tagName == 'Select') {
+          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+            $(this).addClass("required");
+          }
+        } else {
+          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+            $(this).addClass("required");
+          }
+        }
+      }
+    );
+  }
+
+  function FlagUpdateFields() {
+    $('.updatepass input, .updatepass select, .updatepass textarea').each(
+      function () {
+        if ($(this).tagName == 'Select') {
+          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+            $(this).addClass("required");
+          }
+        } else {
+          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+            $(this).addClass("required");
+          }
+        }
+      }
+    );
+  }
+
+  function FlagPushFields() {
+    $('.pushpass input, .pushpass select, .pushpass textarea').each(
+      function () {
+        if ($(this).tagName == 'Select') {
+          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+            $(this).addClass("required");
+          }
+        } else {
+          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+            $(this).addClass("required");
+          }
+        }
+      }
+    );
   }
 
 });
