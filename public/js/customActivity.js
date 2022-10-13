@@ -618,7 +618,6 @@ define([
         if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
-          connection.trigger('nextStep');
         }
       }
 
@@ -635,7 +634,6 @@ define([
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
-          connection.trigger('nextStep');
         }
       }
 
@@ -652,7 +650,6 @@ define([
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
-          connection.trigger('nextStep');
         }
       }
 
