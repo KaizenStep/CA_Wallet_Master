@@ -147,43 +147,7 @@ define([
     var StepActual = '4'
     if (debug == 'true') {
       console.log(StepActual);
-    }
-
-    if (data) {
-      payload = data;
-    }
-
-    var hasInArguments = Boolean(
-      payload['arguments']
-      && payload['arguments'].execute
-      && payload['arguments'].execute.inArguments
-      && payload['arguments'].execute.inArguments.length > 0
-    );
-
-
-    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
-    $.each(inArguments, function (index, inArgument) {
-
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
-
-    });
+    } 
 
     showStep(null, 1);
 
