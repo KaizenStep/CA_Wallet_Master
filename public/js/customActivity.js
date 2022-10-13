@@ -35,7 +35,7 @@ define([
     var Phoneval;
     var ContactIDval;
     var Balanceval;
-    var SerialNumberval;
+    var SerialNumberval; 
 
     var currentStep = steps[0].key;
     var ReadyEntry = '';
@@ -232,7 +232,7 @@ define([
 
             connection.trigger('nextStep');
 
-            $('#Method').html(Method + ' Pass');
+            $('#step3 .summary').innerHTML += '<h3>'+Method+ ' Pass</h3>'; 
             $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
             if (Method == 'Create') {
@@ -364,7 +364,7 @@ define([
 
             $('.input-data').removeClass("required");
 
-            var WalletID = $('#WalletIDinput').val();
+            /*var WalletID = $('#WalletIDinput').val();
 
             var MessagePush = $('#MessagePushinput').val();
 
@@ -387,11 +387,11 @@ define([
             var Balancetext = $('#Balanceinput').find('option:selected').text();
 
             var SerialNumberval = $('#SerialNumberinput').find('option:selected').attr('value').trim();
-            var SerialNumbertext = $('#SerialNumberinput').find('option:selected').text();
+            var SerialNumbertext = $('#SerialNumberinput').find('option:selected').text();*/
 
-            var Method = getMethod();
-			
-			payload.name = Method + 'pass';
+            var Method = getMethod(); 
+            
+            $('#step3 .summary').innerHTML += '<h3>'+Method+ ' Pass</h3>'; 
 
             if (Method == 'Create') {
 
@@ -412,26 +412,26 @@ define([
                     );
 
                 } else {
-                    if (WalletID != 'Undefined' && WalletID.length > 0) {
-                        $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
+                    if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>WalletID:</b> '+getWalletID();  
                     }
-                    if (Levelval != 'Undefined' && Levelval.length > 0) {
-                        $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
+                    if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>Level:</b> '+getLevel(); 
                     }
-                    if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-                        $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
+                    if (getFirstNamevalue() != 'Undefined' && getFirstNamevalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>FirstName:</b> '+getLevel(); 
                     }
-                    if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-                        $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
+                    if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>LastName:</b> '+getLevel(); 
                     }
-                    if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-                        $('#Phone').html('<b>Phone:</b> {{' + LastNametext + '}}');
+                    if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>Phone:</b> '+getLevel(); 
                     }
-                    if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-                        $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
+                    if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>ContactID:</b> '+getLevel(); 
                     }
-                    if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-                        $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
+                    if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
+                        $('#step3 .summary').innerHTML += '<b>Balance:</b> '+getLevel(); 
                     }
                     connection.trigger('nextStep');
                 }
@@ -745,7 +745,7 @@ define([
                 $('#step2').show();
                 connection.trigger('updateButton', {
                     button: 'next',
-                    enabled: Boolean(getMethod())
+                    enabled: 'true'
                 });
                 connection.trigger('updateButton', {
                     button: 'back',
@@ -774,11 +774,10 @@ define([
             console.log('step9');
         }
 
-        var eventDefinitionKey = $('#eventdefinitionkeyinput').val();
-        var nameCA = $('#Methodinput').find('option:selected').html();
+        var eventDefinitionKey = geteventDefinitionKey();
         var Method = getMethod();
-        var WalletID = $('#WalletIDinput').val();
-        var MessagePush = $('#MessagePushinput').val();
+        var WalletID = getWalletID();
+        var MessagePush = getMessagePush();
         var Level = new Array(getLevel(), getLevelvalue());
         var FirstName = new Array(getFirstName(), getFirstNamevalue());
         var LastName = new Array(getLastName(), getLastNamevalue());
@@ -787,9 +786,7 @@ define([
         var Balance = new Array(getBalance(), getBalancevalue());
         var SerialNumber = new Array(getSerialNumber(), getSerialNumbervalue());
 
-        console.log(Method);
-
-        payload.name = nameCA;
+        payload.name = getMethod() + 'pass';
         payload['arguments'].execute.inArguments = [{
             "eventDefinitionKey": eventDefinitionKey,
             "Method": Method,
@@ -810,6 +807,18 @@ define([
     function getMethod() {
         return $('#Methodinput').find('option:selected').attr('value').trim();
     }
+
+    function getWalletID() {
+        return $('#WalletIDinput').val();
+    }
+
+    function getMessagePush() {
+        return $('#MessagePushinput').val();
+    }
+
+    function geteventDefinitionKey() {
+        return $('#eventdefinitionkeyinput').val();
+    } 
 
     function getLevelvalue() {
         return $('#Levelinput').find('option:selected').attr('value').trim();
