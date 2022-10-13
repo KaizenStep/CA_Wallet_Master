@@ -19,7 +19,7 @@ define([
     "key": "step3"
   }];
 
-  var Method;
+  /*var Method;
   var WalletID;
   var MessagePush;
   var Leveltext;
@@ -35,7 +35,7 @@ define([
   var Balancetext;
   var Balanceval;
   var SerialNumbertext;
-  var SerialNumberval;
+  var SerialNumberval;*/
 
   var currentStep = steps[0].key;
   var ReadyEntry = '';
@@ -397,19 +397,19 @@ define([
 
   function SelectFields(Method) {
 
-    $('#WalletIDinput').attr('Value', getWalletID());
-    $('#Levelinput').find('option[value="' + getLevelvalue() + '"]').prop('selected', true);
-    $('#FirstNameinput').find('option[value="' + getFirstNamevalue() + '"]').prop('selected', true);
-    $('#LastNameinput').find('option[value="' + getLastNamevalue() + '"]').prop('selected', true);
-    $('#Phoneinput').find('option[value="' + getPhonevalue() + '"]').prop('selected', true);
-    $('#ContactIDinput').find('option[value="' + getContactIDvalue() + '"]').prop('selected', true);
-    $('#Balanceinput').find('option[value="' + getBalancevalue() + '"]').prop('selected', true);
+    $('#WalletIDinput').attr('Value', WalletID;
+    $('#Levelinput').find('option[value="' + Levelvalue + '"]').prop('selected', true);
+    $('#FirstNameinput').find('option[value="' + FirstNamevalue + '"]').prop('selected', true);
+    $('#LastNameinput').find('option[value="' + LastNamevalue + '"]').prop('selected', true);
+    $('#Phoneinput').find('option[value="' + Phonevalue + '"]').prop('selected', true);
+    $('#ContactIDinput').find('option[value="' + ContactIDvalue + '"]').prop('selected', true);
+    $('#Balanceinput').find('option[value="' + Balancevalue + '"]').prop('selected', true);
 
     if (Method == 'Update' || Method == 'Push') {
-      $('#SerialNumberinput').find('option[value="' + getSerialNumbervalue() + '"]').prop('selected', true);
+      $('#SerialNumberinput').find('option[value="' + SerialNumbervalue + '"]').prop('selected', true);
     }
     if (Method == 'Push') {
-      $('#MessagePushinput').attr('Value', getMessagePush());
+      $('#MessagePushinput').attr('Value', MessagePush;
     }
   }
 
@@ -554,23 +554,23 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
 
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
+      var Method = inArgument["Method"];
+      var WalletID = inArgument["WalletID"];
+      var MessagePush = inArgument["MessagePush"];
+      var Leveltext = inArgument["Level"][0];
+      var Levelval = inArgument["Level"][1];
+      var FirstNametext = inArgument["FirstName"][0];
+      var FirstNameval = inArgument["FirstName"][1];
+      var LastNametext = inArgument["LastName"][0];
+      var LastNameval = inArgument["LastName"][1];
+      var Phonetext = inArgument["Phone"][0];
+      var Phoneval = inArgument["Phone"][1];
+      var ContactIDtext = inArgument["ContactID"][0];
+      var ContactIDval = inArgument["ContactID"][1];
+      var Balancetext = inArgument["Balance"][0];
+      var Balanceval = inArgument["Balance"][1];
+      var SerialNumbertext = inArgument["SerialNumber"][0];
+      var SerialNumberval = inArgument["SerialNumber"][1];
 
     });
 
