@@ -164,7 +164,7 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
 
-      DefineinArgs();
+      DefineinArgs(inArgument);
 
     });
 
@@ -256,7 +256,7 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
         
-      DefineinArgs();
+      DefineinArgs(inArgument);
 
     });
 
@@ -268,109 +268,7 @@ define([
 
     DisplayFields();
 
-    if (Method == 'Create') {
-
-      if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-      } else {
-
-        $('#WalletIDinput').attr('Value', WalletID);
-        $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
-        $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
-        $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
-        $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
-        $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
-        $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
-
-        if (WalletID != 'Undefined' && WalletID.length > 0) {
-          $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-        }
-        if (Levelval != 'Undefined' && Levelval.length > 0) {
-          $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
-        }
-        if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-          $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
-        }
-        if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-          $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
-        }
-        if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-          $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
-        }
-        if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-          $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
-        }
-        if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-          $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
-        }
-        connection.trigger('ready');
-      }
-
-    } else if (Method == 'Update') {
-
-      if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-      } else {
-
-        $('#WalletIDinput').attr('Value', WalletID);
-        $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
-        $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
-        $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
-        $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
-        $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
-        $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
-        $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
-
-        if (WalletID != 'Undefined' && WalletID.length > 0) {
-          $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-        }
-        if (Levelval != 'Undefined' && Levelval.length > 0) {
-          $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
-        }
-        if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-          $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
-        }
-        if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-          $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
-        }
-        if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-          $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
-        }
-        if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-          $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
-        }
-        if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-          $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
-        }
-        if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-          $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-        }
-        connection.trigger('ready');
-      }
-
-    } else if (Method == 'Push') {
-
-      if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-      } else {
-
-        $('#WalletIDinput').attr('Value', WalletID);
-        $('#MessagePushinput').attr('Value', MessagePush);
-        $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
-
-        if (WalletID != 'Undefined' && WalletID.length > 0) {
-          $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-        }
-        if (MessagePush != 'Undefined' && MessagePush.length > 0) {
-          $('#MessagePush').html('<b>Message Push:</b> ' + MessagePush);
-        }
-        if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-          $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-        }
-        connection.trigger('ready');
-      }
-
-    }
+    ValidateFields(Method, StepActual);
 
 
   }
@@ -677,7 +575,7 @@ define([
     }
   }
     
-    function DefineinArgs(){
+    function DefineinArgs(inArgument){
         
       var Method = inArgument["Method"];
       var WalletID = inArgument["WalletID"];
@@ -709,7 +607,7 @@ define([
 
       } else {
 
-        if (StepActual == '4') {
+        if (StepActual == '4' || StepActual == '7') {
           SelectFields(Method);
         }
 
@@ -728,7 +626,7 @@ define([
 
       } else {
 
-        if (StepActual == '4') {
+        if (StepActual == '4' || StepActual == '7') {
           SelectFields(Method);
         }
 
@@ -747,7 +645,7 @@ define([
 
       } else {
 
-        if (StepActual == '4') {
+        if (StepActual == '4' || StepActual == '7') {
           SelectFields(Method);
         }
 
