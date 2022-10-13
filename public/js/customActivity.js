@@ -148,9 +148,40 @@ define([
     if (debug == 'true') {
       console.log(StepActual);
     }
-    var Method;
+    if (data) {
+      payload = data;
+    }
 
-    getData(data);
+    var hasInArguments = Boolean(
+      payload['arguments']
+      && payload['arguments'].execute
+      && payload['arguments'].execute.inArguments
+      && payload['arguments'].execute.inArguments.length > 0
+    );
+
+    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+    $.each(inArguments, function (index, inArgument) {
+
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelvalue = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNamevalue = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNamevalue = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phonevalue = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDvalue = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balancevalue = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumbervalue = inArgument["SerialNumber"][1];
+
+    });
 
     showStep(null, 1);
 
@@ -220,11 +251,43 @@ define([
     var StepActual = '7'
     if (debug == 'true') {
       console.log(StepActual);
-    }
-    var Method;
+    } 
     showStep(step);
 
-    getData(data);
+    if (data) {
+      payload = data;
+    }
+
+    var hasInArguments = Boolean(
+      payload['arguments']
+      && payload['arguments'].execute
+      && payload['arguments'].execute.inArguments
+      && payload['arguments'].execute.inArguments.length > 0
+    );
+
+    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+    $.each(inArguments, function (index, inArgument) {
+
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelvalue = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNamevalue = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNamevalue = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phonevalue = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDvalue = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balancevalue = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumbervalue = inArgument["SerialNumber"][1];
+
+    });
 
     DisplayFields();
 
@@ -539,40 +602,7 @@ define([
 
   function getData(data) {
 
-    if (data) {
-      payload = data;
-    }
-
-    var hasInArguments = Boolean(
-      payload['arguments']
-      && payload['arguments'].execute
-      && payload['arguments'].execute.inArguments
-      && payload['arguments'].execute.inArguments.length > 0
-    );
-
-    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
-    $.each(inArguments, function (index, inArgument) {
-
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelvalue = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNamevalue = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNamevalue = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phonevalue = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDvalue = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balancevalue = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumbervalue = inArgument["SerialNumber"][1];
-
-    });
+    
 
   }
 
@@ -588,7 +618,7 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        getData(data);
+         
         if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
@@ -610,7 +640,7 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        getData(data);
+         
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
@@ -632,7 +662,7 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        getData(data);
+         
         if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
