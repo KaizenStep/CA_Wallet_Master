@@ -199,8 +199,8 @@ define([
         $.each(inArguments, function (index, inArgument) {
 
             Method = inArgument["Method"];
-            WalletID = inArgument["Method"];
-            MessagePush = inArgument["Method"];
+            WalletID = inArgument["WalletID"];
+            MessagePush = inArgument["MessagePush"];
             Leveltext = inArgument["Level"][0];
             Levelval = inArgument["Level"][1];
             FirstNametext = inArgument["FirstName"][0];
@@ -391,7 +391,7 @@ define([
 
             var Method = getMethod(); 
             
-            $('#step3 .summary').innerHTML += '<h3>'+Method+ ' Pass</h3>'; 
+            $('#step3 .summary').append('<h3>'+Method+ ' Pass</h3>');
 
             if (Method == 'Create') {
 
@@ -413,7 +413,7 @@ define([
 
                 } else {
                     if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>WalletID:</b> '+getWalletID();  
+                        $('#step3 .summary').append('<b>WalletID:</b> '+getWalletID());
                     }
                     if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
                         $('#step3 .summary').innerHTML += '<b>Level:</b> '+getLevel(); 
@@ -547,8 +547,8 @@ define([
         $.each(inArguments, function (index, inArgument) {
 
             Method = inArgument["Method"];
-            WalletID = inArgument["Method"];
-            MessagePush = inArgument["Method"];
+            WalletID = inArgument["WalletID"];
+            MessagePush = inArgument["MessagePush"];
             Leveltext = inArgument["Level"][0];
             Levelval = inArgument["Level"][1];
             FirstNametext = inArgument["FirstName"][0];
@@ -565,7 +565,6 @@ define([
             SerialNumberval = inArgument["SerialNumber"][1];
 
         });
-		
 		
 			
 	    payload.name = Method + 'pass';
