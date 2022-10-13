@@ -217,7 +217,7 @@ define([
   }
 
   //step5
-  function onClickedNext(data) {
+  function onClickedNext() {
     var StepActual = '5'
     if (debug == 'true') {
       console.log(StepActual);
@@ -226,41 +226,7 @@ define([
     if (currentStep.key === 'step2') {
       console.log
       $('.input-data').removeClass("required");
-        
-if (data) {
-      payload = data;
-    }
 
-    var hasInArguments = Boolean(
-      payload['arguments']
-      && payload['arguments'].execute
-      && payload['arguments'].execute.inArguments
-      && payload['arguments'].execute.inArguments.length > 0
-    );
-
-    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
-    $.each(inArguments, function (index, inArgument) {
-        
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
-
-    });
       var Method = getMethod();
 
       ValidateFields(Method, StepActual);
@@ -638,19 +604,22 @@ if (data) {
   }
 
   function ValidateFields(Method, StepActual) {
+      console.log('test1');
+      
     if (Method == 'Create') {
-
+ console.log('test2');
       if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-
+console.log('test3');
         if (StepActual == '5') {
+            console.log('test4');
           FlagFields(Method);
         }
 
       } else {
 
-          console.log('test1');
+          console.log('test5');
         if (StepActual == '4' || StepActual == '7') {
-            console.log('test2');
+            console.log('test6');
           SelectFields(Method);
         }
 
