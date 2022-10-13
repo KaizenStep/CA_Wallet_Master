@@ -23,19 +23,19 @@ define([
   var WalletID;
   var MessagePush;
   var Leveltext;
-  var Levelval;
+  var Levelvalue;
   var FirstNametext;
-  var FirstNameval;
+  var FirstNamevalue;
   var LastNametext;
-  var LastNameval;
+  var LastNamevalue;
   var Phonetext;
-  var Phoneval;
+  var Phonevalue;
   var ContactIDtext;
-  var ContactIDval;
+  var ContactIDvalue;
   var Balancetext;
-  var Balanceval;
+  var Balancevalue;
   var SerialNumbertext;
-  var SerialNumberval;
+  var SerialNumbervalue;
 
   var currentStep = steps[0].key;
   var ReadyEntry = '';
