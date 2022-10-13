@@ -391,6 +391,7 @@ define([
 
             var Method = getMethod(); 
             
+            $('#step3 .summary').html('');
             $('#step3 .summary').append('<h3>'+Method+ ' Pass</h3>');
 
             if (Method == 'Create') {
@@ -416,22 +417,22 @@ define([
                         $('#step3 .summary').append('<b>WalletID:</b> '+getWalletID());
                     }
                     if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>Level:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>Level:</b> '+getLevel());
                     }
                     if (getFirstNamevalue() != 'Undefined' && getFirstNamevalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>FirstName:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>Firstname:</b> '+getFirstName());
                     }
                     if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>LastName:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>lastName:</b> '+getLastName());
                     }
                     if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>Phone:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>Phone:</b> '+getPhone());
                     }
                     if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>ContactID:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>ContactId:</b> '+getContactID());
                     }
                     if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
-                        $('#step3 .summary').innerHTML += '<b>Balance:</b> '+getLevel(); 
+                        $('#step3 .summary').append('<b>Balance:</b> '+getBalance());
                     }
                     connection.trigger('nextStep');
                 }
