@@ -55,7 +55,7 @@ define([
   function onRender() {
     var StepActual = '1'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     connection.trigger('requestTokens');
@@ -83,7 +83,7 @@ define([
   function onGetDefinitionModel(eventDefinitionModel) {
     var StepActual = '2'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     if (eventDefinitionModel) {
@@ -98,7 +98,7 @@ define([
 
     var StepActual = '3'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     $('#alert-entry').removeClass("display");
@@ -146,7 +146,7 @@ define([
   function initialize(data) {
     var StepActual = '4'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     if (data) {
@@ -204,7 +204,7 @@ define([
   function onClickedNext() {
     var StepActual = '5'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     if (currentStep.key === 'step2') {
@@ -226,7 +226,7 @@ define([
   function onClickedBack() {
     var StepActual = '6'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     connection.trigger('prevStep');
@@ -236,7 +236,7 @@ define([
   function onGotoStep(step, data) {
     var StepActual = '7'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     showStep(step);
@@ -379,7 +379,7 @@ define([
   function showStep(step, stepIndex) {
     var StepActual = '8'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     if (stepIndex && !step) {
@@ -429,7 +429,7 @@ define([
   function save() {
     var StepActual = '9'
     if (debug == 'true') {
-      console.log(step);
+      console.log(StepActual);
     }
 
     var eventDefinitionKey = geteventDefinitionKey();
