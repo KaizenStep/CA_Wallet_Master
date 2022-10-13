@@ -292,6 +292,7 @@ define([
 
     }); 
 
+      console.log(inArguments);
     $('#Method').html(Method + ' Pass');
     $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
