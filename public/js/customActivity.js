@@ -53,9 +53,9 @@ define([
 
   //step1
   function onRender() {
-
+    var StepActual = '1'
     if (debug == 'true') {
-      console.log('step1');
+      console.log(step);
     }
 
     connection.trigger('requestTokens');
@@ -73,40 +73,7 @@ define([
 
       $('.input-data').removeClass("required");
 
-      if (Method == 'Create') {
-
-        $('#Method').html(Method + ' Pass');
-
-        $('.updatepass').removeClass("show");
-        $('.pushpass').removeClass("show");
-        $('.updatepass').addClass("hidde");
-        $('.pushpass').addClass("hidde");
-        $('.createpass').removeClass("hidde");
-        $('.createpass').addClass("show");
-
-      } else if (Method == 'Update') {
-
-        $('#Method').html(Method + ' Pass');
-
-        $('.createpass').removeClass("show");
-        $('.pushpass').removeClass("show");
-        $('.createpass').addClass("hidde");
-        $('.pushpass').addClass("hidde");
-        $('.updatepass').removeClass("hidde");
-        $('.updatepass').addClass("show");
-
-      } else if (Method == 'Push') {
-
-        $('#Method').html(Method + ' Message');
-
-        $('.createpass').removeClass("show");
-        $('.updatepass').removeClass("show");
-        $('.createpass').addClass("hidde");
-        $('.updatepass').addClass("hidde");
-        $('.pushpass').removeClass("hidde");
-        $('.pushpass').addClass("show");
-
-      }
+      DisplayFields();
 
     });
 
@@ -114,10 +81,9 @@ define([
 
   //step2
   function onGetDefinitionModel(eventDefinitionModel) {
-
+    var StepActual = '2'
     if (debug == 'true') {
-      console.log('step2');
-      console.log('eventDefinitionModel: ' + eventDefinitionModel);
+      console.log(step);
     }
 
     if (eventDefinitionModel) {
@@ -130,9 +96,9 @@ define([
   function onGetSchema(Schema) {
     var Schema = Schema.schema;
 
+    var StepActual = '3'
     if (debug == 'true') {
-      console.log('step3');
-      //console.log('schema: ' + JSON.stringify(Schema));
+      console.log(step);
     }
 
     $('#alert-entry').removeClass("display");
@@ -178,9 +144,9 @@ define([
 
   //step4
   function initialize(data) {
-
+    var StepActual = '4'
     if (debug == 'true') {
-      console.log('step4');
+      console.log(step);
     }
 
     if (data) {
@@ -198,23 +164,7 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
 
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
+      DefineinArgs();
 
     });
 
@@ -235,110 +185,7 @@ define([
       $('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
       $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
-      if (Method == 'Create') {
-
-        if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-        } else {
-
-          $('#WalletIDinput').attr('Value', WalletID);
-          $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
-          $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
-          $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
-          $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
-          $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
-          $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
-
-          if (WalletID != 'Undefined' && WalletID.length > 0) {
-            $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-          }
-          if (Levelval != 'Undefined' && Levelval.length > 0) {
-            $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
-          }
-          if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-            $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
-          }
-          if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-            $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
-          }
-          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
-          }
-          if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-            $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
-          }
-          if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-            $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
-          }
-
-          connection.trigger('nextStep');
-        }
-
-      } else if (Method == 'Update') {
-
-        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-        } else {
-
-          $('#WalletIDinput').attr('Value', WalletID);
-          $('#Levelinput').find('option[value="' + Levelval + '"]').prop('selected', true);
-          $('#FirstNameinput').find('option[value="' + FirstNameval + '"]').prop('selected', true);
-          $('#LastNameinput').find('option[value="' + LastNameval + '"]').prop('selected', true);
-          $('#Phoneinput').find('option[value="' + Phoneval + '"]').prop('selected', true);
-          $('#ContactIDinput').find('option[value="' + ContactIDval + '"]').prop('selected', true);
-          $('#Balanceinput').find('option[value="' + Balanceval + '"]').prop('selected', true);
-          $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
-
-          if (WalletID != 'Undefined' && WalletID.length > 0) {
-            $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-          }
-          if (Levelval != 'Undefined' && Levelval.length > 0) {
-            $('#Level').html('<b>Level:</b> {{' + Leveltext + '}}');
-          }
-          if (FirstNameval != 'Undefined' && FirstNameval.length > 0) {
-            $('#FirstName').html('<b>FirstName:</b> {{' + FirstNametext + '}}');
-          }
-          if (LastNameval != 'Undefined' && LastNameval.length > 0) {
-            $('#LastName').html('<b>LastName:</b> {{' + LastNametext + '}}');
-          }
-          if (Phoneval != 'Undefined' && Phoneval.length > 0) {
-            $('#Phone').html('<b>Phone:</b> {{' + Phonetext + '}}');
-          }
-          if (ContactIDval != 'Undefined' && ContactIDval.length > 0) {
-            $('#ContactID').html('<b>ContactID:</b> {{' + ContactIDtext + '}}');
-          }
-          if (Balanceval != 'Undefined' && Balanceval.length > 0) {
-            $('#Balance').html('<b>Balance:</b> {{' + Balancetext + '}}');
-          }
-          if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-            $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-          }
-          connection.trigger('nextStep');
-        }
-
-      } else if (Method == 'Push') {
-
-        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {
-
-        } else {
-
-          $('#WalletIDinput').attr('Value', WalletID);
-          $('#MessagePushinput').attr('Value', MessagePush);
-          $('#SerialNumberinput').find('option[value="' + SerialNumberval + '"]').prop('selected', true);
-
-          if (WalletID != 'Undefined' && WalletID.length > 0) {
-            $('#WalletID').html('<b>WalletID:</b> ' + WalletID);
-          }
-          if (MessagePush != 'Undefined' && MessagePush.length > 0) {
-            $('#MessagePush').html('<b>Message Push:</b> ' + MessagePush);
-          }
-          if (SerialNumberval != 'Undefined' && SerialNumberval.length > 0) {
-            $('#SerialNumber').html('<b>Serial Number:</b> {{' + SerialNumbertext + '}}');
-          }
-          connection.trigger('nextStep');
-        }
-
-      }
+      ValidateFields(Method, StepActual);
 
     }
 
@@ -355,9 +202,9 @@ define([
 
   //step5
   function onClickedNext() {
-
+    var StepActual = '5'
     if (debug == 'true') {
-      console.log('step5');
+      console.log(step);
     }
 
     if (currentStep.key === 'step2') {
@@ -366,44 +213,7 @@ define([
 
       var Method = getMethod();
 
-      if (Method == 'Create') {
-
-        if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-
-          FlagCreateFields();
-
-        } else {
-
-          WriteSummaryCreate();
-
-          connection.trigger('nextStep');
-        }
-
-      } else if (Method == 'Update') {
-
-        if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
-
-          FlagUpdateFields();
-
-        } else {
-
-          WriteSummaryUpdate();
-          connection.trigger('nextStep');
-        }
-
-      } else if (Method == 'Push') {
-
-        if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
-
-          FlagPushFields();
-
-        } else {
-
-          WriteSummaryPush();
-          connection.trigger('nextStep');
-        }
-
-      }
+      ValidateFields(Method, StepActual);
 
     } else if (currentStep.key === 'step3') {
       save();
@@ -414,9 +224,9 @@ define([
 
   //step6
   function onClickedBack() {
-
+    var StepActual = '6'
     if (debug == 'true') {
-      console.log('step6');
+      console.log(step);
     }
 
     connection.trigger('prevStep');
@@ -424,10 +234,9 @@ define([
 
   //step7
   function onGotoStep(step, data) {
-
+    var StepActual = '7'
     if (debug == 'true') {
-      console.log('step7');
-      console.log('step: ' + step);
+      console.log(step);
     }
 
     showStep(step);
@@ -446,24 +255,8 @@ define([
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
     $.each(inArguments, function (index, inArgument) {
-
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
+        
+      DefineinArgs();
 
     });
 
@@ -473,40 +266,7 @@ define([
     $('#Method').html(Method + ' Pass');
     $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
-    if (Method == 'Create') {
-
-      $('#Method').html(Method + ' Pass');
-
-      $('.updatepass').removeClass("show");
-      $('.pushpass').removeClass("show");
-      $('.updatepass').addClass("hidde");
-      $('.pushpass').addClass("hidde");
-      $('.createpass').removeClass("hidde");
-      $('.createpass').addClass("show");
-
-    } else if (Method == 'Update') {
-
-      $('#Method').html(Method + ' Pass');
-
-      $('.createpass').removeClass("show");
-      $('.pushpass').removeClass("show");
-      $('.createpass').addClass("hidde");
-      $('.pushpass').addClass("hidde");
-      $('.updatepass').removeClass("hidde");
-      $('.updatepass').addClass("show");
-
-    } else if (Method == 'Push') {
-
-      $('#Method').html(Method + ' Message');
-
-      $('.createpass').removeClass("show");
-      $('.updatepass').removeClass("show");
-      $('.createpass').addClass("hidde");
-      $('.updatepass').addClass("hidde");
-      $('.pushpass').removeClass("hidde");
-      $('.pushpass').addClass("show");
-
-    }
+    DisplayFields();
 
     if (Method == 'Create') {
 
@@ -617,11 +377,9 @@ define([
 
   //step8
   function showStep(step, stepIndex) {
-
+    var StepActual = '8'
     if (debug == 'true') {
-      console.log('step8');
-      console.log('step: ' + step);
-      console.log('stepIndex: ' + stepIndex);
+      console.log(step);
     }
 
     if (stepIndex && !step) {
@@ -669,9 +427,9 @@ define([
 
   //step9
   function save() {
-
+    var StepActual = '9'
     if (debug == 'true') {
-      console.log('step9');
+      console.log(step);
     }
 
     var eventDefinitionKey = geteventDefinitionKey();
@@ -776,9 +534,26 @@ define([
     return $('#passSerialNumberinput').find('option:selected').text();
   }
 
-  function WriteSummaryCreate() {
+  function SelectFields(Method) {
 
-    var Method = getMethod();
+    $('#WalletIDinput').attr('Value', getWalletID());
+    $('#Levelinput').find('option[value="' + getLevelvalue() + '"]').prop('selected', true);
+    $('#FirstNameinput').find('option[value="' + getFirstNamevalue() + '"]').prop('selected', true);
+    $('#LastNameinput').find('option[value="' + getLastNamevalue() + '"]').prop('selected', true);
+    $('#Phoneinput').find('option[value="' + getPhonevalue() + '"]').prop('selected', true);
+    $('#ContactIDinput').find('option[value="' + getContactIDvalue() + '"]').prop('selected', true);
+    $('#Balanceinput').find('option[value="' + getBalancevalue() + '"]').prop('selected', true);
+
+    if (Method == 'Update' || Method == 'Push') {
+      $('#SerialNumberinput').find('option[value="' + getSerialNumbervalue() + '"]').prop('selected', true);
+    }
+    if (Method == 'Push') {
+      $('#MessagePushinput').attr('Value', getMessagePush());
+    }
+  }
+
+  function WriteSummary(Method) {
+
     $('#step3 .summary').html('');
     $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
@@ -803,103 +578,185 @@ define([
     if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
       $('#step3 .summary').append('<p><b>Balance:</b> {{' + getBalance() + '}}</p>');
     }
+    if (Method == 'Update' || Method == 'Push') {
+      if (getSerialNumbervalue() != 'Undefined' && getSerialNumbervalue().length > 0) {
+        $('#step3 .summary').append('<p><b>Serial Number:</b> {{' + getBalance() + '}}</p>');
+      }
+    }
+    if (Method == 'Push') {
+
+      if (getMessagePush() != 'Undefined' && getMessagePush().length > 0) {
+        $('#step3 .summary').append('<p><b>Message Push:</b> ' + getMessagePush() + '</p>');
+      }
+    }
   }
 
-  function WriteSummaryUpdate() {
 
+  function FlagFields(Method) {
+    if (Method == 'Create') {
+
+      $('.createpass input, .createpass select, .createpass textarea').each(
+        function () {
+          if ($(this).tagName == 'Select') {
+            if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+              $(this).addClass("required");
+            }
+          } else {
+            if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+              $(this).addClass("required");
+            }
+          }
+        }
+      );
+    } else if (Method == 'Update') {
+      $('.updatepass input, .updatepass select, .updatepass textarea').each(
+        function () {
+          if ($(this).tagName == 'Select') {
+            if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+              $(this).addClass("required");
+            }
+          } else {
+            if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+              $(this).addClass("required");
+            }
+          }
+        }
+      );
+    } else if (Method == 'Push') {
+      $('.pushpass input, .pushpass select, .pushpass textarea').each(
+        function () {
+          if ($(this).tagName == 'Select') {
+            if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
+              $(this).addClass("required");
+            }
+          } else {
+            if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
+              $(this).addClass("required");
+            }
+          }
+        }
+      );
+    }
+  }
+
+  function DisplayFields() {
     var Method = getMethod();
-    $('#step3 .summary').html('');
-    $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
+    if (Method == 'Create') {
 
-    if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
-      $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
-    }
-    if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Level:</b> {{' + getLevel() + '}}</p>');
-    }
-    if (getFirstNamevalue() != 'Undefined' && getFirstNamevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Firstname:</b> {{' + getFirstName() + '}}</p>');
-    }
-    if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>lastName:</b> {{' + getLastName() + '}}</p>');
-    }
-    if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Phone:</b> {{' + getPhone() + '}}</p>');
-    }
-    if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
-      $('#step3 .summary').append('<p><b>ContactId:</b> {{' + getContactID() + '}}</p>');
-    }
-    if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Balance:</b> {{' + getBalance() + '}}</p>');
-    }
-    if (getSerialNumbervalue() != 'Undefined' && getSerialNumbervalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Serial Number:</b> {{' + getBalance() + '}}</p>');
+      $('#Method').html(Method + ' Pass');
+
+      $('.updatepass').removeClass("show");
+      $('.pushpass').removeClass("show");
+      $('.updatepass').addClass("hidde");
+      $('.pushpass').addClass("hidde");
+      $('.createpass').removeClass("hidde");
+      $('.createpass').addClass("show");
+
+    } else if (Method == 'Update') {
+
+      $('#Method').html(Method + ' Pass');
+
+      $('.createpass').removeClass("show");
+      $('.pushpass').removeClass("show");
+      $('.createpass').addClass("hidde");
+      $('.pushpass').addClass("hidde");
+      $('.updatepass').removeClass("hidde");
+      $('.updatepass').addClass("show");
+
+    } else if (Method == 'Push') {
+
+      $('#Method').html(Method + ' Message');
+
+      $('.createpass').removeClass("show");
+      $('.updatepass').removeClass("show");
+      $('.createpass').addClass("hidde");
+      $('.updatepass').addClass("hidde");
+      $('.pushpass').removeClass("hidde");
+      $('.pushpass').addClass("show");
+
     }
   }
-
-  function WriteSummaryPush() {
-
-    var Method = getMethod();
-    $('#step3 .summary').html('');
-    $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
-
-    if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
-      $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
+    
+    function DefineinArgs(){
+        
+      var Method = inArgument["Method"];
+      var WalletID = inArgument["WalletID"];
+      var MessagePush = inArgument["MessagePush"];
+      var Leveltext = inArgument["Level"][0];
+      var Levelval = inArgument["Level"][1];
+      var FirstNametext = inArgument["FirstName"][0];
+      var FirstNameval = inArgument["FirstName"][1];
+      var LastNametext = inArgument["LastName"][0];
+      var LastNameval = inArgument["LastName"][1];
+      var Phonetext = inArgument["Phone"][0];
+      var Phoneval = inArgument["Phone"][1];
+      var ContactIDtext = inArgument["ContactID"][0];
+      var ContactIDval = inArgument["ContactID"][1];
+      var Balancetext = inArgument["Balance"][0];
+      var Balanceval = inArgument["Balance"][1];
+      var SerialNumbertext = inArgument["SerialNumber"][0];
+      var SerialNumberval = inArgument["SerialNumber"][1];
     }
-    if (getMessagePush() != 'Undefined' && getMessagePush().length > 0) {
-      $('#step3 .summary').append('<p><b>Message Push:</b> ' + getMessagePush() + '</p>');
-    }
-    if (getSerialNumbervalue() != 'Undefined' && getSerialNumbervalue().length > 0) {
-      $('#step3 .summary').append('<p><b>Serial Number:</b> {{' + getBalance() + '}}</p>');
-    }
-  }
 
-  function FlagCreateFields() {
-    $('.createpass input, .createpass select, .createpass textarea').each(
-      function () {
-        if ($(this).tagName == 'Select') {
-          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
-            $(this).addClass("required");
-          }
-        } else {
-          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
-            $(this).addClass("required");
-          }
+  function ValidateFields(Method, StepActual) {
+    if (Method == 'Create') {
+
+      if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
+
+        if (StepActual == '5') {
+          FlagFields(Method);
         }
-      }
-    );
-  }
 
-  function FlagUpdateFields() {
-    $('.updatepass input, .updatepass select, .updatepass textarea').each(
-      function () {
-        if ($(this).tagName == 'Select') {
-          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
-            $(this).addClass("required");
-          }
-        } else {
-          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
-            $(this).addClass("required");
-          }
-        }
-      }
-    );
-  }
+      } else {
 
-  function FlagPushFields() {
-    $('.pushpass input, .pushpass select, .pushpass textarea').each(
-      function () {
-        if ($(this).tagName == 'Select') {
-          if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
-            $(this).addClass("required");
-          }
-        } else {
-          if (($(this).val() === 'Undefined' || $(this).val().length === 0)) {
-            $(this).addClass("required");
-          }
+        if (StepActual == '4') {
+          SelectFields(Method);
         }
+
+        WriteSummary(Method);
+
+        connection.trigger('nextStep');
       }
-    );
+
+    } else if (Method == 'Update') {
+
+      if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
+
+        if (StepActual == '5') {
+          FlagFields(Method);
+        }
+
+      } else {
+
+        if (StepActual == '4') {
+          SelectFields(Method);
+        }
+
+        WriteSummary(Method);
+
+        connection.trigger('nextStep');
+      }
+
+    } else if (Method == 'Push') {
+
+      if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
+
+        if (StepActual == '5') {
+          FlagFields(Method);
+        }
+
+      } else {
+
+        if (StepActual == '4') {
+          SelectFields(Method);
+        }
+
+        WriteSummary(Method);
+
+        connection.trigger('nextStep');
+      }
+
+    }
   }
 
 });
