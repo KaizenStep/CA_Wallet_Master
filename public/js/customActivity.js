@@ -217,7 +217,7 @@ define([
   }
 
   //step5
-  function onClickedNext() {
+  function onClickedNext(data) {
     var StepActual = '5'
     if (debug == 'true') {
       console.log(StepActual);
@@ -226,6 +226,7 @@ define([
     if (currentStep.key === 'step2') {
       console.log
       $('.input-data').removeClass("required");
+        
 if (data) {
       payload = data;
     }
