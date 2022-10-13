@@ -209,12 +209,12 @@ define([
   }
 
   function onGetTokens(tokens) {
-    authTokens = tokens;
+    //authTokens = tokens;
     mc_fuel_token = tokens.fuel2token;
   }
 
   function onGetEndpoints(endpoints) {
-    mc_fuel_url = endpoints.fuelapiRestHost;
+    //mc_fuel_url = endpoints.fuelapiRestHost;
   }
 
   //step5
@@ -294,7 +294,7 @@ define([
     });
 
 
-    payload.name = Method + 'pass';
+    payload.name = Method + ' pass';
 
     $('#Method').html(Method + ' Pass');
     $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
@@ -620,6 +620,7 @@ define([
       } else {
 
         if (StepActual == '4' || StepActual == '7') {
+            console.log('test');
           SelectFields(Method);
         }
 
