@@ -558,19 +558,19 @@ define([
       var WalletID = inArgument["WalletID"];
       var MessagePush = inArgument["MessagePush"];
       var Leveltext = inArgument["Level"][0];
-      var Levelval = inArgument["Level"][1];
+      var Levelvalue = inArgument["Level"][1];
       var FirstNametext = inArgument["FirstName"][0];
-      var FirstNameval = inArgument["FirstName"][1];
+      var FirstNamevalue = inArgument["FirstName"][1];
       var LastNametext = inArgument["LastName"][0];
-      var LastNameval = inArgument["LastName"][1];
+      var LastNamevalue = inArgument["LastName"][1];
       var Phonetext = inArgument["Phone"][0];
-      var Phoneval = inArgument["Phone"][1];
+      var Phonevalue = inArgument["Phone"][1];
       var ContactIDtext = inArgument["ContactID"][0];
-      var ContactIDval = inArgument["ContactID"][1];
+      var ContactIDvalue = inArgument["ContactID"][1];
       var Balancetext = inArgument["Balance"][0];
-      var Balanceval = inArgument["Balance"][1];
+      var Balancevalue = inArgument["Balance"][1];
       var SerialNumbertext = inArgument["SerialNumber"][0];
-      var SerialNumberval = inArgument["SerialNumber"][1];
+      var SerialNumbervalue = inArgument["SerialNumber"][1];
 
     });
 
