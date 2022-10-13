@@ -778,6 +778,7 @@ define([
 
   function WriteSummaryCreate() {
 
+    var Method = getMethod();
     $('#step3 .summary').html('');
     $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
@@ -806,6 +807,7 @@ define([
 
   function WriteSummaryUpdate() {
 
+    var Method = getMethod();
     $('#step3 .summary').html('');
     $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
@@ -837,6 +839,7 @@ define([
 
   function WriteSummaryPush() {
 
+    var Method = getMethod();
     $('#step3 .summary').html('');
     $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
