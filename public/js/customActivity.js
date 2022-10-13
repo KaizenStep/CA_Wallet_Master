@@ -397,7 +397,7 @@ define([
 
   function SelectFields(Method) {
 
-    $('#WalletIDinput').attr('Value', WalletID;
+    $('#WalletIDinput').attr('Value', WalletID);
     $('#Levelinput').find('option[value="' + Levelvalue + '"]').prop('selected', true);
     $('#FirstNameinput').find('option[value="' + FirstNamevalue + '"]').prop('selected', true);
     $('#LastNameinput').find('option[value="' + LastNamevalue + '"]').prop('selected', true);
