@@ -196,7 +196,6 @@ define([
 
     } else {
 
-
       connection.trigger('nextStep');
 
       $('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
@@ -619,8 +618,9 @@ define([
 
       } else {
 
+          console.log('test1');
         if (StepActual == '4' || StepActual == '7') {
-            console.log('test');
+            console.log('test2');
           SelectFields(Method);
         }
 
