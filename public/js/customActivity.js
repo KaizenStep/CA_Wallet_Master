@@ -409,7 +409,7 @@ define([
       $('#SerialNumberinput').find('option[value="' + SerialNumbervalue + '"]').prop('selected', true);
     }
     if (Method == 'Push') {
-      $('#MessagePushinput').attr('Value', MessagePush;
+      $('#MessagePushinput').attr('Value', MessagePush);
     }
   }
 
