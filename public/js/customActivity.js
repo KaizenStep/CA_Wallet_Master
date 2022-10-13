@@ -19,7 +19,7 @@ define([
     "key": "step3"
   }];
 
-  /*var Method;
+  var Method;
   var WalletID;
   var MessagePush;
   var Leveltext;
@@ -35,7 +35,7 @@ define([
   var Balancetext;
   var Balanceval;
   var SerialNumbertext;
-  var SerialNumberval;*/
+  var SerialNumberval;
 
   var currentStep = steps[0].key;
   var ReadyEntry = '';
@@ -554,23 +554,23 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
 
-      var Method = inArgument["Method"];
-      var WalletID = inArgument["WalletID"];
-      var MessagePush = inArgument["MessagePush"];
-      var Leveltext = inArgument["Level"][0];
-      var Levelvalue = inArgument["Level"][1];
-      var FirstNametext = inArgument["FirstName"][0];
-      var FirstNamevalue = inArgument["FirstName"][1];
-      var LastNametext = inArgument["LastName"][0];
-      var LastNamevalue = inArgument["LastName"][1];
-      var Phonetext = inArgument["Phone"][0];
-      var Phonevalue = inArgument["Phone"][1];
-      var ContactIDtext = inArgument["ContactID"][0];
-      var ContactIDvalue = inArgument["ContactID"][1];
-      var Balancetext = inArgument["Balance"][0];
-      var Balancevalue = inArgument["Balance"][1];
-      var SerialNumbertext = inArgument["SerialNumber"][0];
-      var SerialNumbervalue = inArgument["SerialNumber"][1];
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelvalue = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNamevalue = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNamevalue = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phonevalue = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDvalue = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balancevalue = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumbervalue = inArgument["SerialNumber"][1];
 
     });
 
