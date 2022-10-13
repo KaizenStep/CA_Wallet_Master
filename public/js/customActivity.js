@@ -159,7 +159,7 @@ define([
       && payload['arguments'].execute.inArguments
       && payload['arguments'].execute.inArguments.length > 0
     );
-    
+
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
@@ -271,7 +271,7 @@ define([
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
     $.each(inArguments, function (index, inArgument) {
-        
+
       Method = inArgument["Method"];
       WalletID = inArgument["WalletID"];
       MessagePush = inArgument["MessagePush"];
@@ -290,9 +290,9 @@ define([
       SerialNumbertext = inArgument["SerialNumber"][0];
       SerialNumberval = inArgument["SerialNumber"][1];
 
-    }); 
+    });
 
-      console.log(inArguments);
+    console.log(inArguments);
     $('#Method').html(Method + ' Pass');
     $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
@@ -605,66 +605,56 @@ define([
   }
 
   function ValidateFields(Method, StepActual) {
-      console.log('test1');
-      
+
     if (Method == 'Create') {
- console.log('test2');
-      if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
-console.log('test3');
-        if (StepActual == '5') {
-            console.log('test4');
+
+      if (StepActual == '5') {
+        if (($('.createpass input[type=text]').val() === 'Undefined' || $('.createpass input[type=text]').val().length === 0) || ($('.createpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.createpass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
+        } else {
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-      } else {
-
-          console.log('test5');
-        if (StepActual == '4' || StepActual == '7') {
-            console.log('test6');
+      } else if (StepActual == '4' || StepActual == '7') {
+        if ((getFirstNamevalue() === 'Undefined' || getFirstNamevalue().length === 0) || (getLastNamevalue() === 'Undefined' || getLastNamevalue().length === 0) || (getLevelvalue() === 'Undefined' || getLevelvalue().length === 0) || (getContactIDvalue() === 'Undefined' || getContactIDvalue().length === 0) || (getBalancevalue() === 'Undefined' || getBalancevalue().length === 0) || (getWalletID() === 'Undefined' || getWalletID().length === 0)) {} else {
           SelectFields(Method);
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-        WriteSummary(Method);
-
-        connection.trigger('nextStep');
       }
 
     } else if (Method == 'Update') {
 
-      if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
-
-        if (StepActual == '5') {
+      if (StepActual == '5') {
+        if (($('.updatepass input[type=text]').val() === 'Undefined' || $('.updatepass input[type=text]').val().length === 0) || ($('.updatepass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.updatepass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
+        } else {
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-      } else {
-
-        if (StepActual == '4' || StepActual == '7') {
+      } else if (StepActual == '4' || StepActual == '7') {
+        if ((getSerialNumbervalue() === 'Undefined' || getSerialNumbervalue().length === 0) || (getWalletID === 'Undefined' || getWalletID.length === 0)) {} else {
           SelectFields(Method);
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-        WriteSummary(Method);
-
-        connection.trigger('nextStep');
       }
 
     } else if (Method == 'Push') {
 
-      if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
-
-        if (StepActual == '5') {
+      if (StepActual == '5') {
+        if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
+        } else {
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-      } else {
-
-        if (StepActual == '4' || StepActual == '7') {
+      } else if (StepActual == '4' || StepActual == '7') {
+        if ((getSerialNumbervalue() === 'Undefined' || getSerialNumbervalue().length === 0) || (getMessagePush === 'Undefined' || getMessagePush.length === 0) || (getWalletID === 'Undefined' || getWalletID.length === 0)) {} else {
           SelectFields(Method);
+          WriteSummary(Method);
+          connection.trigger('nextStep');
         }
-
-        WriteSummary(Method);
-
-        connection.trigger('nextStep');
       }
 
     }
