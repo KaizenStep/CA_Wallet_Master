@@ -257,47 +257,6 @@ define([
 
     showStep(step);
 
-    if (data) {
-      payload = data;
-    }
-
-    var hasInArguments = Boolean(
-      payload['arguments']
-      && payload['arguments'].execute
-      && payload['arguments'].execute.inArguments
-      && payload['arguments'].execute.inArguments.length > 0
-    );
-
-    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
-    $.each(inArguments, function (index, inArgument) {
-
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
-
-    });
-
-    console.log(inArguments);
-    $('#Method').html(Method + ' Pass');
-    $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
-
-    DisplayFields();
-
     ValidateFields(Method, StepActual);
 
 
@@ -604,6 +563,43 @@ define([
     }
   }
 
+  function RetrieveData(data) {
+    if (data) {
+      payload = data;
+    }
+
+    var hasInArguments = Boolean(
+      payload['arguments']
+      && payload['arguments'].execute
+      && payload['arguments'].execute.inArguments
+      && payload['arguments'].execute.inArguments.length > 0
+    );
+
+    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+    $.each(inArguments, function (index, inArgument) {
+
+      Method = inArgument["Method"];
+      WalletID = inArgument["WalletID"];
+      MessagePush = inArgument["MessagePush"];
+      Leveltext = inArgument["Level"][0];
+      Levelval = inArgument["Level"][1];
+      FirstNametext = inArgument["FirstName"][0];
+      FirstNameval = inArgument["FirstName"][1];
+      LastNametext = inArgument["LastName"][0];
+      LastNameval = inArgument["LastName"][1];
+      Phonetext = inArgument["Phone"][0];
+      Phoneval = inArgument["Phone"][1];
+      ContactIDtext = inArgument["ContactID"][0];
+      ContactIDval = inArgument["ContactID"][1];
+      Balancetext = inArgument["Balance"][0];
+      Balanceval = inArgument["Balance"][1];
+      SerialNumbertext = inArgument["SerialNumber"][0];
+      SerialNumberval = inArgument["SerialNumber"][1];
+
+    });
+  }
+
   function ValidateFields(Method, StepActual) {
 
     if (Method == 'Create') {
@@ -616,7 +612,13 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        if ((getFirstNamevalue() === 'Undefined' || getFirstNamevalue().length === 0) || (getLastNamevalue() === 'Undefined' || getLastNamevalue().length === 0) || (getLevelvalue() === 'Undefined' || getLevelvalue().length === 0) || (getContactIDvalue() === 'Undefined' || getContactIDvalue().length === 0) || (getBalancevalue() === 'Undefined' || getBalancevalue().length === 0) || (getWalletID() === 'Undefined' || getWalletID().length === 0)) {} else {
+        RetrieveData(data);
+        $('#Method').html(Method + ' Pass');
+        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+
+        DisplayFields();
+         
+        if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
           connection.trigger('nextStep');
@@ -633,7 +635,13 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        if ((getSerialNumbervalue() === 'Undefined' || getSerialNumbervalue().length === 0) || (getWalletID === 'Undefined' || getWalletID.length === 0)) {} else {
+        RetrieveData(data);
+        $('#Method').html(Method + ' Pass');
+        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+
+        DisplayFields();
+         
+        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
           connection.trigger('nextStep');
@@ -650,7 +658,13 @@ define([
           connection.trigger('nextStep');
         }
       } else if (StepActual == '4' || StepActual == '7') {
-        if ((getSerialNumbervalue() === 'Undefined' || getSerialNumbervalue().length === 0) || (getMessagePush === 'Undefined' || getMessagePush.length === 0) || (getWalletID === 'Undefined' || getWalletID.length === 0)) {} else {
+        RetrieveData(data);
+        $('#Method').html(Method + ' Pass');
+        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+
+        DisplayFields();
+          
+        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method);
           WriteSummary(Method);
           connection.trigger('nextStep');
