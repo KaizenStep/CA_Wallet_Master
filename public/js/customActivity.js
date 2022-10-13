@@ -17,25 +17,7 @@ define([
   }, {
     "label": "Validate wallet",
     "key": "step3"
-  }];
-
-  var Method;
-  var WalletID;
-  var MessagePush;
-  var Leveltext;
-  var FirstNametext;
-  var LastNametext;
-  var Phonetext;
-  var ContactIDtext;
-  var SerialNumbertext;
-  var Balancetext;
-  var Levelval;
-  var FirstNameval;
-  var LastNameval;
-  var Phoneval;
-  var ContactIDval;
-  var Balanceval;
-  var SerialNumberval;
+  }]; 
 
   var currentStep = steps[0].key;
   var ReadyEntry = '';
@@ -553,23 +535,23 @@ define([
 
     $.each(inArguments, function (index, inArgument) {
 
-      Method = inArgument["Method"];
-      WalletID = inArgument["WalletID"];
-      MessagePush = inArgument["MessagePush"];
-      Leveltext = inArgument["Level"][0];
-      Levelval = inArgument["Level"][1];
-      FirstNametext = inArgument["FirstName"][0];
-      FirstNameval = inArgument["FirstName"][1];
-      LastNametext = inArgument["LastName"][0];
-      LastNameval = inArgument["LastName"][1];
-      Phonetext = inArgument["Phone"][0];
-      Phoneval = inArgument["Phone"][1];
-      ContactIDtext = inArgument["ContactID"][0];
-      ContactIDval = inArgument["ContactID"][1];
-      Balancetext = inArgument["Balance"][0];
-      Balanceval = inArgument["Balance"][1];
-      SerialNumbertext = inArgument["SerialNumber"][0];
-      SerialNumberval = inArgument["SerialNumber"][1];
+      var Method = inArgument["Method"];
+      var WalletID = inArgument["WalletID"];
+      var MessagePush = inArgument["MessagePush"];
+      var Leveltext = inArgument["Level"][0];
+      var Levelval = inArgument["Level"][1];
+      var FirstNametext = inArgument["FirstName"][0];
+      var FirstNameval = inArgument["FirstName"][1];
+      var LastNametext = inArgument["LastName"][0];
+      var LastNameval = inArgument["LastName"][1];
+      var Phonetext = inArgument["Phone"][0];
+      var Phoneval = inArgument["Phone"][1];
+      var ContactIDtext = inArgument["ContactID"][0];
+      var ContactIDval = inArgument["ContactID"][1];
+      var Balancetext = inArgument["Balance"][0];
+      var Balanceval = inArgument["Balance"][1];
+      var SerialNumbertext = inArgument["SerialNumber"][0];
+      var SerialNumberval = inArgument["SerialNumber"][1];
 
     });
 
@@ -624,7 +606,7 @@ define([
     } else if (Method == 'Push') {
 
       if (StepActual == '5') {
-        if (($('.pushpass input[type=text]').val() === 'Undefined' || $('.pushpass input[type=text]').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
+        if (($('.pushpass textarea').val() === 'Undefined' || $('.pushpass textarea').val().length === 0) || ($('.pushpass select').find('option:selected').attr('value').trim() === 'Undefined' || $('.pushpass select').find('option:selected').attr('value').trim().length === 0)) {
           FlagFields(Method);
         } else {
           WriteSummary(Method);
