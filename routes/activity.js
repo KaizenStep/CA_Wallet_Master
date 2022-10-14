@@ -108,13 +108,13 @@ exports.execute = function (req, res) {
             var objlog = {};
             var keys = {};
             var values = {};
-			
-			var TimeStamp = new Date();
-			TimeStamp = TimeStamp.toISOString().slice(0, 10);
+
+            var TimeStamp = new Date();
+            TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
             keys["TimeStamp"] = TimeStamp;
-			
-			console.log(TimeStamp);
+
+            console.log(TimeStamp);
 
             if (Method == 'Create') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -196,7 +196,6 @@ exports.execute = function (req, res) {
 
             }
 
-            
 
             var request = require('request');
             var response;
@@ -259,8 +258,8 @@ exports.execute = function (req, res) {
 
             objlog["keys"] = keys;
             objlog["values"] = values;
-			
-			console.log(Method + '|Method: ' + Method);
+
+            console.log(Method + '|Method: ' + Method);
             console.log(Method + '|MetodoAPI: ' + MetodoAPI);
             console.log(Method + '|URLpasscreation: ' + URLpasscreation);
             console.log(Method + '|SerialNumber: ' + SerialNumber);
@@ -289,27 +288,27 @@ exports.execute = function (req, res) {
             };
             request(options3, function (error3, response3) {
                 if (error3) throw new Error(error3);
-                console.log('response3: '+response3.body);
-                var response3 = JSON.parse(response3.body);
-                var access_token3 = response3["access_token"];
+                console.log('response3: ' + response3.body);
 
+                if (error3) {} else {
+                    var response3 = JSON.parse(response3.body);
+                    var access_token3 = response3["access_token"];
+                    var options4 = {
+                        'method': 'POST',
+                        'url': 'https://' + MCDomain + '.rest.marketingcloudapis.com/hub/v1/dataevents/key:' + DElog + '/rowset',
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + access_token3
+                        },
+                        body: JSON.stringify(objlog)
 
-                var options4 = {
-                    'method': 'POST',
-                    'url': 'https://' + MCDomain + '.rest.marketingcloudapis.com/hub/v1/dataevents/key:' + DElog + '/rowset',
-                    'headers': {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + access_token3
-                    },
-                    body: JSON.stringify(objlog)
+                    };
+                    request(options4, function (error4, response4) {
+                        if (error4) throw new Error(error4);
+                        console.log('response4: ' + response4.body);
+                    });
 
-                };
-                request(options4, function (error4, response4) {
-                    if (error4) throw new Error(error4);
-                    console.log('response4: '+response4.body);
-                });
-
-
+                }
             });
 
 
