@@ -112,17 +112,9 @@ exports.execute = function (req, res) {
             var TimeStamp = new Date();
             TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
-            function objMC(TimeStamp, ContactID, WalletID, SerialNumber, MessagePush, PassURL, APIresponse1, APIresponse2) {
-                keys["TimeStamp"] = TimeStamp;
-                keys["ContactID"] = ContactID;
-                values["WalletID"] = WalletID;
-                values["SerialNumber"] = SerialNumber;
-                values["MessagePush"] = MessagePush;
-                values["PassURL"] = PassURL;
-                values["APIresponse1"] = APIresponse1;
-                values["APIresponse2"] = APIresponse2;
-            }
+            keys["TimeStamp"] = TimeStamp;
 
+            console.log(TimeStamp);
 
             if (Method == 'Create') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -145,7 +137,8 @@ exports.execute = function (req, res) {
                 obj["level"] = Level;
                 obj["message"] = Message;
 
-                objMC(ContactId, WalletId);
+                keys["ContactID"] = ContactId;
+                values["WalletID"] = WalletId;
 
             } else if (Method == 'Update') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -177,7 +170,8 @@ exports.execute = function (req, res) {
                     obj["level"] = Level;
                 }
 
-                objMC(ContactId, SerialNumber);
+                keys["ContactID"] = ContactId;
+                values["SerialNumber"] = SerialNumber;
 
             } else if (Method == 'Push') {
 
@@ -195,7 +189,10 @@ exports.execute = function (req, res) {
                     obj["Message"] = MessagePush;
                 }
 
-                objMC(ContactId, WalletId, SerialNumber, MessagePush);
+                keys["ContactID"] = ContactId;
+                values["WalletId"] = WalletId;
+                values["SerialNumber"] = SerialNumber;
+                values["MessagePush"] = MessagePush;
 
             }
 
@@ -222,8 +219,7 @@ exports.execute = function (req, res) {
             request(options, function (error, response) {
                 if (error) throw new Error(error);
                 if (error) {
-                    var APIresponse1 = error;
- objMC(APIresponse1);
+                    values["APIresponse1"] = error;
                 }
                 console.log(response.body);
                 var response = JSON.parse(response.body);
@@ -243,13 +239,9 @@ exports.execute = function (req, res) {
                 request(options2, function (error2, response2) {
                     if (error2) throw new Error(error2);
                     if (error) {
-                        var APIresponse2 = error;
-
-                        objMC(APIresponse2);
+                        values["APIresponse2"] = error;
                     } else {
-                        var APIresponse2 = JSON.parse(response2.body);
-
-                        objMC(APIresponse2);
+                        values["APIresponse2"] = JSON.parse(response2.body);
                     }
                     console.log(Method + '|response: ' + response2.body);
                     var response2 = JSON.parse(response2.body);
@@ -257,13 +249,12 @@ exports.execute = function (req, res) {
                     var PassURL = response2["url"];
                     console.log(Method + '|SerialNumber: ' + SerialNumber);
                     console.log(Method + '|PassURL: ' + PassURL);
-
-                    objMC(SerialNumber, PassURL);
+                    values["SerialNumber"] = SerialNumber;
+                    values["PassURL"] = PassURL;
                 });
 
 
             });
-
 
             objlog["keys"] = keys;
             objlog["values"] = values;
