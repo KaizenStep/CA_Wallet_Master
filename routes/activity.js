@@ -112,9 +112,17 @@ exports.execute = function (req, res) {
             var TimeStamp = new Date();
             TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
-            keys["TimeStamp"] = TimeStamp;
+            function objMC(TimeStamp, ContactID, WalletID, SerialNumber, MessagePush, PassURL, APIresponse1, APIresponse2) {
+                keys["TimeStamp"] = TimeStamp;
+                keys["ContactID"] = ContactID;
+                values["WalletID"] = WalletID;
+                values["SerialNumber"] = SerialNumber;
+                values["MessagePush"] = MessagePush;
+                values["PassURL"] = PassURL;
+                values["APIresponse1"] = APIresponse1;
+                values["APIresponse2"] = APIresponse2;
+            }
 
-            console.log(TimeStamp);
 
             if (Method == 'Create') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -137,8 +145,7 @@ exports.execute = function (req, res) {
                 obj["level"] = Level;
                 obj["message"] = Message;
 
-                keys["ContactID"] = ContactId;
-                values["WalletID"] = WalletId;
+                function objMC(ContactId, WalletId);
 
             } else if (Method == 'Update') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -170,8 +177,7 @@ exports.execute = function (req, res) {
                     obj["level"] = Level;
                 }
 
-                keys["ContactID"] = ContactId;
-                values["SerialNumber"] = SerialNumber;
+                function objMC(ContactId, SerialNumber);
 
             } else if (Method == 'Push') {
 
@@ -189,10 +195,7 @@ exports.execute = function (req, res) {
                     obj["Message"] = MessagePush;
                 }
 
-                keys["ContactID"] = ContactId;
-                values["WalletId"] = WalletId;
-                values["SerialNumber"] = SerialNumber;
-                values["MessagePush"] = MessagePush;
+                function objMC(ContactId, WalletId, SerialNumber, MessagePush);
 
             }
 
@@ -219,7 +222,9 @@ exports.execute = function (req, res) {
             request(options, function (error, response) {
                 if (error) throw new Error(error);
                 if (error) {
-                    values["APIresponse1"] = error;
+                    var APIresponse1 = error;
+
+                    function objMC(APIresponse1);
                 }
                 console.log(response.body);
                 var response = JSON.parse(response.body);
@@ -239,9 +244,13 @@ exports.execute = function (req, res) {
                 request(options2, function (error2, response2) {
                     if (error2) throw new Error(error2);
                     if (error) {
-                        values["APIresponse2"] = error;
+                        var APIresponse2 = error;
+
+                        function objMC(APIresponse2);
                     } else {
-                        values["APIresponse2"] = JSON.parse(response2.body);;
+                        var APIresponse2 = JSON.parse(response2.body);
+
+                        function objMC(APIresponse2);
                     }
                     console.log(Method + '|response: ' + response2.body);
                     var response2 = JSON.parse(response2.body);
@@ -249,12 +258,13 @@ exports.execute = function (req, res) {
                     var PassURL = response2["url"];
                     console.log(Method + '|SerialNumber: ' + SerialNumber);
                     console.log(Method + '|PassURL: ' + PassURL);
-                    values["SerialNumber"] = SerialNumber;
-                    values["PassURL"] = PassURL;
+
+                    function objMC(SerialNumber, PassURL);
                 });
 
 
             });
+
 
             objlog["keys"] = keys;
             objlog["values"] = values;
