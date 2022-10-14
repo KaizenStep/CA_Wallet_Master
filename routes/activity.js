@@ -196,18 +196,7 @@ exports.execute = function (req, res) {
 
             }
 
-            console.log(Method + '|Method: ' + Method);
-            console.log(Method + '|MetodoAPI: ' + MetodoAPI);
-            console.log(Method + '|URLpasscreation: ' + URLpasscreation);
-            console.log(Method + '|SerialNumber: ' + SerialNumber);
-            console.log(Method + '|Name: ' + Name);
-            console.log(Method + '|Phone: ' + Phone);
-            console.log(Method + '|ContactId: ' + ContactId);
-            console.log(Method + '|WalletId: ' + WalletId);
-            console.log(Method + '|Balance: ' + Balance);
-            console.log(Method + '|Level: ' + Level);
-            console.log(Method + '|Message: ' + Message);
-            console.log(Method + '|json: ' + JSON.stringify(obj));
+            
 
             var request = require('request');
             var response;
@@ -270,6 +259,20 @@ exports.execute = function (req, res) {
 
             objlog["keys"] = keys;
             objlog["values"] = values;
+			
+			console.log(Method + '|Method: ' + Method);
+            console.log(Method + '|MetodoAPI: ' + MetodoAPI);
+            console.log(Method + '|URLpasscreation: ' + URLpasscreation);
+            console.log(Method + '|SerialNumber: ' + SerialNumber);
+            console.log(Method + '|Name: ' + Name);
+            console.log(Method + '|Phone: ' + Phone);
+            console.log(Method + '|ContactId: ' + ContactId);
+            console.log(Method + '|WalletId: ' + WalletId);
+            console.log(Method + '|Balance: ' + Balance);
+            console.log(Method + '|Level: ' + Level);
+            console.log(Method + '|Message: ' + Message);
+            console.log(Method + '|json: ' + JSON.stringify(obj));
+            console.log(Method + '|json2: ' + JSON.stringify(objlog));
 
             var options3 = {
                 'method': 'POST',
@@ -286,7 +289,7 @@ exports.execute = function (req, res) {
             };
             request(options3, function (error3, response3) {
                 if (error3) throw new Error(error3);
-                console.log(response3.body);
+                console.log('response3: '+response3.body);
                 var response3 = JSON.parse(response3.body);
                 var access_token3 = response3["access_token"];
 
@@ -303,7 +306,7 @@ exports.execute = function (req, res) {
                 };
                 request(options4, function (error4, response4) {
                     if (error4) throw new Error(error4);
-                    console.log(response4.body);
+                    console.log('response4: '+response4.body);
                 });
 
 
