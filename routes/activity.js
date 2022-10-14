@@ -91,6 +91,14 @@ exports.execute = function (req, res) {
 
             // API
             console.log('API ready');
+			
+			var request = require('request');
+            var response;
+            var access_token;
+            var SerialNumber;
+            var PassURL;
+			var APIresponse1;
+			var APIresponse2;
 
             var sf_client_id = process.env.sf_client_id;
             var sf_client_secret = process.env.sf_client_secret;
@@ -197,11 +205,7 @@ exports.execute = function (req, res) {
             }
 
 
-            var request = require('request');
-            var response;
-            var access_token;
-            var SerialNumber;
-            var PassURL;
+            
             var options = {
                 'method': 'POST',
                 'url': 'https://login.salesforce.com/services/oauth2/token',
@@ -219,7 +223,7 @@ exports.execute = function (req, res) {
             request(options, function (error, response) {
                 if (error) throw new Error(error);
                 if (error) {
-                    values["APIresponse1"] = error;
+                    APIresponse1 = error;
                 }
                 console.log(response.body);
                 var response = JSON.parse(response.body);
@@ -239,9 +243,9 @@ exports.execute = function (req, res) {
                 request(options2, function (error2, response2) {
                     if (error2) throw new Error(error2);
                     if (error) {
-                        values["APIresponse2"] = error;
+                        APIresponse2 = error;
                     } else {
-                        values["APIresponse2"] = JSON.parse(response2.body);
+                        APIresponse2 = JSON.parse(response2.body);
                     }
                     console.log(Method + '|response: ' + response2.body);
                     var response2 = JSON.parse(response2.body);
@@ -249,13 +253,16 @@ exports.execute = function (req, res) {
                     var PassURL = response2["url"];
                     console.log(Method + '|SerialNumber: ' + SerialNumber);
                     console.log(Method + '|PassURL: ' + PassURL);
-                    values["SerialNumber"] = SerialNumber;
-                    values["PassURL"] = PassURL;
                 });
 
 
             });
 
+                    values["APIresponse1"] = APIresponse1;
+			        values["APIresponse2"] = APIresponse2;
+                    values["SerialNumber"] = SerialNumber;
+                    values["PassURL"] = PassURL;
+			
             objlog["keys"] = keys;
             objlog["values"] = values;
 
