@@ -589,7 +589,7 @@ define([
         }
       } else if (StepActual == '4' || StepActual == '7') {
          
-        if ((FirstNameval === 'Undefined' || FirstNameval.length === 0) || (LastNameval === 'Undefined' || LastNameval.length === 0) || (Levelval === 'Undefined' || Levelval.length === 0) || (ContactIDval === 'Undefined' || ContactIDval.length === 0) || (Balanceval === 'Undefined' || Balanceval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
+        if ((FirstNamevalue === 'Undefined' || FirstNamevalue.length === 0) || (LastNamevalue === 'Undefined' || LastNamevalue.length === 0) || (Levelvalue === 'Undefined' || Levelvalue.length === 0) || (ContactIDvalue === 'Undefined' || ContactIDvalue.length === 0) || (Balancevalue === 'Undefined' || Balancevalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method, data);
           WriteSummary(Method);
           if (StepActual == '7') {
@@ -611,7 +611,7 @@ define([
         }
       } else if (StepActual == '4' || StepActual == '7') {
          
-        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
+        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method, data);
           WriteSummary(Method);
           if (StepActual == '7') {
@@ -633,7 +633,7 @@ define([
         }
       } else if (StepActual == '4' || StepActual == '7') {
          
-        if ((SerialNumberval === 'Undefined' || SerialNumberval.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
+        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method, data);
           WriteSummary(Method);
 
