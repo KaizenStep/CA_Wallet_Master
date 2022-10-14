@@ -145,7 +145,7 @@ exports.execute = function (req, res) {
                 obj["level"] = Level;
                 obj["message"] = Message;
 
-                function objMC(ContactId, WalletId);
+                objMC(ContactId, WalletId);
 
             } else if (Method == 'Update') {
                 var FirstName = decodedArgs.FirstName[1];
@@ -177,7 +177,7 @@ exports.execute = function (req, res) {
                     obj["level"] = Level;
                 }
 
-                function objMC(ContactId, SerialNumber);
+                objMC(ContactId, SerialNumber);
 
             } else if (Method == 'Push') {
 
@@ -195,7 +195,7 @@ exports.execute = function (req, res) {
                     obj["Message"] = MessagePush;
                 }
 
-                function objMC(ContactId, WalletId, SerialNumber, MessagePush);
+                objMC(ContactId, WalletId, SerialNumber, MessagePush);
 
             }
 
@@ -223,8 +223,7 @@ exports.execute = function (req, res) {
                 if (error) throw new Error(error);
                 if (error) {
                     var APIresponse1 = error;
-
-                    function objMC(APIresponse1);
+ objMC(APIresponse1);
                 }
                 console.log(response.body);
                 var response = JSON.parse(response.body);
@@ -246,11 +245,11 @@ exports.execute = function (req, res) {
                     if (error) {
                         var APIresponse2 = error;
 
-                        function objMC(APIresponse2);
+                        objMC(APIresponse2);
                     } else {
                         var APIresponse2 = JSON.parse(response2.body);
 
-                        function objMC(APIresponse2);
+                        objMC(APIresponse2);
                     }
                     console.log(Method + '|response: ' + response2.body);
                     var response2 = JSON.parse(response2.body);
@@ -259,7 +258,7 @@ exports.execute = function (req, res) {
                     console.log(Method + '|SerialNumber: ' + SerialNumber);
                     console.log(Method + '|PassURL: ' + PassURL);
 
-                    function objMC(SerialNumber, PassURL);
+                    objMC(SerialNumber, PassURL);
                 });
 
 
