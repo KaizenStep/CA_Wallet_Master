@@ -300,7 +300,7 @@ exports.execute = function (req, res) {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer ' + access_token3
                         },
-                        body: JSON.stringify(objlog)
+                        body: '['+JSON.stringify(objlog)+']'
 
                     };
                     request(options4, function (error4, response4) {

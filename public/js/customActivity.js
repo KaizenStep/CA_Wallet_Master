@@ -296,7 +296,7 @@ define([
         var Balance = new Array(getBalance(), getBalancevalue());
         var SerialNumber = new Array(getSerialNumber(), getSerialNumbervalue());
 
-        payload.name = getMethod() + 'pass';
+        payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
             "eventDefinitionKey": eventDefinitionKey,
             "Method": Method,
