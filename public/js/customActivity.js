@@ -390,7 +390,7 @@ define([
     }
 
     function getSerialNumber() {
-        return $('#passSerialNumberinput').find('option:selected').text();
+        return $('#SerialNumberinput').find('option:selected').text();
     }
 
     function SelectFields(Method, data) {
