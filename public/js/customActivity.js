@@ -7,7 +7,7 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
-    var debug = 'true'
+    var debug = 'false'
     var steps = [{
         "label": "Select type",
         "key": "step1"
@@ -150,7 +150,6 @@ define([
         }
         getData(data);
 
-
         showStep(null, 1);
 
         if ((Method != 'Push' && Method != 'Create' && Method != 'Update') || ReadyEntry == 'False') {
@@ -163,9 +162,6 @@ define([
         } else {
 
             connection.trigger('nextStep');
-
-            $('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
-            $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
             ValidateFields(Method, StepActual);
 
@@ -225,9 +221,6 @@ define([
         getData(data);
 
         DisplayFields();
-
-        $('#Method').html(Method + ' Pass');
-        $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
 
         ValidateFields(Method, StepActual, data);
 
@@ -418,10 +411,12 @@ define([
         $('#step3 .summary').html('');
         $('#step3 .summary').append('<h3>' + Method + ' Pass</h3>');
 
-        if (Method == 'Create' || Method == 'Update') {
+        if (Method == 'Create') {
             if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
                 $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
             }
+		}
+		if (Method == 'Create' || Method == 'Update') {
             if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
                 $('#step3 .summary').append('<p><b>Level:</b> {{' + getLevel() + '}}</p>');
             }
@@ -579,6 +574,18 @@ define([
     }
 
     function ValidateFields(Method, StepActual, data) {
+		
+		if (StepActual == '4'){
+			$('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
+            $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+		}
+		
+		if(StepActual == '7'){
+			
+          $('#Method').html(Method + ' Pass');
+          $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+			
+		}
 
         if (Method == 'Create') {
 
