@@ -127,7 +127,8 @@ exports.execute = function (req, res) {
       var keys = {};
       var values = {};
 
-      var TimeStamp = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+      var TimeStamp = new Date();
+      TimeStamp.format("yyyy/MM/dd hh:mm TT");
       TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
       if (Method == 'Create') {
