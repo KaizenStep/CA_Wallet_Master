@@ -271,7 +271,7 @@ exports.execute = function (req, res) {
             objlog["keys"] = keys;
             objlog["values"] = values;
 
-              console.log('objlog: ' + objlog);
+              console.log('objlog: ' + JSON.stringify(objlog));
             apiMC(objlog);
 
 
