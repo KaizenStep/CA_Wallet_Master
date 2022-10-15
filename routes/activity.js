@@ -108,9 +108,19 @@ exports.execute = function (req, res) {
       var MCClientSecret = process.env.MCClientSecret;
       var MCDomain = process.env.MCDomain;
       var DElog = process.env.DElog;
-
+        
       var Method = decodedArgs.Method;
-      console.log(Method + 'check | SerialNumber: ' + decodedArgs.SerialNumber[1]);
+
+      var FirstName;
+      var LastName;
+      var Phone;
+      var Name;
+      var ContactId;
+      var WalletId;
+      var Balance;
+      var Level;
+      var SerialNumber;
+      var MessagePush;
 
       var obj = {};
       var objlog = {};
@@ -120,23 +130,20 @@ exports.execute = function (req, res) {
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
-      keys["TimeStamp"] = TimeStamp;
-
-      console.log(TimeStamp);
-
       if (Method == 'Create') {
-        var FirstName = decodedArgs.FirstName[1];
-        var LastName = decodedArgs.LastName[1];
-        var Phone = decodedArgs.Phone[1];
-        var Name = FirstName + ' ' + LastName;
-        var ContactId = decodedArgs.ContactID[1];
-        var WalletId = decodedArgs.WalletID;
-        var Balance = decodedArgs.Balance[1];
-        var Level = decodedArgs.Level[1];
+        FirstName = decodedArgs.FirstName[1];
+        LastName = decodedArgs.LastName[1];
+        Phone = decodedArgs.Phone[1];
+        Name = FirstName + ' ' + LastName;
+        ContactId = decodedArgs.ContactID[1];
+        WalletId = decodedArgs.WalletID;
+        Balance = decodedArgs.Balance[1];
+        Level = decodedArgs.Level[1];
 
         var Message = "Nuevo pass";
         var MetodoAPI = "POST";
         var URLpasscreation = process.env.URLpasscreation;
+          
         obj["contactId"] = ContactId;
         obj["walletId"] = WalletId;
         obj["name"] = Name;
@@ -145,21 +152,18 @@ exports.execute = function (req, res) {
         obj["level"] = Level;
         obj["message"] = Message;
 
-        keys["ContactID"] = ContactId;
-        values["WalletID"] = WalletId;
-
       } else if (Method == 'Update') {
-        var FirstName = decodedArgs.FirstName[1];
-        var LastName = decodedArgs.LastName[1];
-        var Phone = decodedArgs.Phone[1];
-        var Name = FirstName + ' ' + LastName;
-        var ContactId = decodedArgs.ContactID[1];
-        var WalletId = decodedArgs.WalletID;
-        var Balance = decodedArgs.Balance[1];
-        var Level = decodedArgs.Level[1];
+        FirstName = decodedArgs.FirstName[1];
+        LastName = decodedArgs.LastName[1];
+        Phone = decodedArgs.Phone[1];
+        Name = FirstName + ' ' + LastName;
+        ContactId = decodedArgs.ContactID[1];
+        WalletId = decodedArgs.WalletID;
+        Balance = decodedArgs.Balance[1];
+        Level = decodedArgs.Level[1];
+        SerialNumber = decodedArgs.SerialNumber[1];
 
         var MetodoAPI = "PUT";
-        var SerialNumber = decodedArgs.SerialNumber[1];
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
         if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
@@ -178,16 +182,14 @@ exports.execute = function (req, res) {
           obj["level"] = Level;
         }
 
-        keys["ContactID"] = ContactId;
-        values["SerialNumber"] = SerialNumber;
-
       } else if (Method == 'Push') {
 
-        var WalletId = decodedArgs.WalletID;
-        var ContactId = decodedArgs.ContactID[1];
+        WalletId = decodedArgs.WalletID;
+        ContactId = decodedArgs.ContactID[1];
+        SerialNumber = decodedArgs.SerialNumber[1];
+        MessagePush = decodedArgs.MessagePush;
+
         var MetodoAPI = "PUT";
-        var SerialNumber = decodedArgs.SerialNumber[1];
-        var MessagePush = decodedArgs.MessagePush;
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
         if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
@@ -196,11 +198,6 @@ exports.execute = function (req, res) {
         if (MessagePush === 'Undefined' || MessagePush.lenght === 0) {} else {
           obj["Message"] = MessagePush;
         }
-
-        keys["ContactID"] = ContactId;
-        values["WalletId"] = WalletId;
-        values["SerialNumber"] = SerialNumber;
-        values["MessagePush"] = MessagePush;
 
       }
 
@@ -220,6 +217,13 @@ exports.execute = function (req, res) {
         }
       };
       request(options, function (error, response) {
+
+        keys["ContactID"] = ContactId;
+        keys["TimeStamp"] = TimeStamp;
+        values["WalletId"] = WalletId;
+        values["SerialNumber"] = SerialNumber;
+        values["MessagePush"] = MessagePush;
+
         if (error) throw new Error(error);
         if (error) {
           APIresponse1 = error;
