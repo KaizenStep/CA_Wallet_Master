@@ -254,7 +254,8 @@ exports.execute = function (req, res) {
             if (error) {
               APIresponse2 = "[response: "+error+"]";
             } else {
-              APIresponse2 = "[response: "+JSON.parse(response2.body)+"]";
+              var apiResponse = 
+              APIresponse2 = "[response: "+JSON.stringify(response2.body)+"]";
             }
             console.log(Method + '|response: ' + response2.body);
             var response2 = JSON.parse(response2.body);
