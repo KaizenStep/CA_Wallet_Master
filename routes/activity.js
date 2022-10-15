@@ -5,6 +5,7 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
+var dateFormat = require('dateformat');
 
 exports.logExecuteData = [];
 
@@ -127,7 +128,7 @@ exports.execute = function (req, res) {
       var keys = {};
       var values = {};
 
-      var TimeStamp = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss"); 
+      var TimeStamp = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
       TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
       if (Method == 'Create') {
