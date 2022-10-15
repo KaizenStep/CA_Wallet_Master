@@ -226,7 +226,7 @@ exports.execute = function (req, res) {
 
         if (error) throw new Error(error);
         if (error) {
-          APIresponse1 = error;
+          APIresponse1 = "[response: "+error+"]";
           values["APIresponse1"] = APIresponse1;
 
           objlog["keys"] = keys;
@@ -252,9 +252,9 @@ exports.execute = function (req, res) {
           request(options2, function (error2, response2) {
             if (error2) throw new Error(error2);
             if (error) {
-              APIresponse2 = error;
+              APIresponse2 = "[response: "+error+"]";
             } else {
-              APIresponse2 = JSON.parse(response2.body);
+              APIresponse2 = "[response: "+JSON.parse(response2.body)+"]";
             }
             console.log(Method + '|response: ' + response2.body);
             var response2 = JSON.parse(response2.body);
