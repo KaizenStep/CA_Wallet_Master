@@ -127,7 +127,7 @@ exports.execute = function (req, res) {
       var keys = {};
       var values = {};
 
-      var TimeStamp = new Date();
+      var TimeStamp = new Date(year, month, day, hours, minutes, seconds, milliseconds);
       TimeStamp = TimeStamp.toISOString().slice(0, 10);
 
       if (Method == 'Create') {
@@ -258,6 +258,7 @@ exports.execute = function (req, res) {
             }
             console.log(Method + '|response: ' + response2.body);
             var response2 = JSON.parse(response2.body);
+            
             var SerialNumber = response2["serialNumber"];
             var PassURL = response2["url"];
             console.log(Method + '|SerialNumber: ' + SerialNumber);
@@ -270,6 +271,7 @@ exports.execute = function (req, res) {
             objlog["keys"] = keys;
             objlog["values"] = values;
 
+              console.log('objlog: ' + objlog);
             apiMC(objlog);
 
 
