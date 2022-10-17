@@ -1,7 +1,7 @@
 {
-  "name": "jb-activity-template",
+  "name": "jb-activity-create-wallet",
   "version": "1.0.0",
-  "description": "Journey Builder Activity Template",
+  "description": "Journey Builder Activity Create Wallet",
   "engines": {
     "node": "6.11.1"
   },
