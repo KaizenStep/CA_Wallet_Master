@@ -101,8 +101,7 @@ define([
 
     //step3
     function onGetSchema(Schema) {
-        var Schema = Schema.schema;
-        console.log(JSON.stringify(Schema));
+        var Schema = Schema.schema; 
         var StepActual = '3'
         if (debug == 'true') {
             console.log(StepActual);
@@ -291,7 +290,7 @@ define([
             console.log(StepActual);
         }
 
-        var eventDefinitionKey = geteventDefinitionKey();
+        var eventDefinitionKey = $('#eventdefinitionkeyinput').val(); 
         var Method = getMethod();
         var WalletID = getWalletID();
         var MessagePush = getMessagePush();
@@ -345,11 +344,7 @@ define([
 
     function getMessagePush() {
         return $('#MessagePushinput').val();
-    }
-
-    function geteventDefinitionKey() {
-        return $('#eventdefinitionkeyinput').val();
-    }
+    } 
 
     function getLevelvalue() {
         return $('#Levelinput').find('option:selected').attr('value').trim();
@@ -571,9 +566,9 @@ define([
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
         $.each(inArguments, function (index, inArgument) {
         console.log(JSON.stringify(inArgument));
-        console.log(inArgument["ContactID"][0]);
-        console.log(inArgument["ContactID"][1]);
-        console.log(inArgument["ContactID"][2]);
+        console.log(inArgument["SerialNumber"][0]);
+        console.log(inArgument["SerialNumber"][1]);
+        console.log(inArgument["SerialNumber"][2]);
 		
             Method = inArgument["Method"];
             WalletID = inArgument["WalletID"];
