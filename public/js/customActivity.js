@@ -75,8 +75,7 @@ define([
                 enabled: Boolean(Method)
             });
 
-            $('#step2 input').attr('Value', '');
-            $('#step2 select').find('option[value=""]').prop('selected', true);
+            
 
             $('.input-data').removeClass("required");
 
@@ -92,8 +91,6 @@ define([
         if (debug == 'true') {
             console.log(StepActual);
         }
-console.log('eventDefinitionModel :'+eventDefinitionModel);
-console.log('eventDefinitionModelkey :'+eventDefinitionModel.eventDefinitionKey);
         if (eventDefinitionModel) {
             var eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
             $('#eventdefinitionkeyinput').attr('Value', eventDefinitionKey);
@@ -292,7 +289,6 @@ console.log('eventDefinitionModelkey :'+eventDefinitionModel.eventDefinitionKey)
         }
 
         var eventDefinitionKey = $('#eventdefinitionkeyinput').val(); 
-		console.log('eventDefinitionKey: '+eventDefinitionKey);
         var Method = getMethod();
         var WalletID = getWalletID();
         var MessagePush = getMessagePush();
@@ -317,9 +313,6 @@ console.log('eventDefinitionModelkey :'+eventDefinitionModel.eventDefinitionKey)
 		var SerialNumbervalue = '{{Event."' + eventDefinitionKey + '"."' + getSerialNumber() + '"}}';
 		var SerialNumberSelect = '{{Event.' + eventDefinitionKey + '.' + getSerialNumber() + '}}';
         var SerialNumber = new Array(getSerialNumber(),SerialNumbervalue,SerialNumberSelect );
-		
-		console.log('SerialNumberSelect: '+SerialNumberSelect);
-		console.log('SerialNumbervalue: '+SerialNumbervalue);
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
