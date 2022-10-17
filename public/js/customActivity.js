@@ -295,13 +295,20 @@ define([
         var Method = getMethod();
         var WalletID = getWalletID();
         var MessagePush = getMessagePush();
-        var Level = new Array(getLevel(), '{{Event."' + eventDefinitionKey + '"."' + getLevelvalue() + '"}}');
-        var FirstName = new Array(getFirstName(), '{{Event."' + eventDefinitionKey + '"."' + getFirstNamevalue() + '"}}');
-        var LastName = new Array(getLastName(), '{{Event."' + eventDefinitionKey + '"."' + getLastNamevalue() + '"}}');
-        var Phone = new Array(getPhone(), '{{Event."' + eventDefinitionKey + '"."' + getPhonevalue() + '"}}');
-        var ContactID = new Array(getContactID(), '{{Event."' + eventDefinitionKey + '"."' + getContactIDvalue() + '"}}');
-        var Balance = new Array(getBalance(), '{{Event."' + eventDefinitionKey + '"."' + getBalancevalue() + '"}}');
-        var SerialNumber = new Array(getSerialNumber(), '{{Event."' + eventDefinitionKey + '"."' + getSerialNumbervalue() + '"}}');
+		var LevelvalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getLevelvalue() + '"}}'; 
+        var Level = new Array(getLevel(),LevelvalueSelect,LevelvalueSelect );
+		var FirstNamevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getFirstNamevalue() + '"}}';
+        var FirstName = new Array(getFirstName(),FirstNamevalueSelect,FirstNamevalueSelect );
+		var LastNamevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getLastNamevalue() + '"}}';
+        var LastName = new Array(getLastName(),LastNamevalueSelect,LastNamevalueSelect );
+		var PhonevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getPhonevalue() + '"}}';
+        var Phone = new Array(getPhone(),PhonevalueSelect,PhonevalueSelect );
+		var ContactIDvalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getContactIDvalue() + '"}}';
+        var ContactID = new Array(getContactID(),ContactIDvalueSelect,ContactIDvalueSelect );
+		var BalancevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getBalancevalue() + '"}}';
+        var Balance = new Array(getBalance(),BalancevalueSelect,BalancevalueSelect );
+		var SerialNumbervalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getSerialNumbervalue() + '"}}';
+        var SerialNumber = new Array(getSerialNumber(),SerialNumbervalueSelect,SerialNumbervalueSelect );
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
