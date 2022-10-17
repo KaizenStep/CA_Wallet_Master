@@ -24,18 +24,25 @@ define([
     var MessagePush;
     var Leveltext;
     var Levelvalue;
+    var Levelselect;
     var FirstNametext;
     var FirstNamevalue;
+    var FirstNameselect;
     var LastNametext;
     var LastNamevalue;
+    var LastNameselect;
     var Phonetext;
     var Phonevalue;
+    var Phoneselect;
     var ContactIDtext;
     var ContactIDvalue;
+    var ContactIDselect;
     var Balancetext;
     var Balancevalue;
+    var Balanceselect;
     var SerialNumbertext;
     var SerialNumbervalue;
+    var SerialNumberselect;
 
     var currentStep = steps[0].key;
     var ReadyEntry = '';
@@ -391,15 +398,15 @@ define([
         getData(data);
 
         $('#WalletIDinput').attr('Value', WalletID);
-        $('#Levelinput').find('option[value="' + Levelvalue + '"]').prop('selected', true);
-        $('#FirstNameinput').find('option[value="' + FirstNamevalue + '"]').prop('selected', true);
-        $('#LastNameinput').find('option[value="' + LastNamevalue + '"]').prop('selected', true);
-        $('#Phoneinput').find('option[value="' + Phonevalue + '"]').prop('selected', true);
-        $('#ContactIDinput').find('option[value="' + ContactIDvalue + '"]').prop('selected', true);
-        $('#Balanceinput').find('option[value="' + Balancevalue + '"]').prop('selected', true);
+        $('#Levelinput').find('option[value="' + Levelselect + '"]').prop('selected', true);
+        $('#FirstNameinput').find('option[value="' + FirstNameselect + '"]').prop('selected', true);
+        $('#LastNameinput').find('option[value="' + LastNameselect + '"]').prop('selected', true);
+        $('#Phoneinput').find('option[value="' + Phoneselect + '"]').prop('selected', true);
+        $('#ContactIDinput').find('option[value="' + ContactIDselect + '"]').prop('selected', true);
+        $('#Balanceinput').find('option[value="' + Balanceselect+ '"]').prop('selected', true);
 
         if (Method == 'Update' || Method == 'Push') {
-            $('#SerialNumberinput').find('option[value="' + SerialNumbervalue + '"]').prop('selected', true);
+            $('#SerialNumberinput').find('option[value="' + SerialNumberselect + '"]').prop('selected', true);
         }
         if (Method == 'Push') {
             $('#MessagePushinput').attr('Value', MessagePush);
@@ -558,18 +565,25 @@ define([
             MessagePush = inArgument["MessagePush"];
             Leveltext = inArgument["Level"][0];
             Levelvalue = inArgument["Level"][1];
+            Levelselect = inArgument["Level"][2];
             FirstNametext = inArgument["FirstName"][0];
             FirstNamevalue = inArgument["FirstName"][1];
+            FirstNameselect = inArgument["FirstName"][2];
             LastNametext = inArgument["LastName"][0];
             LastNamevalue = inArgument["LastName"][1];
+            LastNameselect = inArgument["LastName"][2];
             Phonetext = inArgument["Phone"][0];
             Phonevalue = inArgument["Phone"][1];
+            Phoneselect = inArgument["Phone"][2];
             ContactIDtext = inArgument["ContactID"][0];
             ContactIDvalue = inArgument["ContactID"][1];
+            ContactIDselect = inArgument["ContactID"][2];
             Balancetext = inArgument["Balance"][0];
             Balancevalue = inArgument["Balance"][1];
+            Balanceselect = inArgument["Balance"][2];
             SerialNumbertext = inArgument["SerialNumber"][0];
             SerialNumbervalue = inArgument["SerialNumber"][1];
+            SerialNumberselect = inArgument["SerialNumber"][2];
 
         });
 
