@@ -102,7 +102,7 @@ define([
     //step3
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
-        console.log(Schema);
+        console.log(JSON.stringify(Schema));
         var StepActual = '3'
         if (debug == 'true') {
             console.log(StepActual);
@@ -294,14 +294,14 @@ define([
         var eventDefinitionKey = geteventDefinitionKey();
         var Method = getMethod();
         var WalletID = getWalletID();
-        var MessagePush = getMessagePush(); 
-        var Level = new Array(getLevel(), '{{Event."'+eventDefinitionKey+'"."' + getLevelvalue() + '"}}');
-        var FirstName = new Array(getFirstName(), '{{Event."'+eventDefinitionKey+'"."' + getFirstNamevalue() + '"}}');
-        var LastName = new Array(getLastName(), '{{Event."'+eventDefinitionKey+'"."' + getLastNamevalue() + '"}}');
-        var Phone = new Array(getPhone(), '{{Event."'+eventDefinitionKey+'"."' + getPhonevalue() + '"}}');
-        var ContactID = new Array(getContactID(), '{{Event."'+eventDefinitionKey+'"."' + getContactIDvalue() + '"}}');
-        var Balance = new Array(getBalance(), '{{Event."'+eventDefinitionKey+'"."' + getBalancevalue() + '"}}');
-        var SerialNumber = new Array(getSerialNumber(), '{{Event."'+eventDefinitionKey+'"."' + getSerialNumbervalue() + '"}}');
+        var MessagePush = getMessagePush();
+        var Level = new Array(getLevel(), '{{Event."' + eventDefinitionKey + '"."' + getLevelvalue() + '"}}');
+        var FirstName = new Array(getFirstName(), '{{Event."' + eventDefinitionKey + '"."' + getFirstNamevalue() + '"}}');
+        var LastName = new Array(getLastName(), '{{Event."' + eventDefinitionKey + '"."' + getLastNamevalue() + '"}}');
+        var Phone = new Array(getPhone(), '{{Event."' + eventDefinitionKey + '"."' + getPhonevalue() + '"}}');
+        var ContactID = new Array(getContactID(), '{{Event."' + eventDefinitionKey + '"."' + getContactIDvalue() + '"}}');
+        var Balance = new Array(getBalance(), '{{Event."' + eventDefinitionKey + '"."' + getBalancevalue() + '"}}');
+        var SerialNumber = new Array(getSerialNumber(), '{{Event."' + eventDefinitionKey + '"."' + getSerialNumbervalue() + '"}}');
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
@@ -403,7 +403,7 @@ define([
         $('#LastNameinput').find('option[value="' + LastNameselect + '"]').prop('selected', true);
         $('#Phoneinput').find('option[value="' + Phoneselect + '"]').prop('selected', true);
         $('#ContactIDinput').find('option[value="' + ContactIDselect + '"]').prop('selected', true);
-        $('#Balanceinput').find('option[value="' + Balanceselect+ '"]').prop('selected', true);
+        $('#Balanceinput').find('option[value="' + Balanceselect + '"]').prop('selected', true);
 
         if (Method == 'Update' || Method == 'Push') {
             $('#SerialNumberinput').find('option[value="' + SerialNumberselect + '"]').prop('selected', true);
@@ -422,8 +422,8 @@ define([
             if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
                 $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
             }
-		}
-		if (Method == 'Create' || Method == 'Update') {
+        }
+        if (Method == 'Create' || Method == 'Update') {
             if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
                 $('#step3 .summary').append('<p><b>Level:</b> {{' + getLevel() + '}}</p>');
             }
@@ -555,10 +555,8 @@ define([
         );
 
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-
+        console.log(JSON.stringify(inArguments));
         $.each(inArguments, function (index, inArgument) {
-            
-            console.log(inArguments);
 
             Method = inArgument["Method"];
             WalletID = inArgument["WalletID"];
@@ -590,18 +588,18 @@ define([
     }
 
     function ValidateFields(Method, StepActual, data) {
-		
-		if (StepActual == '4'){
-			$('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
+
+        if (StepActual == '4') {
+            $('#step3 .summary').innerHTML += '<h3>' + Method + ' Pass</h3>';
             $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
-		}
-		
-		if(StepActual == '7'){
-			
-          $('#Method').html(Method + ' Pass');
-          $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
-			
-		}
+        }
+
+        if (StepActual == '7') {
+
+            $('#Method').html(Method + ' Pass');
+            $('#Methodinput').find('option[value="' + Method + '"]').prop('selected', true);
+
+        }
 
         if (Method == 'Create') {
 
