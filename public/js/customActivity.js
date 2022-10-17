@@ -564,6 +564,9 @@ define([
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
         $.each(inArguments, function (index, inArgument) {
         console.log(JSON.stringify(inArgument));
+        console.log(inArgument["ContactID"][0]);
+        console.log(inArgument["ContactID"][1]);
+        console.log(inArgument["ContactID"][2]);
 		
             Method = inArgument["Method"];
             WalletID = inArgument["WalletID"];
