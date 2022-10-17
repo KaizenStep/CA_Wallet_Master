@@ -129,7 +129,7 @@ exports.execute = function (req, res) {
 
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString();
-
+ console.log("arguments: " + decodedArgs);
       if (Method == 'Create') {
         FirstName = decodedArgs.FirstName[1];
         LastName = decodedArgs.LastName[1];
