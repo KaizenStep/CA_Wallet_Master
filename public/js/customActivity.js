@@ -291,6 +291,7 @@ define([
         }
 
         var eventDefinitionKey = $('#eventdefinitionkeyinput').val(); 
+		console.log('eventDefinitionKey: '+eventDefinitionKey);
         var Method = getMethod();
         var WalletID = getWalletID();
         var MessagePush = getMessagePush();
@@ -315,6 +316,9 @@ define([
 		var SerialNumbervalue = '{{Event."' + eventDefinitionKey + '"."' + getSerialNumber() + '"}}';
 		var SerialNumberSelect = '{{Event.' + eventDefinitionKey + '.' + getSerialNumber() + '}}';
         var SerialNumber = new Array(getSerialNumber(),SerialNumbervalue,SerialNumberSelect );
+		
+		console.log('SerialNumberSelect: '+SerialNumberSelect);
+		console.log('SerialNumbervalue: '+SerialNumbervalue);
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
