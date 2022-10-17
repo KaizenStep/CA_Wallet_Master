@@ -92,8 +92,8 @@ define([
         if (debug == 'true') {
             console.log(StepActual);
         }
-console.log('eventDefinitionModel :'+eventDefinitionModel');
-console.log('eventDefinitionModelkey :'+eventDefinitionModel.eventDefinitionKey');
+console.log('eventDefinitionModel :'+eventDefinitionModel);
+console.log('eventDefinitionModelkey :'+eventDefinitionModel.eventDefinitionKey);
         if (eventDefinitionModel) {
             var eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
             $('#eventdefinitionkeyinput').attr('Value', eventDefinitionKey);
