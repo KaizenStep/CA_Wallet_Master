@@ -295,20 +295,27 @@ define([
         var Method = getMethod();
         var WalletID = getWalletID();
         var MessagePush = getMessagePush();
-		//var LevelvalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getLevelvalue() + '"}}'; 
-        var Level = new Array(getLevel(),getLevelvalue(),getLevelvalue() );
-		//var FirstNamevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getFirstNamevalue() + '"}}';
-        var FirstName = new Array(getFirstName(),getFirstNamevalue(),getFirstNamevalue() );
-		//var LastNamevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getLastNamevalue() + '"}}';
-        var LastName = new Array(getLastName(),getLastNamevalue(),getLastNamevalue() );
-		//var PhonevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getPhonevalue() + '"}}';
-        var Phone = new Array(getPhone(),getPhonevalue(),getPhonevalue() );
-		//var ContactIDvalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getContactIDvalue() + '"}}';
-        var ContactID = new Array(getContactID(),getContactIDvalue(),getContactIDvalue() );
-		//var BalancevalueSelect = '{{Event."' + eventDefinitionKey + '"."' + () + '"}}';
-        var Balance = new Array(getBalance(),getBalancevalue(),getBalancevalue() );
-		//var SerialNumbervalueSelect = '{{Event."' + eventDefinitionKey + '"."' + getSerialNumbervalue() + '"}}';
-        var SerialNumber = new Array(getSerialNumber(),getSerialNumbervalue(),getSerialNumbervalue() );
+		var Levelvalue = '{{Event."' + eventDefinitionKey + '"."' + getLevel() + '"}}'; 
+		var LevelSelect = '{{Event.' + eventDefinitionKey + '.' + getLevel() + '}}'; 
+        var Level = new Array(getLevel(),Levelvalue,LevelSelect );
+		var FirstNamevalue = '{{Event."' + eventDefinitionKey + '"."' + getFirstName() + '"}}';
+		var FirstNameSelect = '{{Event.' + eventDefinitionKey + '.' + getFirstName() + '}}';
+        var FirstName = new Array(getFirstName(),FirstNamevalue,FirstNameSelect );
+		var LastNamevalue = '{{Event."' + eventDefinitionKey + '"."' + getLastName() + '"}}';
+		var LastNameSelect = '{{Event.' + eventDefinitionKey + '.' + getLastName() + '}}';
+        var LastName = new Array(getLastName(),LastNamevalue,LastNameSelect );
+		var Phonevalue = '{{Event."' + eventDefinitionKey + '"."' + getPhone() + '"}}';
+		var PhoneSelect = '{{Event.' + eventDefinitionKey + '.' + getPhone() + '}}';
+        var Phone = new Array(getPhone(),Phonevalue,PhoneSelect );
+		var ContactIDvalue = '{{Event."' + eventDefinitionKey + '"."' + getContactID() + '"}}';
+		var ContactIDSelect = '{{Event.' + eventDefinitionKey + '.' + getContactID() + '}}';
+        var ContactID = new Array(getContactID(),ContactIDvalue,ContactIDSelect );
+		var Balancevalue = '{{Event."' + eventDefinitionKey + '"."' + getBalance() + '"}}';
+		var BalanceSelect = '{{Event.' + eventDefinitionKey + '.' + getBalance() + '}}';
+        var Balance = new Array(getBalance(),Balancevalue,BalanceSelect );
+		var SerialNumbervalue = '{{Event."' + eventDefinitionKey + '"."' + getSerialNumber() + '"}}';
+		var SerialNumberSelect = '{{Event.' + eventDefinitionKey + '.' + getSerialNumber() + '}}';
+        var SerialNumber = new Array(getSerialNumber(),SerialNumbervalue,SerialNumberSelect );
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
@@ -405,15 +412,15 @@ define([
         getData(data);
 
         $('#WalletIDinput').attr('Value', WalletID);
-        $('#Levelinput').find('option[value="' + Levelvalue + '"]').prop('selected', true);
-        $('#FirstNameinput').find('option[value="' + FirstNamevalue + '"]').prop('selected', true);
-        $('#LastNameinput').find('option[value="' + LastNamevalue + '"]').prop('selected', true);
-        $('#Phoneinput').find('option[value="' + Phonevalue + '"]').prop('selected', true);
-        $('#ContactIDinput').find('option[value="' + ContactIDvalue + '"]').prop('selected', true);
-        $('#Balanceinput').find('option[value="' + Balancevalue + '"]').prop('selected', true);
+        $('#Levelinput').find('option[value="' + Levelselect + '"]').prop('selected', true);
+        $('#FirstNameinput').find('option[value="' + FirstNameselect + '"]').prop('selected', true);
+        $('#LastNameinput').find('option[value="' + LastNameselect + '"]').prop('selected', true);
+        $('#Phoneinput').find('option[value="' + Phoneselect + '"]').prop('selected', true);
+        $('#ContactIDinput').find('option[value="' + ContactIDselect + '"]').prop('selected', true);
+        $('#Balanceinput').find('option[value="' + Balanceselect + '"]').prop('selected', true);
 
         if (Method == 'Update' || Method == 'Push') {
-            $('#SerialNumberinput').find('option[value="' + SerialNumbervalue + '"]').prop('selected', true);
+            $('#SerialNumberinput').find('option[value="' + SerialNumberselect + '"]').prop('selected', true);
         }
         if (Method == 'Push') {
             $('#MessagePushinput').attr('Value', MessagePush);
@@ -566,32 +573,32 @@ define([
         console.log(JSON.stringify(inArgument));
         console.log(inArgument["ContactID"][0]);
         console.log(inArgument["ContactID"][1]);
-        //console.log(inArgument["ContactID"][2]);
+        console.log(inArgument["ContactID"][2]);
 		
             Method = inArgument["Method"];
             WalletID = inArgument["WalletID"];
             MessagePush = inArgument["MessagePush"];
             Leveltext = inArgument["Level"][0];
             Levelvalue = inArgument["Level"][1];
-            //Levelselect = inArgument["Level"][2];
+            Levelselect = inArgument["Level"][2];
             FirstNametext = inArgument["FirstName"][0];
             FirstNamevalue = inArgument["FirstName"][1];
-            //FirstNameselect = inArgument["FirstName"][2];
+            FirstNameselect = inArgument["FirstName"][2];
             LastNametext = inArgument["LastName"][0];
             LastNamevalue = inArgument["LastName"][1];
-            //LastNameselect = inArgument["LastName"][2];
+            LastNameselect = inArgument["LastName"][2];
             Phonetext = inArgument["Phone"][0];
             Phonevalue = inArgument["Phone"][1];
-            //Phoneselect = inArgument["Phone"][2];
+            Phoneselect = inArgument["Phone"][2];
             ContactIDtext = inArgument["ContactID"][0];
             ContactIDvalue = inArgument["ContactID"][1];
-            //ContactIDselect = inArgument["ContactID"][2];
+            ContactIDselect = inArgument["ContactID"][2];
             Balancetext = inArgument["Balance"][0];
             Balancevalue = inArgument["Balance"][1];
-            //Balanceselect = inArgument["Balance"][2];
+            Balanceselect = inArgument["Balance"][2];
             SerialNumbertext = inArgument["SerialNumber"][0];
             SerialNumbervalue = inArgument["SerialNumber"][1];
-            //SerialNumberselect = inArgument["SerialNumber"][2];
+            SerialNumberselect = inArgument["SerialNumber"][2];
 
         });
 
