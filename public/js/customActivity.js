@@ -287,14 +287,14 @@ define([
         var eventDefinitionKey = geteventDefinitionKey();
         var Method = getMethod();
         var WalletID = getWalletID();
-        var MessagePush = getMessagePush();
-        var Level = new Array(getLevel(), getLevelvalue());
-        var FirstName = new Array(getFirstName(), getFirstNamevalue());
-        var LastName = new Array(getLastName(), getLastNamevalue());
-        var Phone = new Array(getPhone(), getPhonevalue());
-        var ContactID = new Array(getContactID(), getContactIDvalue());
-        var Balance = new Array(getBalance(), getBalancevalue());
-        var SerialNumber = new Array(getSerialNumber(), getSerialNumbervalue());
+        var MessagePush = getMessagePush(); 
+        var Level = new Array(getLevel(), '{{Event."'+eventDefinitionKey+'"."' + getLevelvalue() + '"}}');
+        var FirstName = new Array(getFirstName(), '{{Event."'+eventDefinitionKey+'"."' + getFirstNamevalue() + '"}}');
+        var LastName = new Array(getLastName(), '{{Event."'+eventDefinitionKey+'"."' + getLastNamevalue() + '"}}');
+        var Phone = new Array(getPhone(), '{{Event."'+eventDefinitionKey+'"."' + getPhonevalue() + '"}}');
+        var ContactID = new Array(getContactID(), '{{Event."'+eventDefinitionKey+'"."' + getContactIDvalue() + '"}}');
+        var Balance = new Array(getBalance(), '{{Event."'+eventDefinitionKey+'"."' + getBalancevalue() + '"}}');
+        var SerialNumber = new Array(getSerialNumber(), '{{Event."'+eventDefinitionKey+'"."' + getSerialNumbervalue() + '"}}');
 
         payload.name = getMethod() + ' pass';
         payload['arguments'].execute.inArguments = [{
