@@ -60,7 +60,7 @@ define([
 
     //step1
     function onRender() {
-        var StepActual = '1'
+        var StepActual = '1';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -88,7 +88,7 @@ define([
 
     //step2
     function onGetDefinitionModel(eventDefinitionModel) {
-        var StepActual = '2'
+        var StepActual = '2';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -102,7 +102,7 @@ define([
     //step3
     function onGetSchema(Schema) {
         var Schema = Schema.schema; 
-        var StepActual = '3'
+        var StepActual = '3';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -150,7 +150,7 @@ define([
 
     //step4
     function initialize(data) {
-        var StepActual = '4'
+        var StepActual = '4';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -186,7 +186,7 @@ define([
 
     //step5
     function onClickedNext() {
-        var StepActual = '5'
+        var StepActual = '5';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -208,7 +208,7 @@ define([
 
     //step6
     function onClickedBack() {
-        var StepActual = '6'
+        var StepActual = '6';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -218,7 +218,7 @@ define([
 
     //step7
     function onGotoStep(step, data) {
-        var StepActual = '7'
+        var StepActual = '7';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -235,7 +235,7 @@ define([
 
     //step8
     function showStep(step, stepIndex) {
-        var StepActual = '8'
+        var StepActual = '8';
         if (debug == 'true') {
             console.log(StepActual);
         }
@@ -285,7 +285,7 @@ define([
 
     //step9
     function save() {
-        var StepActual = '9'
+        var StepActual = '9';
         if (debug == 'true') {
             console.log(StepActual);
         }
