@@ -102,7 +102,7 @@ define([
     //step3
     function onGetSchema(Schema) {
         var Schema = Schema.schema;
-
+        console.log(Schema);
         var StepActual = '3'
         if (debug == 'true') {
             console.log(StepActual);
