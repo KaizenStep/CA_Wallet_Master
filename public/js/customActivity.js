@@ -429,6 +429,9 @@ define([
     if (getWalletID() != 'Undefined' && getWalletID().length > 0) {
       $('#step3 .summary').append('<p><b>WalletID:</b> ' + getWalletID() + '</p>');
     }
+    if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
+      $('#step3 .summary').append('<p><b>ContactId:</b> {{' + getContactID() + '}}</p>');
+    }
 
     if (Method == 'Create' || Method == 'Update') {
       if (getLevelvalue() != 'Undefined' && getLevelvalue().length > 0) {
@@ -438,13 +441,10 @@ define([
         $('#step3 .summary').append('<p><b>Firstname:</b> {{' + getFirstName() + '}}</p>');
       }
       if (getLastNamevalue() != 'Undefined' && getLastNamevalue().length > 0) {
-        $('#step3 .summary').append('<p><b>lastName:</b> {{' + getLastName() + '}}</p>');
+        $('#step3 .summary').append('<p><b>LastName:</b> {{' + getLastName() + '}}</p>');
       }
       if (getPhonevalue() != 'Undefined' && getPhonevalue().length > 0) {
         $('#step3 .summary').append('<p><b>Phone:</b> {{' + getPhone() + '}}</p>');
-      }
-      if (getContactIDvalue() != 'Undefined' && getContactIDvalue().length > 0) {
-        $('#step3 .summary').append('<p><b>ContactId:</b> {{' + getContactID() + '}}</p>');
       }
       if (getBalancevalue() != 'Undefined' && getBalancevalue().length > 0) {
         $('#step3 .summary').append('<p><b>Balance:</b> {{' + getBalance() + '}}</p>');
@@ -480,7 +480,7 @@ define([
         }
       );
     } else if (Method == 'Update') {
-      $('.updatepass input, .updatepass select, .updatepass textarea').each(
+      $('.updatepass input.updaterequired, .updatepass select.updaterequired').each(
         function () {
           if ($(this).tagName == 'Select') {
             if (($(this).find('option:selected').attr('value').trim() === 'Undefined' || $(this).find('option:selected').attr('value').trim().length === 0)) {
@@ -644,7 +644,7 @@ define([
         }
       } else if (StepActual == '4' || StepActual == '7') {
 
-        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
+        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (ContactIDvalue === 'Undefined' || ContactIDvalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
           SelectFields(Method, data);
           WriteSummary(Method);
           if (StepActual == '7') {
@@ -666,7 +666,7 @@ define([
         }
       } else if (StepActual == '4' || StepActual == '7') {
 
-        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0)) {} else {
+        if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (ContactIDvalue === 'Undefined' || ContactIDvalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0) || (MessagePush === 'Undefined' || MessagePush.length === 0)) {} else {
           SelectFields(Method, data);
           WriteSummary(Method);
 
