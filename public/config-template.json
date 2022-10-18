@@ -73,15 +73,7 @@
     "arguments": {
       "execute": {
         "inArguments": [],
-        "outArguments": [  
-                    {
-                        "outputAPI": {
-                            "dataType": "string",
-                            "direction": "out",
-                            "access": "visible"
-                        }
-                    }
-                ]
+        "outArguments": [{"outputAPI":"string"}]
       }
     }
   }

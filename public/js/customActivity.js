@@ -415,7 +415,6 @@ define([
       $('#SerialNumberinput').find('option[value="' + SerialNumberselect + '"]').prop('selected', true);
     }
     if (Method == 'Push') {
-      console.log(MessagePush);
       $('#MessagePushinput').val(MessagePush);
     }
   }
@@ -562,11 +561,7 @@ define([
     );
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
-    $.each(inArguments, function (index, inArgument) {
-      console.log(JSON.stringify(inArgument));
-      console.log(inArgument["SerialNumber"][0]);
-      console.log(inArgument["SerialNumber"][1]);
-      console.log(inArgument["SerialNumber"][2]);
+    $.each(inArguments, function (index, inArgument) { 
 
       Method = inArgument["Method"];
       WalletID = inArgument["WalletID"];

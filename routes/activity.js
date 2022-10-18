@@ -137,7 +137,7 @@ exports.execute = function (req, res) {
 
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString();
-      console.log("arguments: " + JSON.stringify(decodedArgs));
+      //console.log("arguments: " + JSON.stringify(decodedArgs));
       if (Method == 'Create') {
 
         var Message = "Miss Sushi";
@@ -219,6 +219,10 @@ exports.execute = function (req, res) {
           objlog["values"] = values;
 
           apiMC(objlog);
+            
+           
+      console.error('sf token error');
+      return res.status(400).end(); 
         } else {
           var response = JSON.parse(response.body);
           var access_token = response["access_token"];
@@ -237,12 +241,17 @@ exports.execute = function (req, res) {
             if (error2) throw new Error(error2);
             if (error) {
               APIresponse2 = "[response: " + error + "]";
+                
+      console.error('API SF wallet error');
+      return res.status(400).end();
             } else {
               if (Method == 'Create') {
                 var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
               } else {
                 var APIresponse2 = "[response: empty]";
               }
+                
+                res.send( 200, {"outputAPI": "Pass created/update or push sent"} );
 
             }
 
@@ -265,6 +274,7 @@ exports.execute = function (req, res) {
 
             apiMC(objlog);
 
+            /*
             console.log('Method: ' + Method);
             console.log('MetodoAPI: ' + MetodoAPI);
             console.log('URLpasscreation: ' + URLpasscreation);
@@ -278,7 +288,7 @@ exports.execute = function (req, res) {
             console.log('Message: ' + MessagePush);
             console.log('json: ' + JSON.stringify(obj));
             console.log('json2: ' + JSON.stringify(objlog));
-
+*/
 
           });
         }
@@ -316,7 +326,7 @@ exports.execute = function (req, res) {
             };
             request(options4, function (error4, response4) {
               if (error4) throw new Error(error4);
-              console.log('response API MC: ' + response4.body);
+              //console.log('response API MC: ' + response4.body);
             });
 
           }
@@ -327,7 +337,7 @@ exports.execute = function (req, res) {
       // END API
 
 
-      res.send(200, 'Execute');
+      //res.send(200, 'Execute');
     } else {
       console.error('inArguments invalid.');
       return res.status(400).end();
