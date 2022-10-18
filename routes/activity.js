@@ -241,7 +241,7 @@ exports.execute = function (req, res) {
               if (Method == 'Create') {
                 var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
               } else {
-                var APIresponse2 = "[response: " + JSON.stringify(response2) + "]";
+                var APIresponse2 = "[response: empty]";
               }
 
             }
@@ -251,8 +251,8 @@ exports.execute = function (req, res) {
               console.log(Method + '|response API Wallet: ' + response2.body);
               var response2 = JSON.parse(response2.body);
                 
-              var SerialNumber = response2["serialNumber"];
-              var PassURL = response2["url"];
+              SerialNumber = response2["serialNumber"];
+              PassURL = response2["url"];
 
               values["APIresponse2"] = APIresponse2;
               values["SerialNumber"] = SerialNumber;
@@ -274,7 +274,7 @@ exports.execute = function (req, res) {
             console.log('WalletId: ' + WalletId);
             console.log('Balance: ' + Balance);
             console.log('Level: ' + Level);
-            console.log('Message: ' + Message);
+            console.log('Message: ' + MessagePush);
             console.log('json: ' + JSON.stringify(obj));
             console.log('json2: ' + JSON.stringify(objlog));
 
