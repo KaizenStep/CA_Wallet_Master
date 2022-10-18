@@ -108,7 +108,7 @@ exports.execute = function (req, res) {
       var MCClientSecret = process.env.MCClientSecret;
       var MCDomain = process.env.MCDomain;
       var DElog = process.env.DElog;
-        
+
       var Method = decodedArgs.Method;
 
       var FirstName;
@@ -129,7 +129,7 @@ exports.execute = function (req, res) {
 
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString();
- console.log("arguments: " + JSON.stringify(decodedArgs));
+      console.log("arguments: " + JSON.stringify(decodedArgs));
       if (Method == 'Create') {
         FirstName = decodedArgs.FirstName[1];
         LastName = decodedArgs.LastName[1];
@@ -143,7 +143,7 @@ exports.execute = function (req, res) {
         var Message = "Nuevo pass";
         var MetodoAPI = "POST";
         var URLpasscreation = process.env.URLpasscreation;
-          
+
         obj["contactId"] = ContactId;
         obj["walletId"] = WalletId;
         obj["name"] = Name;
@@ -166,9 +166,6 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
-        if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
-          obj["walletId"] = WalletId;
-        }
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') {} else {
           obj["name"] = Name;
         }
@@ -226,7 +223,7 @@ exports.execute = function (req, res) {
 
         if (error) throw new Error(error);
         if (error) {
-          APIresponse1 = "[response: "+error+"]";
+          APIresponse1 = "[response: " + error + "]";
           values["APIresponse1"] = APIresponse1;
 
           objlog["keys"] = keys;
@@ -252,14 +249,14 @@ exports.execute = function (req, res) {
           request(options2, function (error2, response2) {
             if (error2) throw new Error(error2);
             if (error) {
-              APIresponse2 = "[response: "+error+"]";
+              APIresponse2 = "[response: " + error + "]";
             } else {
-              var apiResponse = 
-              APIresponse2 = "[response: "+JSON.stringify(response2.body)+"]";
+              var apiResponse =
+                APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
             }
             console.log(Method + '|response: ' + response2.body);
             var response2 = JSON.parse(response2.body);
-            
+
             var SerialNumber = response2["serialNumber"];
             var PassURL = response2["url"];
             console.log(Method + '|SerialNumber: ' + SerialNumber);
@@ -272,7 +269,7 @@ exports.execute = function (req, res) {
             objlog["keys"] = keys;
             objlog["values"] = values;
 
-              console.log('objlog: ' + JSON.stringify(objlog));
+            console.log('objlog: ' + JSON.stringify(objlog));
             apiMC(objlog);
 
 

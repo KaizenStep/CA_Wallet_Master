@@ -404,6 +404,9 @@ define([
 
         getData(data);
 
+        console.log('Metodo: '+Method);
+        console.log('select: '+SerialNumberselect);
+        
         $('#WalletIDinput').attr('Value', WalletID);
         $('#Levelinput').find('option[value="' + Levelselect + '"]').prop('selected', true);
         $('#FirstNameinput').find('option[value="' + FirstNameselect + '"]').prop('selected', true);
