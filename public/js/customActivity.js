@@ -416,7 +416,7 @@ define([
             $('#SerialNumberinput').find('option[value="' + SerialNumberselect + '"]').prop('selected', true);
         }
         if (Method == 'Push') {
-            $('#MessagePushinput').attr('Value', MessagePush);
+            $('#MessagePushinput').value = MessagePush;
         }
     }
 
