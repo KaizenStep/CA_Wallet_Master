@@ -247,18 +247,19 @@ exports.execute = function (req, res) {
             }
 
             if (Method == 'Create') {
-                
+
               console.log(Method + '|response API Wallet: ' + response2.body);
               var response2 = JSON.parse(response2.body);
-                
+
               SerialNumber = response2["serialNumber"];
               PassURL = response2["url"];
 
-              values["APIresponse2"] = APIresponse2;
               values["SerialNumber"] = SerialNumber;
               values["PassURL"] = PassURL;
             }
-
+              
+            values["APIresponse2"] = APIresponse2;
+              
             objlog["keys"] = keys;
             objlog["values"] = values;
 
