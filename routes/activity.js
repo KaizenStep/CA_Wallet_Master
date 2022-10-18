@@ -238,22 +238,19 @@ exports.execute = function (req, res) {
             if (error) {
               APIresponse2 = "[response: " + error + "]";
             } else {
-              if (response2 === 'Undefined' || response2.lenght === 0) {
-                var response2_log = 'OK';
+              if (Method == 'Create') {
+                var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
               } else {
-                var response2_log = JSON.stringify(response2.body);
+                var APIresponse2 = "[response: " + JSON.stringify(response2) + "]";
               }
-              APIresponse2 = "[response: " + response2_log + "]";
+
             }
-            if (response2 === 'Undefined' || response2.lenght === 0) {
-              var response2 = 'OK';
-            }else{
-                console.log(Method + '|response API Wallet: ' + response2.body);
-                var response2 = JSON.parse(response2.body);
-            }
-            
 
             if (Method == 'Create') {
+                
+              console.log(Method + '|response API Wallet: ' + response2.body);
+              var response2 = JSON.parse(response2.body);
+                
               var SerialNumber = response2["serialNumber"];
               var PassURL = response2["url"];
 
