@@ -213,7 +213,7 @@ exports.execute = function (req, res) {
         values["WalletId"] = WalletId;
         values["SerialNumber"] = SerialNumber;
         values["MessagePush"] = MessagePush;
-        values["json"] = "[json: " + obj + "]";
+        values["json"] = "[json: " + JSON.stringify(obj) + "]";
         values["endpoint"] = URLpasscreation;
 
         if (error) throw new Error(error);
