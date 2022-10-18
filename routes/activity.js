@@ -166,6 +166,9 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
+        if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
+          obj["walletId"] = WalletId;
+        }
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') {} else {
           obj["name"] = Name;
         }
