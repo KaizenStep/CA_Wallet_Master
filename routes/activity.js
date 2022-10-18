@@ -166,12 +166,9 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
-        if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
+        /*if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
           obj["walletId"] = WalletId;
-        }
-        if (SerialNumber === 'Undefined' || SerialNumber.lenght === 0) {} else {
-          obj["SerialNumber"] = SerialNumber;
-        }
+        } */
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') {} else {
           obj["name"] = Name;
         }
@@ -195,9 +192,9 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
-        if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
+        /*if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
           obj["walletId"] = WalletId;
-        }
+        }*/
         if (MessagePush === 'Undefined' || MessagePush.lenght === 0) {} else {
           obj["Message"] = MessagePush;
         }
@@ -226,6 +223,8 @@ exports.execute = function (req, res) {
         values["WalletId"] = WalletId;
         values["SerialNumber"] = SerialNumber;
         values["MessagePush"] = MessagePush;
+        values["json"] = "[json: " + obj + "]";
+        values["endpoint"] = URLpasscreation;
 
         if (error) throw new Error(error);
         if (error) {

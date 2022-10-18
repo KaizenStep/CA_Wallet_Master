@@ -645,7 +645,7 @@ define([
                 }
             } else if (StepActual == '4' || StepActual == '7') {
 
-                if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) || (WalletID === 'Undefined' || WalletID.length === 0)) {} else {
+                if ((SerialNumbervalue === 'Undefined' || SerialNumbervalue.length === 0) /*|| (WalletID === 'Undefined' || WalletID.length === 0)*/) {} else {
                     SelectFields(Method, data);
                     WriteSummary(Method);
                     if (StepActual == '7') {
