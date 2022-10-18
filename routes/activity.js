@@ -88,9 +88,7 @@ exports.execute = function (req, res) {
       // decoded in arguments
       var decodedArgs = decoded.inArguments[0];
 
-
       // API
-      console.log('API ready');
 
       var request = require('request');
       var response;
@@ -99,18 +97,6 @@ exports.execute = function (req, res) {
       var PassURL;
       var APIresponse1;
       var APIresponse2;
-
-      var sf_client_id = process.env.sf_client_id;
-      var sf_client_secret = process.env.sf_client_secret;
-      var sf_username = process.env.sf_username;
-      var sf_password = process.env.sf_password;
-      var MCClientID = process.env.MCClientID;
-      var MCClientSecret = process.env.MCClientSecret;
-      var MCDomain = process.env.MCDomain;
-      var DElog = process.env.DElog;
-
-      var Method = decodedArgs.Method;
-
       var FirstName;
       var LastName;
       var Phone;
@@ -121,6 +107,17 @@ exports.execute = function (req, res) {
       var Level;
       var SerialNumber;
       var MessagePush;
+
+      var sf_client_id = process.env.sf_client_id;
+      var sf_client_secret = process.env.sf_client_secret;
+      var sf_username = process.env.sf_username;
+      var sf_password = process.env.sf_password;
+      var MCClientID = process.env.MCClientID;
+      var MCClientSecret = process.env.MCClientSecret;
+      var MCDomain = process.env.MCDomain;
+      var DElog = process.env.DElog;
+      var Method = decodedArgs.Method;
+
 
       FirstName = decodedArgs.FirstName[1];
       LastName = decodedArgs.LastName[1];
@@ -160,9 +157,8 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
-        /*if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
-          obj["walletId"] = WalletId;
-        } */
+        obj["walletId"] = WalletId;
+
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') {} else {
           obj["name"] = Name;
         }
@@ -181,9 +177,8 @@ exports.execute = function (req, res) {
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
 
-        /*if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
-          obj["walletId"] = WalletId;
-        }*/
+        obj["walletId"] = WalletId;
+
         if (MessagePush === 'Undefined' || MessagePush.lenght === 0) {} else {
           obj["Message"] = MessagePush;
         }
@@ -197,7 +192,6 @@ exports.execute = function (req, res) {
       values["MessagePush"] = MessagePush;
       values["json"] = "[json: " + JSON.stringify(obj) + "]";
       values["endpoint"] = URLpasscreation;
-
 
       var options = {
         'method': 'POST',
@@ -226,10 +220,8 @@ exports.execute = function (req, res) {
 
           apiMC(objlog);
         } else {
-          console.log(response.body);
           var response = JSON.parse(response.body);
-          var access_token = response["access_token"];
-          console.log('Token: ' + access_token);
+          var access_token = response["access_token"]; 
 
           var options2 = {
             'method': MetodoAPI,
@@ -246,17 +238,14 @@ exports.execute = function (req, res) {
             if (error) {
               APIresponse2 = "[response: " + error + "]";
             } else {
-              var apiResponse =
-                APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
+              var apiResponse = APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
             }
-            console.log(Method + '|response: ' + response2.body);
+            console.log(Method + '|response API Wallet: ' + response2.body);
             var response2 = JSON.parse(response2.body);
 
-            if (Method == 'create') {
+            if (Method == 'Create') {
               var SerialNumber = response2["serialNumber"];
               var PassURL = response2["url"];
-              console.log(Method + '|SerialNumber: ' + SerialNumber);
-              console.log(Method + '|PassURL: ' + PassURL);
 
               values["APIresponse2"] = APIresponse2;
               values["SerialNumber"] = SerialNumber;
@@ -266,29 +255,26 @@ exports.execute = function (req, res) {
             objlog["keys"] = keys;
             objlog["values"] = values;
 
-            console.log('objlog: ' + JSON.stringify(objlog));
             apiMC(objlog);
+
+            console.log('Method: ' + Method);
+            console.log('MetodoAPI: ' + MetodoAPI);
+            console.log('URLpasscreation: ' + URLpasscreation);
+            console.log('SerialNumber: ' + SerialNumber);
+            console.log('Name: ' + Name);
+            console.log('Phone: ' + Phone);
+            console.log('ContactId: ' + ContactId);
+            console.log('WalletId: ' + WalletId);
+            console.log('Balance: ' + Balance);
+            console.log('Level: ' + Level);
+            console.log('Message: ' + Message);
+            console.log('json: ' + JSON.stringify(obj));
+            console.log('json2: ' + JSON.stringify(objlog));
 
 
           });
         }
       });
-
-
-      console.log(Method + '|Method: ' + Method);
-      console.log(Method + '|MetodoAPI: ' + MetodoAPI);
-      console.log(Method + '|URLpasscreation: ' + URLpasscreation);
-      console.log(Method + '|SerialNumber: ' + SerialNumber);
-      console.log(Method + '|Name: ' + Name);
-      console.log(Method + '|Phone: ' + Phone);
-      console.log(Method + '|ContactId: ' + ContactId);
-      console.log(Method + '|WalletId: ' + WalletId);
-      console.log(Method + '|Balance: ' + Balance);
-      console.log(Method + '|Level: ' + Level);
-      console.log(Method + '|Message: ' + Message);
-      console.log(Method + '|json: ' + JSON.stringify(obj));
-      console.log(Method + '|json2: ' + JSON.stringify(objlog));
-
 
       function apiMC(objlog) {
         var options3 = {
@@ -307,8 +293,6 @@ exports.execute = function (req, res) {
 
         request(options3, function (error3, response3) {
           if (error3) throw new Error(error3);
-          console.log('response3: ' + response3.body);
-
           if (error3) {} else {
             var response3 = JSON.parse(response3.body);
             var access_token3 = response3["access_token"];
@@ -324,14 +308,14 @@ exports.execute = function (req, res) {
             };
             request(options4, function (error4, response4) {
               if (error4) throw new Error(error4);
-              console.log('response4: ' + response4.body);
+              console.log('response API MC: ' + response4.body);
             });
 
           }
         });
       }
 
-      console.log('API END');
+
       // END API
 
 
