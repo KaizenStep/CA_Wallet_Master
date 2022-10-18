@@ -417,7 +417,7 @@ define([
         }
         if (Method == 'Push') {
             console.log(MessagePush);
-            $('#MessagePushinput').value = MessagePush;
+            $('#MessagePushinput').val(MessagePush);
         }
     }
 
