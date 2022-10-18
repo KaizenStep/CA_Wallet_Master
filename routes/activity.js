@@ -219,10 +219,10 @@ exports.execute = function (req, res) {
           objlog["values"] = values;
 
           apiMC(objlog);
-            
-           
-      console.error('sf token error');
-      return res.status(400).end(); 
+
+
+          console.error('sf token error');
+          return res.status(400).end();
         } else {
           var response = JSON.parse(response.body);
           var access_token = response["access_token"];
@@ -241,17 +241,37 @@ exports.execute = function (req, res) {
             if (error2) throw new Error(error2);
             if (error) {
               APIresponse2 = "[response: " + error + "]";
-                
-      console.error('API SF wallet error');
-      return res.status(400).end();
+              console.error('API SF wallet error');
+              return res.status(400).end();
             } else {
               if (Method == 'Create') {
                 var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
-              } else {
-                var APIresponse2 = "[response: empty]";
+
+                if (response2["serialNumber"]) {
+                  res.send(200, {
+                    "outputAPI": "Pass created"
+                  });
+                } else {
+                  console.error('Error creacion pass');
+                  return res.status(400).end();
+
+                }
+
+              } else if (Method == 'Update') {
+                var APIresponse2 = "[response: empty - updated]";
+
+                res.send(200, {
+                  "outputAPI": "Pass updated"
+                });
+
+              } else if (Method == 'Push') {
+                var APIresponse2 = "[response: empty - Push]";
+
+                res.send(200, {
+                  "outputAPI": "Push sent"
+                });
               }
-                
-                res.send( 200, {"outputAPI": "Pass created/update or push sent"} );
+
 
             }
 
@@ -266,9 +286,9 @@ exports.execute = function (req, res) {
               values["SerialNumber"] = SerialNumber;
               values["PassURL"] = PassURL;
             }
-              
+
             values["APIresponse2"] = APIresponse2;
-              
+
             objlog["keys"] = keys;
             objlog["values"] = values;
 
