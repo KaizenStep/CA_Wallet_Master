@@ -140,7 +140,7 @@ exports.execute = function (req, res) {
         Balance = decodedArgs.Balance[1];
         Level = decodedArgs.Level[1];
 
-        var Message = "Nuevo pass";
+        var Message = " ";
         var MetodoAPI = "POST";
         var URLpasscreation = process.env.URLpasscreation;
 
