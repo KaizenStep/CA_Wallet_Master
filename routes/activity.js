@@ -121,18 +121,17 @@ exports.execute = function (req, res) {
       var Level;
       var SerialNumber;
       var MessagePush;
-        
-        
-        FirstName = decodedArgs.FirstName[1];
-        LastName = decodedArgs.LastName[1];
-        Phone = decodedArgs.Phone[1];
-        Name = FirstName + ' ' + LastName;
-        ContactId = decodedArgs.ContactID[1];
-        WalletId = decodedArgs.WalletID;
-        Balance = decodedArgs.Balance[1];
-        Level = decodedArgs.Level[1];
-        SerialNumber = decodedArgs.SerialNumber[1];
-        MessagePush = decodedArgs.MessagePush;
+
+      FirstName = decodedArgs.FirstName[1];
+      LastName = decodedArgs.LastName[1];
+      Phone = decodedArgs.Phone[1];
+      Name = FirstName + ' ' + LastName;
+      ContactId = decodedArgs.ContactID[1];
+      WalletId = decodedArgs.WalletID;
+      Balance = decodedArgs.Balance[1];
+      Level = decodedArgs.Level[1];
+      SerialNumber = decodedArgs.SerialNumber[1];
+      MessagePush = decodedArgs.MessagePush;
 
       var obj = {};
       var objlog = {};
@@ -142,7 +141,7 @@ exports.execute = function (req, res) {
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString();
       console.log("arguments: " + JSON.stringify(decodedArgs));
-      if (Method == 'Create') { 
+      if (Method == 'Create') {
 
         var Message = "Miss Sushi";
         var MetodoAPI = "POST";
@@ -177,7 +176,7 @@ exports.execute = function (req, res) {
           obj["level"] = Level;
         }
 
-      } else if (Method == 'Push') { 
+      } else if (Method == 'Push') {
 
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
@@ -190,6 +189,14 @@ exports.execute = function (req, res) {
         }
 
       }
+
+      keys["ContactID"] = ContactId;
+      keys["TimeStamp"] = TimeStamp;
+      values["WalletId"] = WalletId;
+      values["SerialNumber"] = SerialNumber;
+      values["MessagePush"] = MessagePush;
+      values["json"] = "[json: " + JSON.stringify(obj) + "]";
+      values["endpoint"] = URLpasscreation;
 
 
       var options = {
@@ -208,13 +215,6 @@ exports.execute = function (req, res) {
       };
       request(options, function (error, response) {
 
-        keys["ContactID"] = ContactId;
-        keys["TimeStamp"] = TimeStamp;
-        values["WalletId"] = WalletId;
-        values["SerialNumber"] = SerialNumber;
-        values["MessagePush"] = MessagePush;
-        values["json"] = "[json: " + JSON.stringify(obj) + "]";
-        values["endpoint"] = URLpasscreation;
 
         if (error) throw new Error(error);
         if (error) {
@@ -252,14 +252,16 @@ exports.execute = function (req, res) {
             console.log(Method + '|response: ' + response2.body);
             var response2 = JSON.parse(response2.body);
 
-            var SerialNumber = response2["serialNumber"];
-            var PassURL = response2["url"];
-            console.log(Method + '|SerialNumber: ' + SerialNumber);
-            console.log(Method + '|PassURL: ' + PassURL);
+            if (Method == 'create') {
+              var SerialNumber = response2["serialNumber"];
+              var PassURL = response2["url"];
+              console.log(Method + '|SerialNumber: ' + SerialNumber);
+              console.log(Method + '|PassURL: ' + PassURL);
 
-            values["APIresponse2"] = APIresponse2;
-            values["SerialNumber"] = SerialNumber;
-            values["PassURL"] = PassURL;
+              values["APIresponse2"] = APIresponse2;
+              values["SerialNumber"] = SerialNumber;
+              values["PassURL"] = PassURL;
+            }
 
             objlog["keys"] = keys;
             objlog["values"] = values;
