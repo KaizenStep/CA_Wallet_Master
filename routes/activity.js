@@ -246,8 +246,8 @@ exports.execute = function (req, res) {
             } else {
               if (Method == 'Create') {
                 var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
-
-                if (response2["serialNumber"]) {
+                var resoutarg = JSON.parse(response2.body);
+                if (resoutarg["serialNumber"]) {
                   res.send(200, {
                     "outputAPI": "Pass created"
                   });
@@ -261,7 +261,7 @@ exports.execute = function (req, res) {
                 var APIresponse2 = "[response: empty - updated]";
 
                 res.send(200, {
-                  "outputAPI": "Pass updated"
+                  "outputAPI": "Pass updated" 
                 });
 
               } else if (Method == 'Push') {
