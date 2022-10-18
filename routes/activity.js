@@ -144,7 +144,7 @@ exports.execute = function (req, res) {
       console.log("arguments: " + JSON.stringify(decodedArgs));
       if (Method == 'Create') { 
 
-        var Message = " ";
+        var Message = "Miss Sushi";
         var MetodoAPI = "POST";
         var URLpasscreation = process.env.URLpasscreation;
 
