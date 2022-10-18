@@ -169,6 +169,9 @@ exports.execute = function (req, res) {
         if (WalletId === 'Undefined' || WalletId.lenght === 0) {} else {
           obj["walletId"] = WalletId;
         }
+        if (SerialNumber === 'Undefined' || SerialNumber.lenght === 0) {} else {
+          obj["SerialNumber"] = SerialNumber;
+        }
         if (Name === 'Undefined' || Name.lenght === 0 || Name === '' || Name === ' ') {} else {
           obj["name"] = Name;
         }
