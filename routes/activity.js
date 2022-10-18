@@ -221,7 +221,7 @@ exports.execute = function (req, res) {
           apiMC(objlog);
         } else {
           var response = JSON.parse(response.body);
-          var access_token = response["access_token"]; 
+          var access_token = response["access_token"];
 
           var options2 = {
             'method': MetodoAPI,
@@ -238,10 +238,20 @@ exports.execute = function (req, res) {
             if (error) {
               APIresponse2 = "[response: " + error + "]";
             } else {
-              var apiResponse = APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
+              if (response2 === 'Undefined' || response2.lenght === 0) {
+                var response2_log = 'OK';
+              } else {
+                var response2_log = JSON.stringify(response2.body);
+              }
+              APIresponse2 = "[response: " + response2_log + "]";
             }
-            console.log(Method + '|response API Wallet: ' + response2.body);
-            var response2 = JSON.parse(response2.body);
+            if (response2 === 'Undefined' || response2.lenght === 0) {
+              var response2 = 'OK';
+            }else{
+                console.log(Method + '|response API Wallet: ' + response2.body);
+                var response2 = JSON.parse(response2.body);
+            }
+            
 
             if (Method == 'Create') {
               var SerialNumber = response2["serialNumber"];
