@@ -121,6 +121,18 @@ exports.execute = function (req, res) {
       var Level;
       var SerialNumber;
       var MessagePush;
+        
+        
+        FirstName = decodedArgs.FirstName[1];
+        LastName = decodedArgs.LastName[1];
+        Phone = decodedArgs.Phone[1];
+        Name = FirstName + ' ' + LastName;
+        ContactId = decodedArgs.ContactID[1];
+        WalletId = decodedArgs.WalletID;
+        Balance = decodedArgs.Balance[1];
+        Level = decodedArgs.Level[1];
+        SerialNumber = decodedArgs.SerialNumber[1];
+        MessagePush = decodedArgs.MessagePush;
 
       var obj = {};
       var objlog = {};
@@ -130,15 +142,7 @@ exports.execute = function (req, res) {
       var TimeStamp = new Date();
       TimeStamp = TimeStamp.toISOString();
       console.log("arguments: " + JSON.stringify(decodedArgs));
-      if (Method == 'Create') {
-        FirstName = decodedArgs.FirstName[1];
-        LastName = decodedArgs.LastName[1];
-        Phone = decodedArgs.Phone[1];
-        Name = FirstName + ' ' + LastName;
-        ContactId = decodedArgs.ContactID[1];
-        WalletId = decodedArgs.WalletID;
-        Balance = decodedArgs.Balance[1];
-        Level = decodedArgs.Level[1];
+      if (Method == 'Create') { 
 
         var Message = " ";
         var MetodoAPI = "POST";
@@ -153,15 +157,6 @@ exports.execute = function (req, res) {
         obj["message"] = Message;
 
       } else if (Method == 'Update') {
-        FirstName = decodedArgs.FirstName[1];
-        LastName = decodedArgs.LastName[1];
-        Phone = decodedArgs.Phone[1];
-        Name = FirstName + ' ' + LastName;
-        ContactId = decodedArgs.ContactID[1];
-        WalletId = decodedArgs.WalletID;
-        Balance = decodedArgs.Balance[1];
-        Level = decodedArgs.Level[1];
-        SerialNumber = decodedArgs.SerialNumber[1];
 
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
@@ -182,12 +177,7 @@ exports.execute = function (req, res) {
           obj["level"] = Level;
         }
 
-      } else if (Method == 'Push') {
-
-        WalletId = decodedArgs.WalletID;
-        ContactId = decodedArgs.ContactID[1];
-        SerialNumber = decodedArgs.SerialNumber[1];
-        MessagePush = decodedArgs.MessagePush;
+      } else if (Method == 'Push') { 
 
         var MetodoAPI = "PUT";
         var URLpasscreation = process.env.URLpasscreation + SerialNumber;
