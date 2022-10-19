@@ -45,6 +45,7 @@ define([
   var SerialNumberselect;
 
   var currentStep = steps[0].key;
+  var authTokens = '';
   var ReadyEntry = '';
   connection.on('requestedSchema', onGetSchema);
   connection.trigger('requestSchema');
@@ -172,13 +173,16 @@ define([
 
   }
 
-  function onGetTokens(tokens) {
-    //authTokens = tokens;
-    mc_fuel_token = tokens.fuel2token;
+  var mc_fuel_token;
+  var mc_fuel_url;
+
+  function onGetTokens(tokens) { 
+    authTokens = tokens;
+    mc_fuel_token = tokens.fuel2token; 
   }
 
-  function onGetEndpoints(endpoints) {
-    //mc_fuel_url = endpoints.fuelapiRestHost;
+  function onGetEndpoints(endpoints) { 
+    mc_fuel_url = endpoints.fuelapiRestHost;
   }
 
   //step5
