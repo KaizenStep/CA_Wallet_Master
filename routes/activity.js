@@ -222,7 +222,7 @@ exports.execute = function (req, res) {
 
 
           console.error('sf token error');
-          return res.status(400).end();
+          //return res.status(400).end();
         } else {
           var response = JSON.parse(response.body);
           var access_token = response["access_token"];
@@ -242,34 +242,28 @@ exports.execute = function (req, res) {
             if (error) {
               APIresponse2 = "[response: " + error + "]";
               console.error('API SF wallet error');
-              return res.status(400).end();
+              //return res.status(400).end();
             } else {
               if (Method == 'Create') {
                 var APIresponse2 = "[response: " + JSON.stringify(response2.body) + "]";
                 var resoutarg = JSON.parse(response2.body);
                 if (resoutarg["serialNumber"]) {
-                  res.send(200, {
-                    "outputAPI": "Pass created"
-                  });
+                  //res.send(200, {"outputAPI": "Pass created"});
                 } else {
                   console.error('Error creacion pass');
-                  return res.status(400).end();
+                  //return res.status(400).end();
 
                 }
 
               } else if (Method == 'Update') {
                 var APIresponse2 = "[response: empty - updated]";
 
-                res.send(200, {
-                  "outputAPI": "Pass updated" 
-                });
+                //res.send(200, {"outputAPI": "Pass updated"});
 
               } else if (Method == 'Push') {
                 var APIresponse2 = "[response: empty - Push]";
 
-                res.send(200, {
-                  "outputAPI": "Push sent"
-                });
+                //res.send(200, {"outputAPI": "Push sent"});
               }
 
 
@@ -357,7 +351,7 @@ exports.execute = function (req, res) {
       // END API
 
 
-      //res.send(200, 'Execute');
+      res.send(200, 'Execute');
     } else {
       console.error('inArguments invalid.');
       return res.status(400).end();

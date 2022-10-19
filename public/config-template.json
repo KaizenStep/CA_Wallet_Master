@@ -17,9 +17,7 @@
       "inArguments": [{
         "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
       }],
-      "outArguments": [{
-                "outputAPI": ""
-            }],
+      "outArguments": [],
       "url": "https://$DOMAIN/journeybuilder/execute",
       "verb": "POST",
       "body": "",
@@ -73,7 +71,7 @@
     "arguments": {
       "execute": {
         "inArguments": [],
-        "outArguments": [{"outputAPI":"string"}]
+        "outArguments": []
       }
     }
   }
